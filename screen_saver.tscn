@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ntygdewrwqkj"]
+
+[ext_resource type="Script" uid="uid://bvyvewwafkly5" path="res://screen_saver.gd" id="1_hmhxy"]
+
+[node name="ScreenSaver" type="Node2D"]
+script = ExtResource("1_hmhxy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
