@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var max_speed := 400.0
 
+@onready var ground: TileMapLayer = $"../Ground"
+
 
 func _physics_process(_delta: float) -> void:
 	var motion := Vector2(
@@ -17,6 +19,11 @@ func _physics_process(_delta: float) -> void:
 	rotation = atan2(direction_to_mouse.y, direction_to_mouse.x) - deg_to_rad(90)
 
 	move_and_slide()
+	
+	# Update tilemap perspective to center on character
+	if ground and ground.material:
+		ground.material.set_shader_parameter("center_x", global_position.x)
+		ground.material.set_shader_parameter("horizon_y", global_position.y)
 
 
 func _input(event: InputEvent) -> void:

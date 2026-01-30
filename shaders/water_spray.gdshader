@@ -10,14 +10,16 @@ uniform float cone_center = 0.5;       // Center of spray across UV (0.5 = middl
 uniform float density = 1.2;           // Overall spray density
 uniform float mist_scale = 80.0;       // Fine droplet/mist grain size (higher = finer)
 uniform float mist_strength = 0.4;     // How visible the mist grain is
-uniform vec2 scroll = vec2(0.0, 2.0);  // Mist movement (simulate turbulence)
 uniform float falloff = 0.3;           // Fade spray toward far end (0 = none, 1 = strong)
+uniform float scroll_speed = 1.0;      // How fast the noise scrolls (0 = still)
+uniform vec2 scroll_direction = vec2(0.0, 1.0); // Direction only (normalized in shader). e.g. (0,1)=up, (1,0)=right
 
 // Procedural noise for mist (used when no texture or layered with texture)
 float hash(vec2 p) {
 	return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
 }
 
+// Simple noise
 float noise(vec2 p) {
 	vec2 i = floor(p);
 	vec2 f = fract(p);
@@ -29,6 +31,7 @@ float noise(vec2 p) {
 	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
 }
 
+// Fractal Brownian Motion
 float fbm(vec2 p) {
 	float v = 0.0;
 	float a = 0.5;
@@ -53,11 +56,14 @@ void fragment() {
 	float distance_falloff = 1.0 - falloff * along;
 	cone *= distance_falloff;
 
-	// Mist / droplet grain (procedural + optional texture)
-	vec2 mist_uv = uv * mist_scale + scroll * TIME;
+	// Mist / droplet grain: scroll offset = direction (normalized) * speed * time (direction only, no texture modulation)
+	vec2 dir = length(scroll_direction) > 0.001 ? normalize(scroll_direction) : vec2(0.0, 1.0);
+	vec2 scroll_offset = dir * scroll_speed * TIME;
+
+	vec2 mist_uv = uv * mist_scale + scroll_offset;
 	float mist = fbm(mist_uv);
 	if (use_noise_texture) {
-		float tex_noise = texture(noise_texture, uv * 8.0 + scroll * 0.5 * TIME).r;
+		float tex_noise = texture(noise_texture, uv * 8.0 + scroll_offset).r;
 		mist = mix(mist, tex_noise, 0.5);
 	}
 	mist = mist * mist_strength + (1.0 - mist_strength);
