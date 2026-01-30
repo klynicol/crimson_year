@@ -10,7 +10,7 @@ uniform float cone_center = 0.5;       // Center of spray across UV (0.5 = middl
 uniform float density = 1.2;           // Overall spray density
 uniform float mist_scale = 80.0;       // Fine droplet/mist grain size (higher = finer)
 uniform float mist_strength = 0.4;     // How visible the mist grain is
-uniform float falloff = 0.3;           // Fade spray toward far end (0 = none, 1 = strong)
+uniform float falloff = 0.3;           // Cone falloff along spray: fades at both start and end (0 = none, 1 = full cone)
 uniform float scroll_speed = 1.0;      // How fast the noise scrolls (0 = still)
 uniform vec2 scroll_direction = vec2(0.0, 1.0); // Direction only (normalized in shader). e.g. (0,1)=up, (1,0)=right
 
@@ -51,9 +51,10 @@ void fragment() {
 	float cone = 1.0 - pow(dist_from_center, cone_softness);
 	cone = max(0.0, cone);
 
-	// Optional: fade toward far end of spray
+	// Cone along spray: strong in middle (x=0.5), fades at both nozzle (x=0) and far end (x=1)
 	float along = uv.x;
-	float distance_falloff = 1.0 - falloff * along;
+	float cone_along = 4.0 * along * (1.0 - along); // 0 at start/end, 1 at center
+	float distance_falloff = mix(1.0, cone_along, falloff);
 	cone *= distance_falloff;
 
 	// Mist / droplet grain: scroll offset = direction (normalized) * speed * time (direction only, no texture modulation)

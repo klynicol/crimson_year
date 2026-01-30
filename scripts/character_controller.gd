@@ -20,10 +20,14 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_slide()
 	
-	# Update tilemap perspective to center on character
-	if ground and ground.material:
-		ground.material.set_shader_parameter("center_x", global_position.x)
-		ground.material.set_shader_parameter("horizon_y", global_position.y)
+	# Update perspective center for tilemap shader and all objects
+	_update_perspective()
+
+# Update the perspective center for the tilemap shader and all objects
+func _update_perspective() -> void:
+	Perspective.set_character_position(global_position.x, global_position.y)
+	ground.material.set_shader_parameter("center_x", Perspective.center_x)
+	ground.material.set_shader_parameter("horizon_y", Perspective.horizon_y)
 
 
 func _input(event: InputEvent) -> void:

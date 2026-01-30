@@ -15,8 +15,12 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Crimson Year"
-run/main_scene="uid://biwlckbvsdmje"
+run/main_scene="uid://ck8mrr1ruc1kc"
 config/features=PackedStringArray("4.6", "Forward Plus")
+
+[autoload]
+
+Perspective="*res://scripts/perspective.gd"
 
 [dotnet]
 
