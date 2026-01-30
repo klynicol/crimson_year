@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd8nbkoxqwjsd"
-path="res://.godot/imported/completepor_scaled_1x_pngcrushed.png-2d7ae715e7f245f25dc5542e2688f741.ctex"
+uid="uid://ckr8oewaoha83"
+path="res://.godot/imported/water_projectile.png-c751c67a248d782689a3b85a32f1b653.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://completepor_scaled_1x_pngcrushed.png"
-dest_files=["res://.godot/imported/completepor_scaled_1x_pngcrushed.png-2d7ae715e7f245f25dc5542e2688f741.ctex"]
+source_file="res://assets/sprites/water_projectile.png"
+dest_files=["res://.godot/imported/water_projectile.png-c751c67a248d782689a3b85a32f1b653.ctex"]
 
 [params]
 
