@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ddwinr810nh1v"]
 
-[ext_resource type="Script" uid="uid://dgmirrhaduw7l" path="res://scripts/water_spray_projectile.gd" id="1_bri6m"]
+[ext_resource type="Script" uid="uid://dgmirrhaduw7l" path="res://scripts/water_spray/water_spray_projectile.gd" id="1_bri6m"]
 [ext_resource type="Shader" uid="uid://dee4j3mo62n6d" path="res://shaders/water_spray.gdshader" id="1_g5njp"]
 [ext_resource type="Texture2D" uid="uid://bqsltsp4116s5" path="res://assets/sprites/PHsprite.png" id="2_hb2uk"]
-[ext_resource type="Script" uid="uid://dangf23ma80cj" path="res://scripts/water_spray_vfx_controller.gd" id="3_hb2uk"]
+[ext_resource type="Script" uid="uid://dangf23ma80cj" path="res://scripts/water_spray/water_spray_vfx_controller.gd" id="3_hb2uk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bri6m"]
 shader = ExtResource("1_g5njp")

@@ -31,13 +31,14 @@ func _process(delta: float) -> void:
 
 func shoot() -> void:
 	# Spawn at the tip of the sprayer sprite (end of barrel)
-	var tip_offset := sprayer.global_transform.x * (sprayer.texture.get_width() / 2.0)
-	var spawn_pos := sprayer.global_position + tip_offset
-	var rot := sprayer.global_rotation + PI / 2
+	# var tip_offset := sprayer.global_transform.x * (sprayer.texture.get_width() / 2.0)
+	# var spawn_pos := sprayer.global_position + tip_offset
+	# var rot := sprayer.global_rotation + PI / 2
 
 	var instance = projectile.instantiate()
+	var rot = _get_rotation_to_mouse()
 	instance.direction_angle = rot
-	instance.spawnPosition = spawn_pos
+	instance.spawnPosition = global_position
 	instance.spawnRotation = rot - PI / 2
 	instance.speed = projectile_speed
 
@@ -65,7 +66,7 @@ func shoot() -> void:
 	# 	+ " \nscale x: " + str(new_scale_x)
 	# 	+ " \nscale y: " + str(new_scale_y)
 	# 	+ " \nmist strength: "+ str(new_mist_strength))
-	# vfx.set_mist_strength(new_mist_strength)
+	vfx.set_mist_strength(new_mist_strength)
 
 	# Add to scene root so projectile is NOT a child of the character (won't move with mouse/character)
 	get_tree().current_scene.add_child(instance)
@@ -74,3 +75,7 @@ func shoot() -> void:
 	
 func print_text(text: String) -> void:
 	debug_label.text = text
+
+func _get_rotation_to_mouse() -> float:
+	var direction_to_mouse := (get_global_mouse_position() - global_position).normalized()
+	return atan2(direction_to_mouse.y, direction_to_mouse.x) + PI / 2

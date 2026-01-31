@@ -34,6 +34,11 @@ func set_mist_strength(value: float) -> void:
 	var m := _get_shader_material()
 	if m: m.set_shader_parameter("mist_strength", value)
 
+func get_mist_strength() -> float:
+	var m := _get_shader_material()
+	if m: return m.get_shader_parameter("mist_strength")
+	return 0.0
+
 ## Mist movement (e.g. Vector2(0, 2) for vertical)
 func set_scroll(value: Vector2) -> void:
 	var m := _get_shader_material()
