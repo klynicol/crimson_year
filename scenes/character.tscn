@@ -25,7 +25,7 @@ script = ExtResource("3_dp8ca")
 
 [node name="WaterSprayEmiter" type="Node2D" parent="." unique_id=1418427560]
 script = ExtResource("3_my7n2")
-projectile_speed = 1000
+projectile_speed = 1300
 
 [node name="Sprayer" type="Sprite2D" parent="." unique_id=1724670744]
 position = Vector2(-32.000004, 40)

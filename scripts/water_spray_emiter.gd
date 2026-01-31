@@ -5,12 +5,12 @@ extends Node2D
 @onready var debug_label: Label = get_tree().current_scene.get_node("Gui/Control/Label")
 @export var projectile_speed = 400
 
-const MAX_SCALE_X = 7.0
+const MAX_SCALE_X = 9.0
 const MIN_SCALE_X = 3.5
-const MAX_SCALE_Y = 6.0
-const MIN_SCALE_Y = 3.0
+const MAX_SCALE_Y = 12.0
+const MIN_SCALE_Y = 2.5
 const MIN_MIST_STRENGTH = 0.9
-const MAX_MIST_STRENGTH = 1.6
+const MAX_MIST_STRENGTH = 3.0
 
 var cooldown = 0.0
 var cooldown_time: float
@@ -51,11 +51,9 @@ func shoot() -> void:
 	var rotation_effect = 3.2; # Realistic stream of water sort of follows itself...
 	vfx.rotation = - rot_since_last_shot * rotation_effect
 	# Larger rotation change = larger scale so projectiles bridge the gap and look connected
-	# var new_scale_x = clamp(3.5 + (abs(rot_since_last_shot) / PI) * 18, 2.5, 18.0)
 	var x_angle_effect = 0.3; # Angle at which the x scale forumula starts to take effect
 	var new_scale_x = clamp((MIN_SCALE_X / x_angle_effect) * abs(rot_since_last_shot) + MIN_SCALE_X, MIN_SCALE_X, MAX_SCALE_X)
 	var y_angle_effect = 0.3; # Angle at which the y scale forumula starts to take effect
-	# var new_scale_y = clamp(2.0 + (abs(rot_since_last_shot) / PI) * 30, 1.0, 3.0)
 	var new_scale_y = clamp((MIN_SCALE_Y / y_angle_effect) * abs(rot_since_last_shot) + MIN_SCALE_Y, MIN_SCALE_Y, MAX_SCALE_Y)
 	vfx.scale.x = new_scale_x
 	vfx.scale.y = new_scale_y
