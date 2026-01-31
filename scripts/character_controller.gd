@@ -20,7 +20,6 @@ var anim_directions = {
 	],
 }
 
-
 func _physics_process(_delta: float) -> void:
 	var motion := Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
@@ -50,17 +49,6 @@ func _input(event: InputEvent) -> void:
 		get_tree().quit()
 
 func update_animation(anim_set):
-	var angle = rad_to_deg(_get_rotation_to_mouse())
-	
-	# Normalize to 0-360 and add offset for 4-way division
-	angle = fmod(angle + 360.0 + 45.0, 360.0)
-	
-	# Divide into 4 slices (90° each) instead of 8
-	var slice_dir = int(angle / 90.0) % 4
-	
+	var angle = Utilities.get_rotation_to_mouse(global_position)
+	var slice_dir = Utilities.get_direction_from_rotation(angle)
 	$AnimatedSprite2D.play(anim_directions[anim_set][slice_dir][0])
-	print("updating animation to: " + anim_set + " " + str(slice_dir) + " (angle: " + str(angle) + ")")
-
-func _get_rotation_to_mouse() -> float:
-	var direction_to_mouse := (get_global_mouse_position() - global_position).normalized()
-	return atan2(direction_to_mouse.y, direction_to_mouse.x)
