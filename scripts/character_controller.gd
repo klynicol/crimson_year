@@ -3,7 +3,22 @@ extends CharacterBody2D
 @export var max_speed := 400.0
 
 @onready var ground: TileMapLayer = $"../Ground"
+var last_direction = Vector2(1, 0)
 
+var anim_directions = {
+	"idle": [ # list of [animation name, horizontal flip]
+		["right_idle", false],
+		["front_idle", false],
+		["left_idle", false],
+		["back_idle", false],
+	],
+	"walk": [
+		["right_walking", false],
+		["front_walking", false],
+		["left_walking", false],
+		["back_walking", false],
+	],
+}
 
 func _physics_process(_delta: float) -> void:
 	var motion := Vector2(
@@ -12,12 +27,11 @@ func _physics_process(_delta: float) -> void:
 	)
 	if motion.length() > 0.0:
 		motion = motion.normalized() * max_speed
-	velocity = motion
+		update_animation("walk")
+	else:
+		update_animation("idle")
 
-	# Rotate to face the mouse
-	var direction_to_mouse := (get_global_mouse_position() - global_position).normalized()
-	rotation = atan2(direction_to_mouse.y, direction_to_mouse.x) - deg_to_rad(90)
-
+	set_velocity(motion)
 	move_and_slide()
 	
 	# Update perspective center for tilemap shader and all objects
@@ -33,3 +47,8 @@ func _update_perspective() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):
 		get_tree().quit()
+
+func update_animation(anim_set):
+	var angle = Utilities.get_rotation_to_mouse(global_position)
+	var slice_dir = Utilities.get_direction_from_rotation(angle)
+	$AnimatedSprite2D.play(anim_directions[anim_set][slice_dir][0])

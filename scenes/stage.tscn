@@ -4,16 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://duee4wsbvb3xl" path="res://scenes/car.tscn" id="2_rnkuw"]
 [ext_resource type="PackedScene" uid="uid://disbfj0oegbi2" path="res://scenes/checkpoint.tscn" id="3_gx6sy"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_6eo5e"]
-
 [node name="Stage" type="Node" unique_id=1706026316]
 script = ExtResource("1_6eo5e")
-
-[node name="PHfloor" type="Sprite2D" parent="." unique_id=1080474906]
-modulate = Color(0.35935566, 0.16492477, 0.30012557, 1)
-position = Vector2(573.00006, 326)
-scale = Vector2(1105.5, 586.50006)
-texture = SubResource("CanvasTexture_6eo5e")
 
 [node name="Car" parent="." unique_id=1920515730 instance=ExtResource("2_rnkuw")]
 unique_name_in_owner = true
