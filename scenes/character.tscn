@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c87xm1xgj8tv"]
+
+[ext_resource type="Script" uid="uid://b6nor6tjtgbxq" path="res://scripts/character_controller.gd" id="1_rkhd4"]
+[ext_resource type="Texture2D" uid="uid://bqsltsp4116s5" path="res://assets/sprites/PHsprite.png" id="2_lrhn5"]
+[ext_resource type="Script" uid="uid://bcj4htm1ep8td" path="res://scripts/camera.gd" id="3_dp8ca"]
+[ext_resource type="Texture2D" uid="uid://di16gp3nh15au" path="res://assets/sprites/water_sprayer.png" id="3_lrhn5"]
+[ext_resource type="Script" uid="uid://bqw0dxjxejv0g" path="res://scripts/water_spray_emiter.gd" id="3_my7n2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfnr8"]
+size = Vector2(32, 32)
+
+[node name="Character" type="CharacterBody2D" unique_id=2051868365]
+motion_mode = 1
+script = ExtResource("1_rkhd4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1759118846]
+texture_filter = 1
+texture = ExtResource("2_lrhn5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=955580141]
+shape = SubResource("RectangleShape2D_wfnr8")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=858571539]
+script = ExtResource("3_dp8ca")
+
+[node name="WaterSprayEmiter" type="Node2D" parent="." unique_id=1418427560]
+script = ExtResource("3_my7n2")
+projectile_speed = 1300
+
+[node name="Sprayer" type="Sprite2D" parent="." unique_id=1724670744]
+position = Vector2(-32.000004, 40)
+rotation = 1.5498524
+scale = Vector2(0.8591502, 0.97118473)
+texture = ExtResource("3_lrhn5")

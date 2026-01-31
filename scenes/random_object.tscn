@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://qt8xphjxw04v"]
+
+[ext_resource type="Script" uid="uid://bw4pvyfo7o8h7" path="res://scripts/random_object.gd" id="1_vx6cb"]
+[ext_resource type="Texture2D" uid="uid://bqsltsp4116s5" path="res://assets/sprites/PHsprite.png" id="2_r5rhn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vx6cb"]
+radius = 16.27882
+
+[node name="RandomObject" type="Node2D" unique_id=329371849]
+script = ExtResource("1_vx6cb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=885141060]
+texture_filter = 1
+texture = ExtResource("2_r5rhn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=469423491]
+shape = SubResource("CircleShape2D_vx6cb")

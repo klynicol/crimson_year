@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d2iudamxic3r5"]
 
-[ext_resource type="Script" uid="uid://mxv5831yxi0l" path="res://stage_manager.gd" id="1_6eo5e"]
-[ext_resource type="PackedScene" uid="uid://duee4wsbvb3xl" path="res://car.tscn" id="2_rnkuw"]
-[ext_resource type="PackedScene" uid="uid://disbfj0oegbi2" path="res://checkpoint.tscn" id="3_gx6sy"]
+[ext_resource type="Script" uid="uid://mxv5831yxi0l" path="res://scripts/stage_manager.gd" id="1_6eo5e"]
+[ext_resource type="PackedScene" uid="uid://duee4wsbvb3xl" path="res://scenes/car.tscn" id="2_rnkuw"]
+[ext_resource type="PackedScene" uid="uid://disbfj0oegbi2" path="res://scenes/checkpoint.tscn" id="3_gx6sy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_6eo5e"]
 

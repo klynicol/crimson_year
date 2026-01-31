@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqsltsp4116s5"
-path="res://.godot/imported/PHsprite.png-180423f2de4a86859f464a4900b00b67.ctex"
+uid="uid://cov1ip0te8esb"
+path="res://.godot/imported/placeholder_ground.png-5e3b144d3398f3ecf836bbf502a4e6e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PHsprite.png"
-dest_files=["res://.godot/imported/PHsprite.png-180423f2de4a86859f464a4900b00b67.ctex"]
+source_file="res://assets/tile_sets/placeholder_ground.png"
+dest_files=["res://.godot/imported/placeholder_ground.png-5e3b144d3398f3ecf836bbf502a4e6e0.ctex"]
 
 [params]
 
