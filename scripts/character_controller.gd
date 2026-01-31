@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var max_speed := 400.0
 
 @onready var ground: TileMapLayer = $"../Ground"
+@onready var walls: TileMapLayer = $"../Walls"
 var last_direction = Vector2(1, 0)
 
 var anim_directions = {
@@ -42,6 +43,8 @@ func _update_perspective() -> void:
 	Perspective.set_character_position(global_position.x, global_position.y)
 	ground.material.set_shader_parameter("center_x", Perspective.center_x)
 	ground.material.set_shader_parameter("horizon_y", Perspective.horizon_y)
+	walls.material.set_shader_parameter("center_x", Perspective.center_x)
+	walls.material.set_shader_parameter("horizon_y", Perspective.horizon_y)
 
 
 func _input(event: InputEvent) -> void:

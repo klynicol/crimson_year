@@ -1,19 +1,10 @@
 [gd_scene format=3 uid="uid://c87xm1xgj8tv"]
 
 [ext_resource type="Script" uid="uid://b6nor6tjtgbxq" path="res://scripts/character_controller.gd" id="1_rkhd4"]
+[ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="2_dp8ca"]
 [ext_resource type="Texture2D" uid="uid://dvdkhp8uxik2w" path="res://assets/sprites/goblin.png" id="2_my7n2"]
 [ext_resource type="Script" uid="uid://bcj4htm1ep8td" path="res://scripts/camera.gd" id="3_dp8ca"]
 [ext_resource type="Script" uid="uid://bqw0dxjxejv0g" path="res://scripts/water_spray/water_spray_emiter.gd" id="3_my7n2"]
-
-[sub_resource type="Gradient" id="Gradient_tpysm"]
-offsets = PackedFloat32Array(0, 0.45238096, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.9477612, 0.9440445, 0.9477612, 1, 1, 0.99607843, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nx2d8"]
-gradient = SubResource("Gradient_tpysm")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.645, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_my7n2"]
 atlas = ExtResource("2_my7n2")
@@ -967,7 +958,7 @@ max_speed = null
 modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
 position = Vector2(0, -7.0000005)
 scale = Vector2(1.7116565, 0.58431244)
-texture = SubResource("GradientTexture2D_nx2d8")
+texture = ExtResource("2_dp8ca")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=410231915]
 position = Vector2(0, -49)
