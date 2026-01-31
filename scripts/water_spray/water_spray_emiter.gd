@@ -46,12 +46,13 @@ func shoot() -> void:
 	# var spawn_pos := sprayer.global_position + tip_offset
 	# var rot := sprayer.global_rotation + PI / 2
 	var instance = projectile.instantiate()
+
 	var rot = Utilities.get_rotation_to_mouse(global_position)
 	var spawn_pos = SPRAYER_SPAWN_POSITIONS[Utilities.get_direction_from_rotation(rot)]
 	instance.spawnPosition = global_position + spawn_pos + (character.velocity * 0.02)
 	instance.spawnRotation = rot
 	instance.speed = projectile_speed
-
+	
 	var rot_since_last_shot = rot - last_shot_rotation
 
 	var vfx: Sprite2D = instance.get_node("VFX")
