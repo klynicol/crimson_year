@@ -44,32 +44,29 @@ func shoot() -> void:
 	# var tip_offset := sprayer.global_transform.x * (sprayer.texture.get_width() / 2.0)
 	# var spawn_pos := sprayer.global_position + tip_offset
 	# var rot := sprayer.global_rotation + PI / 2
-	var instance = projectile.instantiate()
+	var instance := projectile.instantiate() as CharacterBody2D
 
-	var rot = match_rot_to_player_control_mode()
-	var spawn_pos = SPRAYER_SPAWN_POSITIONS[Utilities.get_direction_from_rotation(rot)]
+	var rot := match_rot_to_player_control_mode()
+	var spawn_pos := SPRAYER_SPAWN_POSITIONS[Utilities.get_direction_from_rotation(rot)] as Vector2
 	instance.spawnPosition = global_position + spawn_pos + (character.velocity * 0.02)
 	instance.spawnRotation = rot
 	instance.speed = projectile_speed
 	
-	var rot_since_last_shot = rot - last_shot_rotation
+	var rot_since_last_shot := rot - last_shot_rotation
 
 	var vfx: Sprite2D = instance.get_node("VFX")
-	# Each instance needs its own material; otherwise shader params (e.g. mist_strength) change all projectiles
-	if vfx.material:
-		vfx.material = vfx.material.duplicate()
 
-	var rotation_effect = 3.2; # Realistic stream of water sort of follows itself...
+	var rotation_effect := 3.2; # Realistic stream of water sort of follows itself...
 	vfx.rotation = - rot_since_last_shot * rotation_effect
 
 	# Larger rotation change = larger scale so projectiles bridge the gap and look connected
-	var x_angle_effect = 0.3; # Angle at which the x scale forumula starts to take effect
+	var x_angle_effect := 0.3; # Angle at which the x scale forumula starts to take effect
 	var new_scale_x = clamp(
 		(MIN_SCALE_X / x_angle_effect) * abs(rot_since_last_shot) + MIN_SCALE_X,
 		MIN_SCALE_X,
 		MAX_SCALE_X
 	)
-	var y_angle_effect = 0.3; # Angle at which the y scale forumula starts to take effect
+	var y_angle_effect := 0.3; # Angle at which the y scale forumula starts to take effect
 	var new_scale_y = clamp(
 		(MIN_SCALE_Y / y_angle_effect) * abs(rot_since_last_shot) + MIN_SCALE_Y,
 		MIN_SCALE_Y,
@@ -79,10 +76,10 @@ func shoot() -> void:
 	vfx.scale.y = new_scale_y
 
 	# we also should reduce the mist strength based on the rotation change
-	var mist_angle_effect = 0.9; # Angle at which the mist strength forumula starts to take effect
-	var new_mist_strength = clamp(mist_angle_effect + abs(rot_since_last_shot), MIN_MIST_STRENGTH, MAX_MIST_STRENGTH)
+	var mist_angle_effect := 0.9; # Angle at which the mist strength forumula starts to take effect
+	var new_mist_strength: float = clamp(mist_angle_effect + abs(rot_since_last_shot), MIN_MIST_STRENGTH, MAX_MIST_STRENGTH)
 
-	# print_text("rot since last shot: " + str(rot_since_last_shot)
+	# label_text("rot since last shot: " + str(rot_since_last_shot)
 	# 	+ " \nscale x: " + str(new_scale_x)
 	# 	+ " \nscale y: " + str(new_scale_y)
 	# 	+ " \nmist strength: "+ str(new_mist_strength))
@@ -92,13 +89,12 @@ func shoot() -> void:
 	get_tree().current_scene.add_child(instance)
 	
 	last_shot_rotation = rot
-	
-func print_text(text: String) -> void:
-	debug_label.text = text
 
-func match_rot_to_player_control_mode():
+func match_rot_to_player_control_mode() -> float:
 	match character.get_control_type():
 		PlayerController.ControlMode.KEYBOARD:
 			return Utilities.get_rotation_to_mouse(global_position)
 		PlayerController.ControlMode.GAMEPAD:
 			return Utilities.get_rotation_to_gamepad(global_position)
+		_:
+			return 0.0

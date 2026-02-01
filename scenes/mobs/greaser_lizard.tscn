@@ -56,12 +56,16 @@ animations = [{
 radius = 17.0
 height = 76.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lnwn7"]
+radius = 20.0
+height = 84.0
+
 [node name="GreaserLizard" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box")]
 script = ExtResource("1_greaser")
 stats = SubResource("Resource_lnwn7")
 sprite = NodePath("AnimatedSprite2D")
 ray_cast = NodePath("RayCast2D")
-hit_box = NodePath("HitBox")
+hit_box = NodePath("HitBoxArea")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=428859329]
 modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
@@ -75,9 +79,17 @@ sprite_frames = SubResource("SpriteFrames_eq5of")
 autoplay = "default"
 frame_progress = 0.5425401
 
-[node name="HitBox" type="CollisionShape2D" parent="." unique_id=1895863027]
+[node name="Knockback" type="CollisionShape2D" parent="." unique_id=1895863027]
 position = Vector2(-1, -38)
 shape = SubResource("CapsuleShape2D_7mxe0")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1249472882]
 target_position = Vector2(-1000, 0)
+
+[node name="HitBoxArea" type="Area2D" parent="." unique_id=1165564183]
+
+[node name="HitBox" type="CollisionShape2D" parent="HitBoxArea" unique_id=1458069334]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-1, -38)
+shape = SubResource("CapsuleShape2D_lnwn7")

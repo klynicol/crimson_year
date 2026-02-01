@@ -1,5 +1,4 @@
-extends Mob
-class_name GreaserLizard
+class_name GreaserLizard extends Mob
 
 func _ready():
 	mob_type = World.MobType.LIZARD

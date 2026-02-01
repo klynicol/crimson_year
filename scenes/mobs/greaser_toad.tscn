@@ -65,8 +65,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mxe0"]
-radius = 17.0
-height = 76.0
+radius = 27.0
+height = 54.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ln1w"]
+radius = 34.0147
 
 [node name="GreaserToad" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box")]
 script = ExtResource("1_u4mkm")
@@ -87,9 +90,17 @@ sprite_frames = SubResource("SpriteFrames_eq5of")
 autoplay = "default"
 frame_progress = 0.46823555
 
-[node name="HitBox" type="CollisionShape2D" parent="." unique_id=1895863027]
-position = Vector2(-1, -38)
+[node name="Knockback" type="CollisionShape2D" parent="." unique_id=1895863027]
+position = Vector2(3, -27)
 shape = SubResource("CapsuleShape2D_7mxe0")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1249472882]
 target_position = Vector2(-1000, 0)
+
+[node name="HitBox" type="Area2D" parent="." unique_id=309755500]
+
+[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox" unique_id=2050197944]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(3, -28)
+shape = SubResource("CircleShape2D_8ln1w")
