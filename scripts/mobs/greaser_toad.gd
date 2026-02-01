@@ -1,39 +1,68 @@
-extends Mob
-class_name GreaserToad
+class_name GreaserToad extends Mob
 
-@export var jump_force: float = 400.0
-@export var gravity: float = 1000.0
-@export var hop_interval: float = 0.6
-@export var air_steer_strength: float = 900.0
+var animation_speed: float
+var hop_time: float
+var hop_air_time: float
+var hop_ground_time: float
 
-var hop_timer: float = 0.0
+var air_timer: float = 0.0
+var ground_timer: float = 0.0
+
+const HOP_START_FRAME: int = 1
+const HOP_END_FRAME: int = 5
+const HOP_AIR_RATIO: float = 0.5
+const HOP_ARC_HEIGHT: float = 32.0  # pixels of vertical travel for the hop
+const ANIMATION_NAME: String = "default"
 
 func _ready():
 	mob_type = World.MobType.TOAD
+	animation_speed = sprite.sprite_frames.get_animation_speed("default")
+	# Calculate the hop_timer based on the animation speed and the number of frames in the hop
+	hop_time = (HOP_END_FRAME - HOP_START_FRAME) * (animation_speed / 60)
+	# set ratio of the hop cycles
+	hop_air_time = hop_time * HOP_AIR_RATIO
+	hop_ground_time = hop_time * (1.0 - HOP_AIR_RATIO)
+	super._ready()
 
 """
-Chase is a bit different for toad. We will not be using the acceleration and deceleration. The
-toad will "hop" toward the target. While on the ground, the movement is more or less 0. While in the air,
-the toad will move toward the target at a constant speed, with smooth acceleration/deceleration of velocity.
+Chase is different for the toad: it "hops" toward the target.
+- On the ground: velocity eases to zero; we wait hop_ground_time, then launch.
+- In the air: move toward target at constant speed; hop appearance comes from modulating Y (arc).
 """
 func chase(target_pos: Vector2, delta: float) -> void:
 	var displacement := target_pos - global_position
 	var dist := displacement.length()
+
+	if dist < stats.attack_range:
+		velocity = Vector2.ZERO
+		sprite.set_frame(0)
+		sprite.pause()
+		air_timer = 0.0
+		ground_timer = hop_ground_time
+		move_and_slide()
+		super.chase(target_pos, delta)
+		return
+
 	var direction := displacement.normalized() if dist > 0.01 else Vector2.ZERO
 
-	if is_on_floor():
-		velocity.x = move_toward(velocity.x, 0.0, 1200.0 * delta)
-		velocity.y = 0.0
-		hop_timer -= delta
-		if hop_timer <= 0.0 and dist > stats.attack_range and direction != Vector2.ZERO:
-			# Hop toward target: initial horizontal nudge + upward impulse
-			velocity = Vector2(direction.x * stats.speed * 0.4, -jump_force)
-			hop_timer = hop_interval
+	if air_timer > 0.0:
+		# In the air: move toward target at constant speed; Y velocity gives the hop arc
+		air_timer -= delta
+		var hop_phase := 1.0 - (air_timer / hop_air_time)  # 0 at takeoff -> 1 at landing
+		# Vertical velocity for arc: up at start, zero at peak, down at land (derivative of sin(phase*PI))
+		var hop_velocity_y := -HOP_ARC_HEIGHT * PI / hop_air_time * cos(hop_phase * PI)
+		var move_velocity := direction * stats.speed
+		velocity = Vector2(move_velocity.x, move_velocity.y + hop_velocity_y)
+		sprite.play(ANIMATION_NAME)
 	else:
-		velocity.y += gravity * delta
-		# Steer horizontal velocity toward target at constant speed (smooth tween in air)
-		var desired_x := direction.x * stats.speed
-		velocity.x = move_toward(velocity.x, desired_x, air_steer_strength * delta)
+		# On the ground: ease to zero and wait before next hop; zero Y so we don't drift down
+		velocity = velocity.move_toward(Vector2.ZERO, stats.decel * delta)
+		velocity.y = 0.0
+		ground_timer -= delta
+		if ground_timer <= 0.0:
+			ground_timer = hop_ground_time
+			air_timer = hop_air_time  # launch
 
 	move_and_slide()
 	super.chase(target_pos, delta)
+	

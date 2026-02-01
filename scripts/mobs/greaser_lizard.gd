@@ -3,6 +3,7 @@ class_name GreaserLizard
 
 func _ready():
 	mob_type = World.MobType.LIZARD
+	super._ready()
 
 func chase(target_pos: Vector2, delta: float) -> void:
 	# Get within attack range + buffer

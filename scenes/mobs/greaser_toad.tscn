@@ -68,9 +68,12 @@ animations = [{
 radius = 17.0
 height = 76.0
 
-[node name="GreaserToad" type="CharacterBody2D" unique_id=343513114]
+[node name="GreaserToad" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box")]
 script = ExtResource("1_u4mkm")
 stats = SubResource("Resource_8ln1w")
+sprite = NodePath("AnimatedSprite2D")
+ray_cast = NodePath("RayCast2D")
+hit_box = NodePath("HitBox")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=428859329]
 modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
@@ -82,7 +85,7 @@ texture = ExtResource("3_wpauc")
 position = Vector2(3, -41)
 sprite_frames = SubResource("SpriteFrames_eq5of")
 autoplay = "default"
-frame_progress = 0.6398849
+frame_progress = 0.46823555
 
 [node name="HitBox" type="CollisionShape2D" parent="." unique_id=1895863027]
 position = Vector2(-1, -38)

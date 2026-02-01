@@ -9,8 +9,6 @@ class_name PlayerController extends CharacterBody2D
 @export var control_type = PlayerController.ControlMode.KEYBOARD
 enum ControlMode{KEYBOARD, GAMEPAD}
 
-@onready var ground: TileMapLayer = $"../Ground"
-@onready var walls: TileMapLayer = $"../Walls"
 signal player_died
 signal player_respawned
 var last_direction = Vector2(1, 0)
@@ -51,10 +49,12 @@ func _physics_process(_delta: float) -> void:
 # Update the perspective center for the tilemap shader and all objects
 func _update_perspective() -> void:
 	Perspective.set_character_position(global_position.x, global_position.y)
-	ground.material.set_shader_parameter("center_x", Perspective.center_x)
-	ground.material.set_shader_parameter("horizon_y", Perspective.horizon_y)
-	walls.material.set_shader_parameter("center_x", Perspective.center_x)
-	walls.material.set_shader_parameter("horizon_y", Perspective.horizon_y)
+	if not World.ground or not World.walls:
+		return
+	World.ground.material.set_shader_parameter("center_x", Perspective.center_x)
+	World.ground.material.set_shader_parameter("horizon_y", Perspective.horizon_y)
+	World.walls.material.set_shader_parameter("center_x", Perspective.center_x)
+	World.walls.material.set_shader_parameter("horizon_y", Perspective.horizon_y)
 
 
 func _input(event: InputEvent) -> void:

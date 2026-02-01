@@ -1,5 +1,4 @@
-extends CharacterBody2D
-class_name Mob
+class_name Mob extends CharacterBody2D
 
 @export var stats: MobStats
 @export var sprite: AnimatedSprite2D
@@ -10,12 +9,19 @@ var is_chasing: bool = false
 
 var mob_type: World.MobType
 
+var player: CharacterBody2D
+
 func _ready():
-	pass
+	call_deferred("_set_player")
+
+func _set_player():
+	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
+	if not player:
+		return
 	# spin_raycast(delta)
-	chase(World.player_instance.global_position, delta) # just chase the player for now
+	chase(player.global_position, delta) # just chase the player for now
 
 # Let's spine the raycast around the mob to detect "things"
 func spin_raycast(delta: float) -> void:

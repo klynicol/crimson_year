@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dwn7awf8g1bf1"]
+
+[ext_resource type="PackedScene" uid="uid://c87xm1xgj8tv" path="res://scenes/character.tscn" id="1_j0lhm"]
+[ext_resource type="PackedScene" uid="uid://dcqdtdvxviuqr" path="res://scenes/mobs/greaser_toad.tscn" id="2_spcry"]
+
+[node name="TestToads" type="Node2D" unique_id=912174605]
+
+[node name="Character" parent="." unique_id=2051868365 groups=["player"] instance=ExtResource("1_j0lhm")]
+
+[node name="GreaserToad" parent="." unique_id=343513114 instance=ExtResource("2_spcry")]
+position = Vector2(564, -7)
