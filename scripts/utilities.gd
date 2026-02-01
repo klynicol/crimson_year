@@ -6,7 +6,9 @@ func get_rotation_to_mouse(global_pos: Vector2) -> float:
 	var direction_to_mouse := (get_global_mouse_position() - global_pos).normalized()
 	return atan2(direction_to_mouse.y, direction_to_mouse.x)
 
-func get_rotation_to_gamepad(global_pos: Vector2) -> float:
+# it's the same but uses the directional vector from right stick input to rotate
+# instead of mouse position
+func get_rotation_to_gamepad(_global_pos: Vector2) -> float:
 	var direction_to_stick := Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	return atan2(direction_to_stick.y, direction_to_stick.x)
 

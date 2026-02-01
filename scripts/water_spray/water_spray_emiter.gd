@@ -47,7 +47,7 @@ func shoot() -> void:
 	# var rot := sprayer.global_rotation + PI / 2
 	var instance = projectile.instantiate()
 
-	var rot = Utilities.get_rotation_to_mouse(global_position)
+	var rot = match_rot_to_player_control_mode()
 	var spawn_pos = SPRAYER_SPAWN_POSITIONS[Utilities.get_direction_from_rotation(rot)]
 	instance.spawnPosition = global_position + spawn_pos + (character.velocity * 0.02)
 	instance.spawnRotation = rot
@@ -96,3 +96,10 @@ func shoot() -> void:
 	
 func print_text(text: String) -> void:
 	debug_label.text = text
+
+func match_rot_to_player_control_mode():
+	match character.get_control_type():
+		PlayerController.ControlMode.KEYBOARD:
+			return Utilities.get_rotation_to_mouse(global_position)
+		PlayerController.ControlMode.GAMEPAD:
+			return Utilities.get_rotation_to_gamepad(global_position)

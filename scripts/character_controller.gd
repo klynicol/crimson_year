@@ -1,10 +1,10 @@
 class_name PlayerController extends CharacterBody2D
 
 @export var max_speed := 400.0
-@export var control_type = PlayerController.ControlMode.KEYBOARD
 
 # this will determine whether the Utilities file uses the get_rotation_to_mouse()
 # or the get_rotation_to_stick() functions
+@export var control_type = PlayerController.ControlMode.KEYBOARD
 enum ControlMode{KEYBOARD, GAMEPAD}
 
 @onready var ground: TileMapLayer = $"../Ground"
