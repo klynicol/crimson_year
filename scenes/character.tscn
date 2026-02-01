@@ -943,6 +943,11 @@ animations = [{
 "loop": true,
 "name": &"right_walking",
 "speed": 15.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"test",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bj47h"]
@@ -952,7 +957,6 @@ radius = 12.0
 z_index = 1
 motion_mode = 1
 script = ExtResource("1_rkhd4")
-max_speed = null
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1248003419]
 modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
@@ -963,7 +967,7 @@ texture = ExtResource("2_dp8ca")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=410231915]
 position = Vector2(0, -49)
 sprite_frames = SubResource("SpriteFrames_cicko")
-animation = &"left_idle"
+animation = &"test"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=955580141]
 position = Vector2(0, -16)

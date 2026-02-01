@@ -40,7 +40,6 @@ func _process(delta: float) -> void:
 	cooldown -= delta
 
 func shoot() -> void:
-	print("velocity: " + str(character.velocity))
 	# Spawn at the tip of the sprayer sprite (end of barrel)
 	# var tip_offset := sprayer.global_transform.x * (sprayer.texture.get_width() / 2.0)
 	# var spawn_pos := sprayer.global_position + tip_offset

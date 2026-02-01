@@ -4,8 +4,6 @@ class_name MobStats
 # stats system tutorial
 #https://www.youtube.com/watch?v=vsBb9921GfA
 
-
-
 signal mob_died
 signal mob_health_changed
 

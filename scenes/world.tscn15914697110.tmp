@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://nee42j00gdxd" path="res://assets/tile_sets/walb.png" id="5_71j4m"]
 [ext_resource type="Texture2D" uid="uid://c10vx5lnypay7" path="res://assets/tile_sets/wall_empty.png" id="6_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://duee4wsbvb3xl" path="res://scenes/car.tscn" id="6_i7141"]
+[ext_resource type="PackedScene" uid="uid://xriknrldek0f" path="res://scenes/mobs/greaser_lizard.tscn" id="7_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://h8bl42wvgft6" path="res://scenes/mobs/greaser_spawn.tscn" id="10_w7kh3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_71j4m"]
@@ -89,8 +90,11 @@ position = Vector2(1260, -30)
 position = Vector2(630, -15)
 car = 1
 
+[node name="GreaserLizard" parent="." unique_id=343513114 instance=ExtResource("7_4mrxx")]
+position = Vector2(1006, 267)
+
 [node name="GreaserSpawn" parent="." unique_id=223396681 groups=["GreaserSpawn"] instance=ExtResource("10_w7kh3")]
-position = Vector2(360, 138)
+position = Vector2(1372, 182)
 
 [node name="GreaserSpawn2" parent="." unique_id=715140260 groups=["GreaserSpawn"] instance=ExtResource("10_w7kh3")]
-position = Vector2(-113, 128)
+position = Vector2(643, 164)
