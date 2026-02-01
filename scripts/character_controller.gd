@@ -1,8 +1,13 @@
-extends CharacterBody2D
+class_name PlayerController extends CharacterBody2D
 
 @export var max_speed := 400.0
 @export var accel := 1400.0
 @export var decel := 1600.0
+
+# this will determine whether the Utilities file uses the get_rotation_to_mouse()
+# or the get_rotation_to_stick() functions
+@export var control_type = PlayerController.ControlMode.KEYBOARD
+enum ControlMode{KEYBOARD, GAMEPAD}
 
 @onready var ground: TileMapLayer = $"../Ground"
 @onready var walls: TileMapLayer = $"../Walls"
@@ -57,6 +62,15 @@ func _input(event: InputEvent) -> void:
 		get_tree().quit()
 
 func update_animation(anim_set):
-	var angle = Utilities.get_rotation_to_mouse(global_position)
-	var slice_dir = Utilities.get_direction_from_rotation(angle)
-	$AnimatedSprite2D.play(anim_directions[anim_set][slice_dir][0])
+	match control_type:
+		ControlMode.KEYBOARD:
+			var angle = Utilities.get_rotation_to_mouse(global_position)
+			var slice_dir = Utilities.get_direction_from_rotation(angle)
+			$AnimatedSprite2D.play(anim_directions[anim_set][slice_dir][0])
+		ControlMode.GAMEPAD:
+			var angle = Utilities.get_rotation_to_gamepad(global_position)
+			var slice_dir = Utilities.get_direction_from_rotation(angle)
+			$AnimatedSprite2D.play(anim_directions[anim_set][slice_dir][0])
+			
+func get_control_type() -> ControlMode:
+	return control_type
