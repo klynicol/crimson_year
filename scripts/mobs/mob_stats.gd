@@ -12,6 +12,8 @@ signal mob_health_changed
 @export var damage: int
 @export var attack_range: float
 @export var attack_cooldown: float
+@export var accel := 1400.0
+@export var decel := 1600.0
 
 var _health: int
 var health: int:

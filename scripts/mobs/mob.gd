@@ -6,12 +6,32 @@ class_name Mob
 @export var ray_cast: RayCast2D
 @export var hit_box: CollisionShape2D
 
+var player: CharacterBody2D
+var is_chasing: bool = false
+
 func _ready():
-	print("mob ready")
+	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
-	look_for_player()
+	# spin_raycast(delta)
+	chase(player.global_position, delta) # just chase the player for now
 
-## Override in subclasses for mob-specific AI
-func look_for_player() -> void:
+# Let's spine the raycast around the mob to detect "things"
+func spin_raycast(delta: float) -> void:
+	ray_cast.rotation += delta * 10
+
+func find_closest_car() -> CharacterBody2D:
+	var cars = get_tree().get_nodes_in_group("cars")
+	if cars.size() == 0:
+		return
+	var closest_car = cars[0]
+	for car in cars:
+		if car.global_position.distance_to(global_position) < closest_car.global_position.distance_to(global_position):
+			closest_car = car
+	return closest_car
+
+func look_for_player(delta: float) -> void:
+	pass
+
+func chase(target_pos: Vector2, delta: float) -> void:
 	pass

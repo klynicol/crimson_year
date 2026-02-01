@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://xriknrldek0f"]
 
-[ext_resource type="Script" uid="uid://866711s6i3qv" path="res://scripts/mobs/greaser_lizard.gd" id="1_greaser"]
+[ext_resource type="Script" uid="uid://bvbngguyduhdj" path="res://scripts/mobs/greaser_lizard.gd" id="1_greaser"]
 [ext_resource type="Script" uid="uid://csdolyo5rtfno" path="res://scripts/mobs/mob_stats.gd" id="2_6ws4d"]
 [ext_resource type="Texture2D" uid="uid://bv3dxl55dv36o" path="res://assets/sprites/Greaser_Lizard-Sheet.png" id="3_hmpad"]
 [ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="3_lnwn7"]
@@ -10,8 +10,10 @@ script = ExtResource("2_6ws4d")
 max_health = 100
 speed = 200.0
 damage = 20
-attack_range = 20.0
+attack_range = 100.0
 attack_cooldown = 2.0
+accel = 600.0
+decel = 800.0
 metadata/_custom_type_script = "uid://csdolyo5rtfno"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnwn7"]
@@ -78,4 +80,4 @@ position = Vector2(-1, -38)
 shape = SubResource("CapsuleShape2D_7mxe0")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1249472882]
-target_position = Vector2(-125, 0)
+target_position = Vector2(-1000, 0)

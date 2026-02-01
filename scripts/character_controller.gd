@@ -1,9 +1,13 @@
 extends CharacterBody2D
 
 @export var max_speed := 400.0
+@export var accel := 1400.0
+@export var decel := 1600.0
 
 @onready var ground: TileMapLayer = $"../Ground"
 @onready var walls: TileMapLayer = $"../Walls"
+signal player_died
+signal player_respawned
 var last_direction = Vector2(1, 0)
 
 var anim_directions = {
@@ -25,14 +29,15 @@ func _physics_process(_delta: float) -> void:
 	var motion := Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
-	)
+	).normalized()
+	
 	if motion.length() > 0.0:
-		motion = motion.normalized() * max_speed
+		velocity = velocity.move_toward(motion * max_speed, accel * _delta)
 		update_animation("walk")
 	else:
+		velocity = velocity.move_toward(Vector2.ZERO, decel * _delta)
 		update_animation("idle")
 
-	set_velocity(motion)
 	move_and_slide()
 	
 	# Update perspective center for tilemap shader and all objects

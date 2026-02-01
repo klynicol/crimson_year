@@ -967,7 +967,7 @@ texture = ExtResource("2_dp8ca")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=410231915]
 position = Vector2(0, -49)
 sprite_frames = SubResource("SpriteFrames_cicko")
-animation = &"test"
+animation = &"front_idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=955580141]
 position = Vector2(0, -16)
