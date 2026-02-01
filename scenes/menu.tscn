@@ -1,0 +1,393 @@
+[gd_scene format=3 uid="uid://bekheq55rmxdh"]
+
+[ext_resource type="Theme" uid="uid://bqsb6ctvb748t" path="res://assets/main_theme.tres" id="1_con2f"]
+[ext_resource type="Shader" uid="uid://d4ahrrh7pekph" path="res://shaders/sliding_background.gdshader" id="2_mhnvy"]
+[ext_resource type="Script" uid="uid://bqllq5gpx87yh" path="res://scenes/menu.gd" id="2_mj5lg"]
+[ext_resource type="Texture2D" uid="uid://djc1xfk35nder" path="res://assets/sprites/Greaser_Lizard_lrg_vint.png" id="3_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/sprites/x.png" id="5_ufwb2"]
+[ext_resource type="Texture2D" uid="uid://sqdhuk8644l2" path="res://assets/sprites/arrow.png" id="6_6cdou"]
+[ext_resource type="Texture2D" uid="uid://byqsgap6gbp61" path="res://assets/sprites/Lstick.png" id="7_i42df"]
+[ext_resource type="Texture2D" uid="uid://c36j2l1whs5t3" path="res://assets/sprites/mouse.png" id="8_7jp70"]
+[ext_resource type="Texture2D" uid="uid://65k2x02m8jj" path="res://assets/sprites/Rstick.png" id="9_mxgkd"]
+[ext_resource type="Texture2D" uid="uid://bdpxav0lvsy8f" path="res://assets/sprites/mouseclick.png" id="10_g6gyw"]
+[ext_resource type="Texture2D" uid="uid://xkamybja1neq" path="res://assets/sprites/RT.png" id="11_3dmrc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3eks"]
+shader = ExtResource("2_mhnvy")
+shader_parameter/pattern_sampler = ExtResource("3_4ytvr")
+shader_parameter/bg_color = Color(0.78039217, 0.5529412, 1, 1)
+shader_parameter/pattern_color = Color(0, 0.32249647, 0, 1)
+shader_parameter/pattern_size = 150.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81l6r"]
+content_margin_left = 48.0
+content_margin_top = 25.0
+content_margin_right = 48.0
+content_margin_bottom = 25.0
+bg_color = Color(1, 0.90588236, 0.8392157, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v86rl"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.313726)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.93333334, 0.93333334, 0.93333334, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[node name="Menu" type="Control" unique_id=2024535620]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_con2f")
+script = ExtResource("2_mj5lg")
+
+[node name="Background" type="ColorRect" parent="." unique_id=216197571]
+z_index = 1
+material = SubResource("ShaderMaterial_g3eks")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleCard" type="RichTextLabel" parent="." unique_id=1329092805]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = 53.0
+offset_right = -124.0
+offset_bottom = -427.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 100
+text = "PLACEHOLDER"
+
+[node name="PlayBtn" type="Button" parent="." unique_id=614155195]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 433.0
+offset_top = 256.0
+offset_right = -414.0
+offset_bottom = -322.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY GAEM"
+
+[node name="InstructionsBtn" type="Button" parent="." unique_id=1703166879]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 433.0
+offset_top = 346.0
+offset_right = -414.0
+offset_bottom = -232.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "HOW???"
+
+[node name="OptionsBtn" type="Button" parent="." unique_id=1452557018]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 433.0
+offset_top = 435.0
+offset_right = -414.0
+offset_bottom = -143.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "THERE'S OPTIONS"
+
+[node name="InstructionsPopup" type="RichTextLabel" parent="." unique_id=1344726478]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 51.0
+offset_right = -76.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_81l6r")
+
+[node name="XButtonInstructions" type="Button" parent="InstructionsPopup" unique_id=2098240735]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 896.0
+offset_top = 11.0
+offset_right = -25.0
+offset_bottom = -445.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+theme_override_icons/icon = ExtResource("5_ufwb2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_v86rl")
+
+[node name="Icons" type="Control" parent="InstructionsPopup" unique_id=339711571]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ArrowUp" type="TextureRect" parent="InstructionsPopup/Icons" unique_id=1529340788]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 208.0
+offset_top = 127.29808
+offset_right = -721.0
+offset_bottom = -330.7019
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_6cdou")
+stretch_mode = 2
+
+[node name="ArrowDown" type="TextureRect" parent="InstructionsPopup/Icons" unique_id=688324835]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 330.0
+offset_top = 190.29808
+offset_right = -599.0
+offset_bottom = -267.7019
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.1611626
+texture = ExtResource("6_6cdou")
+stretch_mode = 2
+
+[node name="ArrowLeft" type="TextureRect" parent="InstructionsPopup/Icons" unique_id=1076992657]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 331.0
+offset_top = 192.29808
+offset_right = -598.0
+offset_bottom = -265.7019
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 4.701346
+texture = ExtResource("6_6cdou")
+stretch_mode = 2
+
+[node name="ArrowRight" type="TextureRect" parent="InstructionsPopup/Icons" unique_id=2098300555]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 453.00003
+offset_top = 125.29808
+offset_right = -476.0
+offset_bottom = -332.7019
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 7.8416624
+texture = ExtResource("6_6cdou")
+stretch_mode = 2
+
+[node name="LStick" type="TextureRect" parent="InstructionsPopup/Icons" unique_id=187522775]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 544.0
+offset_top = 130.0
+offset_right = -385.0
+offset_bottom = -328.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 6.2872133
+texture = ExtResource("7_i42df")
+stretch_mode = 2
+
+[node name="Mouse" type="TextureRect" parent="InstructionsPopup/Icons" unique_id=105391944]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 215.0
+offset_top = 202.0
+offset_right = -714.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_7jp70")
+stretch_mode = 2
+
+[node name="RStick" type="TextureRect" parent="InstructionsPopup/Icons" unique_id=168455633]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 343.0
+offset_top = 207.0
+offset_right = -586.0
+offset_bottom = -251.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_mxgkd")
+stretch_mode = 2
+
+[node name="MouseClick" type="TextureRect" parent="InstructionsPopup/Icons" unique_id=696378268]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 216.0
+offset_top = 283.0
+offset_right = -713.0
+offset_bottom = -175.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_g6gyw")
+stretch_mode = 2
+
+[node name="RTrigger" type="TextureRect" parent="InstructionsPopup/Icons" unique_id=746690295]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 342.0
+offset_top = 280.0
+offset_right = -587.0
+offset_bottom = -178.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_3dmrc")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="InstructionsPopup" unique_id=1310729615]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 485.0
+offset_top = 144.99998
+offset_right = -454.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+text = "or"
+
+[node name="Label3" type="Label" parent="InstructionsPopup" unique_id=925062219]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 299.0
+offset_top = 219.99998
+offset_right = -640.0
+offset_bottom = -265.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+text = "or"
+
+[node name="Label6" type="Label" parent="InstructionsPopup" unique_id=1515103676]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 303.0
+offset_top = 293.0
+offset_right = -636.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+text = "or"
+
+[node name="Label4" type="Label" parent="InstructionsPopup" unique_id=1665270399]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 438.0
+offset_top = 216.99998
+offset_right = -473.0
+offset_bottom = -268.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+text = "to aim"
+
+[node name="Label2" type="Label" parent="InstructionsPopup" unique_id=1268724478]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 635.0
+offset_top = 142.99998
+offset_right = -257.0
+offset_bottom = -342.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+text = "to move"
+
+[node name="Label7" type="Label" parent="InstructionsPopup" unique_id=229151463]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 265.0
+offset_top = 370.0
+offset_right = -331.0
+offset_bottom = -115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+text = "send those greaseballs packin'!"
+
+[node name="Label5" type="Label" parent="InstructionsPopup" unique_id=565750352]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 431.0
+offset_top = 286.0
+offset_right = -457.0
+offset_bottom = -199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+text = "to shoot"
