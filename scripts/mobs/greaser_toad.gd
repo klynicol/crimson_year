@@ -1,12 +1,10 @@
 class_name GreaserToad extends Mob
 
+@onready var shadow: Sprite2D = $Shadow
+var starting_shadow_position: Vector2
+
 var animation_speed: float
 var hop_time: float
-var hop_air_time: float
-var hop_ground_time: float
-
-var air_timer: float = 0.0
-var ground_timer: float = 0.0
 
 const HOP_START_FRAME: int = 1
 const HOP_END_FRAME: int = 5
@@ -17,17 +15,17 @@ const ANIMATION_NAME: String = "default"
 func _ready():
 	mob_type = World.MobType.TOAD
 	animation_speed = sprite.sprite_frames.get_animation_speed("default")
-	# Calculate the hop_timer based on the animation speed and the number of frames in the hop
-	hop_time = (HOP_END_FRAME - HOP_START_FRAME) * (animation_speed / 60)
-	# set ratio of the hop cycles
-	hop_air_time = hop_time * HOP_AIR_RATIO
-	hop_ground_time = hop_time * (1.0 - HOP_AIR_RATIO)
+	# Hop duration = number of hop frames / FPS (e.g. 5 frames at 7 FPS = 5/7 sec)
+	var hop_frame_count := HOP_END_FRAME - HOP_START_FRAME + 1
+	hop_time = float(hop_frame_count) / animation_speed
+	starting_shadow_position = shadow.position
 	super._ready()
 
 """
 Chase is different for the toad: it "hops" toward the target.
-- On the ground: velocity eases to zero; we wait hop_ground_time, then launch.
-- In the air: move toward target at constant speed; hop appearance comes from modulating Y (arc).
+- On the ground: velocity is zero; we wait a bit, then launch.
+- In the air: based on the cycle time, we start the hop cycle while accelerating toward the target.
+- When we reach the "apex" of the hop, we decelerate to zero velocity, where velocity = 0 once we land.
 """
 func chase(target_pos: Vector2, delta: float) -> void:
 	var displacement := target_pos - global_position
@@ -37,31 +35,33 @@ func chase(target_pos: Vector2, delta: float) -> void:
 		velocity = Vector2.ZERO
 		sprite.set_frame(0)
 		sprite.pause()
-		air_timer = 0.0
-		ground_timer = hop_ground_time
 		move_and_slide()
 		super.chase(target_pos, delta)
 		return
 
 	var direction := displacement.normalized() if dist > 0.01 else Vector2.ZERO
+	sprite.play(ANIMATION_NAME)
 
-	if air_timer > 0.0:
-		# In the air: move toward target at constant speed; Y velocity gives the hop arc
-		air_timer -= delta
-		var hop_phase := 1.0 - (air_timer / hop_air_time)  # 0 at takeoff -> 1 at landing
-		# Vertical velocity for arc: up at start, zero at peak, down at land (derivative of sin(phase*PI))
-		var hop_velocity_y := -HOP_ARC_HEIGHT * PI / hop_air_time * cos(hop_phase * PI)
-		var move_velocity := direction * stats.speed
-		velocity = Vector2(move_velocity.x, move_velocity.y + hop_velocity_y)
-		sprite.play(ANIMATION_NAME)
+	var in_hop_frames := sprite.frame >= HOP_START_FRAME and sprite.frame <= HOP_END_FRAME
+	if in_hop_frames:
+		# Hop phase 0 = start of frame 1, 1 = end of frame 5 (5 frames total)
+		var hop_frame_count := HOP_END_FRAME - HOP_START_FRAME + 1
+		var hop_phase := (float(sprite.frame - HOP_START_FRAME) + sprite.frame_progress) / float(hop_frame_count)
+		hop_phase = clampf(hop_phase, 0.0, 1.0)  # guard against animation edge cases
+		var hop_velocity_y := -HOP_ARC_HEIGHT * PI / hop_time * cos(hop_phase * PI)
+		if hop_phase < 0.5:
+			# Ascending to apex: accelerate toward the target
+			var target := direction * stats.speed + Vector2(0.0, hop_velocity_y)
+			velocity = velocity.move_toward(target, stats.accel * delta)
+			shadow.position.y = starting_shadow_position.y + HOP_ARC_HEIGHT * sin(hop_phase * PI)
+		else:
+			# From apex to land: decelerate to zero (plus hop arc so we land with velocity = 0)
+			var target := Vector2(0.0, hop_velocity_y)
+			velocity = velocity.move_toward(target, stats.decel * delta)
+			shadow.position.y = starting_shadow_position.y + HOP_ARC_HEIGHT * sin(hop_phase * PI)
 	else:
-		# On the ground: ease to zero and wait before next hop; zero Y so we don't drift down
-		velocity = velocity.move_toward(Vector2.ZERO, stats.decel * delta)
-		velocity.y = 0.0
-		ground_timer -= delta
-		if ground_timer <= 0.0:
-			ground_timer = hop_ground_time
-			air_timer = hop_air_time  # launch
+		# On the ground (frame 0 or outside hop range): velocity is zero; animation will advance to hop
+		velocity = Vector2.ZERO
 
 	move_and_slide()
 	super.chase(target_pos, delta)
