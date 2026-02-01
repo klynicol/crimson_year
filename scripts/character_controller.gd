@@ -1,13 +1,16 @@
 class_name PlayerController extends CharacterBody2D
 
 @export var max_speed := 400.0
+@export var accel := 1400.0
+@export var decel := 1600.0
 
 # this will determine whether the Utilities file uses the get_rotation_to_mouse()
 # or the get_rotation_to_stick() functions
 @export var control_type = PlayerController.ControlMode.KEYBOARD
 enum ControlMode{KEYBOARD, GAMEPAD}
 
-@onready var ground: TileMapLayer = $"../Ground"
+signal player_died
+signal player_respawned
 var last_direction = Vector2(1, 0)
 
 var anim_directions = {
@@ -29,14 +32,15 @@ func _physics_process(_delta: float) -> void:
 	var motion := Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
-	)
+	).normalized()
+	
 	if motion.length() > 0.0:
-		motion = motion.normalized() * max_speed
+		velocity = velocity.move_toward(motion * max_speed, accel * _delta)
 		update_animation("walk")
 	else:
+		velocity = velocity.move_toward(Vector2.ZERO, decel * _delta)
 		update_animation("idle")
 
-	set_velocity(motion)
 	move_and_slide()
 	
 	# Update perspective center for tilemap shader and all objects
@@ -45,8 +49,12 @@ func _physics_process(_delta: float) -> void:
 # Update the perspective center for the tilemap shader and all objects
 func _update_perspective() -> void:
 	Perspective.set_character_position(global_position.x, global_position.y)
-	ground.material.set_shader_parameter("center_x", Perspective.center_x)
-	ground.material.set_shader_parameter("horizon_y", Perspective.horizon_y)
+	if not World.ground or not World.walls:
+		return
+	World.ground.material.set_shader_parameter("center_x", Perspective.center_x)
+	World.ground.material.set_shader_parameter("horizon_y", Perspective.horizon_y)
+	World.walls.material.set_shader_parameter("center_x", Perspective.center_x)
+	World.walls.material.set_shader_parameter("horizon_y", Perspective.horizon_y)
 
 
 func _input(event: InputEvent) -> void:

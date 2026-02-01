@@ -3,7 +3,7 @@ extends Node2D
 @onready var projectile = load("res://scenes/water_spray_projectile.tscn")
 @onready var character: CharacterBody2D = get_parent()
 # @onready var sprayer: Sprite2D = $"../Sprayer"
-@onready var debug_label: Label = get_tree().current_scene.get_node("Gui/Control/Label")
+@onready var debug_label: Label = get_tree().current_scene.get_node_or_null("Gui/Control/Label")
 @export var projectile_speed = 400
 
 const MAX_SCALE_X = 9.0
@@ -40,7 +40,6 @@ func _process(delta: float) -> void:
 	cooldown -= delta
 
 func shoot() -> void:
-	print("velocity: " + str(character.velocity))
 	# Spawn at the tip of the sprayer sprite (end of barrel)
 	# var tip_offset := sprayer.global_transform.x * (sprayer.texture.get_width() / 2.0)
 	# var spawn_pos := sprayer.global_position + tip_offset

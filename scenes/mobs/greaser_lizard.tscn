@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://xriknrldek0f"]
+
+[ext_resource type="Script" uid="uid://bvbngguyduhdj" path="res://scripts/mobs/greaser_lizard.gd" id="1_greaser"]
+[ext_resource type="Script" uid="uid://csdolyo5rtfno" path="res://scripts/mobs/mob_stats.gd" id="2_6ws4d"]
+[ext_resource type="Texture2D" uid="uid://bv3dxl55dv36o" path="res://assets/sprites/Greaser_Lizard-Sheet.png" id="3_hmpad"]
+[ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="3_lnwn7"]
+
+[sub_resource type="Resource" id="Resource_lnwn7"]
+script = ExtResource("2_6ws4d")
+max_health = 100
+speed = 200.0
+damage = 20
+attack_range = 100.0
+attack_cooldown = 2.0
+accel = 600.0
+decel = 800.0
+metadata/_custom_type_script = "uid://csdolyo5rtfno"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnwn7"]
+atlas = ExtResource("3_hmpad")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxe2a"]
+atlas = ExtResource("3_hmpad")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n4lr"]
+atlas = ExtResource("3_hmpad")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbsry"]
+atlas = ExtResource("3_hmpad")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eq5of"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnwn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxe2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n4lr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbsry")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mxe0"]
+radius = 17.0
+height = 76.0
+
+[node name="GreaserLizard" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box")]
+script = ExtResource("1_greaser")
+stats = SubResource("Resource_lnwn7")
+sprite = NodePath("AnimatedSprite2D")
+ray_cast = NodePath("RayCast2D")
+hit_box = NodePath("HitBox")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=428859329]
+modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
+position = Vector2(-1.0000005, 7)
+scale = Vector2(1.234375, 0.6328125)
+texture = ExtResource("3_lnwn7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206827224]
+position = Vector2(3, -41)
+sprite_frames = SubResource("SpriteFrames_eq5of")
+autoplay = "default"
+frame_progress = 0.5425401
+
+[node name="HitBox" type="CollisionShape2D" parent="." unique_id=1895863027]
+position = Vector2(-1, -38)
+shape = SubResource("CapsuleShape2D_7mxe0")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1249472882]
+target_position = Vector2(-1000, 0)
