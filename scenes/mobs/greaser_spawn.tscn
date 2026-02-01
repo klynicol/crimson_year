@@ -1,10 +1,81 @@
 [gd_scene format=3 uid="uid://h8bl42wvgft6"]
 
 [ext_resource type="Script" uid="uid://3h7ogajf6nas" path="res://scripts/mobs/greaser_spawn.gd" id="1_urkuk"]
+[ext_resource type="Script" uid="uid://bvbngguyduhdj" path="res://scripts/mobs/greaser_lizard.gd" id="2_7mkht"]
 [ext_resource type="Texture2D" uid="uid://bqsltsp4116s5" path="res://assets/sprites/PHsprite.png" id="2_lm5cy"]
+[ext_resource type="Script" uid="uid://csdolyo5rtfno" path="res://scripts/mobs/mob_stats.gd" id="3_nl15v"]
+[ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="4_3go5f"]
+[ext_resource type="Texture2D" uid="uid://bv3dxl55dv36o" path="res://assets/sprites/Greaser_Lizard-Sheet.png" id="5_774dh"]
+
+[sub_resource type="Resource" id="Resource_lnwn7"]
+script = ExtResource("3_nl15v")
+max_health = 100
+speed = 200.0
+damage = 20
+attack_range = 100.0
+attack_cooldown = 2.0
+accel = 600.0
+decel = 800.0
+metadata/_custom_type_script = "uid://csdolyo5rtfno"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnwn7"]
+atlas = ExtResource("5_774dh")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxe2a"]
+atlas = ExtResource("5_774dh")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n4lr"]
+atlas = ExtResource("5_774dh")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbsry"]
+atlas = ExtResource("5_774dh")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eq5of"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnwn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxe2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n4lr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbsry")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mxe0"]
+radius = 17.0
+height = 76.0
+
+[sub_resource type="PackedScene" id="PackedScene_tqk38"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("GreaserLizard", "CharacterBody2D", "script", "stats", "sprite", "ray_cast", "hit_box", "Shadow", "Sprite2D", "modulate", "position", "scale", "texture", "AnimatedSprite2D", "AnimatedSprite2D", "position", "sprite_frames", "autoplay", "frame_progress", "HitBox", "CollisionShape2D", "position", "shape", "RayCast2D", "RayCast2D", "target_position"),
+"node_count": 5,
+"node_ids": PackedInt32Array(343513114, 428859329, 1206827224, 1895863027, 1249472882),
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 5, 2, 0, 3, 1, 1073741828, 2, 1073741829, 3, 1073741830, 4, 0, 1073741824, 0, 8, 7, -1, 4, 9, 5, 10, 6, 11, 7, 12, 8, 0, 1073741825, 0, 14, 13, -1, 4, 15, 9, 16, 10, 17, 11, 18, 12, 0, 1073741826, 0, 20, 19, -1, 2, 21, 13, 22, 14, 0, 1073741827, 0, 24, 23, -1, 1, 25, 15, 0),
+"variants": [ExtResource("2_7mkht"), SubResource("Resource_lnwn7"), NodePath("AnimatedSprite2D"), NodePath("RayCast2D"), NodePath("HitBox"), Color(0.12941177, 0.07450981, 0.19215687, 0.64705884), Vector2(-1.0000005, 7), Vector2(1.234375, 0.6328125), ExtResource("4_3go5f"), Vector2(3, -41), SubResource("SpriteFrames_eq5of"), "default", 0.5425401, Vector2(-1, -38), SubResource("CapsuleShape2D_7mxe0"), Vector2(-1000, 0)],
+"version": 3
+}
 
 [node name="GreaserSpawn" type="Node2D" unique_id=223396681]
 script = ExtResource("1_urkuk")
+greaser = SubResource("PackedScene_tqk38")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=551898432]
 position = Vector2(1.9073486e-06, -1.9999981)

@@ -1,7 +1,21 @@
 extends Node2D
 class_name World
 
+enum MobType {
+	LIZARD,
+	TOAD
+}
+
 @onready var debug_label: Label = get_tree().current_scene.get_node("Gui/Control/Label")
+
+static var player_instance: CharacterBody2D
+
+func _ready():
+	call_deferred("_set_instances")
+
+func _set_instances():
+	greaser_spawns = get_tree().get_nodes_in_group("greaser_spawn")
+	player_instance = get_tree().get_first_node_in_group("player")
 
 # Find all the "GreaserSpawn" nodes and get their global position
 var greaser_spawns: Array[Node] = []
@@ -9,11 +23,8 @@ var max_greasers: int = 50
 var cooldown: float = 1.0
 var time_since_last_spawn: float = 0.0
 
-func _ready():
-	greaser_spawns = get_tree().get_nodes_in_group("greaser_spawn")
-	_spawn_greaser()
-
 func _process(delta: float):
+	print_debug_info()
 	var greasers = get_tree().get_nodes_in_group("greaser")
 	if greasers.size() < max_greasers and time_since_last_spawn > cooldown:
 		_spawn_greaser()
@@ -24,3 +35,8 @@ func _process(delta: float):
 func _spawn_greaser():
 	var random_spawn = greaser_spawns[randi() % greaser_spawns.size()]
 	random_spawn.spawn_greaser()
+
+func print_debug_info():
+	var greasers = get_tree().get_nodes_in_group("greaser")
+	debug_label.text = "Current Greasers: " + str(greasers.size()) + \
+		"\nFrags: 0"

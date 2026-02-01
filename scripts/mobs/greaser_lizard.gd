@@ -1,10 +1,10 @@
 extends Mob
+class_name GreaserLizard
 
-# override
+func _ready():
+	mob_type = World.MobType.LIZARD
+
 func chase(target_pos: Vector2, delta: float) -> void:
-	if not stats:
-		return
-
 	# Get within attack range + buffer
 	var displacement = target_pos - global_position
 	var decel_distance = stats.attack_range + 200.0
@@ -15,6 +15,4 @@ func chase(target_pos: Vector2, delta: float) -> void:
 
 	velocity = velocity.move_toward(displacement.normalized() * stats.speed, rate * delta)
 	move_and_slide()
-
-	if sprite:
-		sprite.flip_h = velocity.x > 0
+	super.chase(target_pos, delta)
