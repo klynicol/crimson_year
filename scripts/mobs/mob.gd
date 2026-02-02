@@ -1,5 +1,10 @@
 class_name Mob extends CharacterBody2D
 
+enum MobType {
+	LIZARD,
+	TOAD
+}
+
 @export var stats: MobStats
 @export var sprite: AnimatedSprite2D
 @export var ray_cast: RayCast2D
@@ -7,7 +12,7 @@ class_name Mob extends CharacterBody2D
 
 var is_chasing: bool = false
 
-var mob_type: World.MobType
+var mob_type: Mob.MobType
 
 var player: CharacterBody2D
 

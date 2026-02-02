@@ -13,7 +13,7 @@ const HOP_ARC_HEIGHT: float = 32.0  # pixels of vertical travel for the hop
 const ANIMATION_NAME: String = "default"
 
 func _ready():
-	mob_type = World.MobType.TOAD
+	mob_type = Mob.MobType.TOAD
 	animation_speed = sprite.sprite_frames.get_animation_speed("default")
 	# Hop duration = number of hop frames / FPS (e.g. 5 frames at 7 FPS = 5/7 sec)
 	var hop_frame_count := HOP_END_FRAME - HOP_START_FRAME + 1

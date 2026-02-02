@@ -29,18 +29,19 @@ radius = 71.0
 height = 442.0
 
 [node name="Car" type="CharacterBody2D" unique_id=1920515730]
+position = Vector2(2, 0)
 collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_c35m8")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=65984233]
 modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.7647059)
-position = Vector2(-11, 74)
+position = Vector2(-6.27835, 32.75)
 scale = Vector2(12.147552, 2.0027268)
 texture = ExtResource("2_jtldb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1290686419]
-position = Vector2(-1, 9)
+position = Vector2(8.721649, -20.25)
 scale = Vector2(0.78032345, 0.78032345)
 sprite_frames = SubResource("SpriteFrames_3mrxu")
 animation = &"0"
@@ -48,7 +49,7 @@ autoplay = "0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=607718289]
 visibility_layer = 4
-position = Vector2(-13, -11)
+position = Vector2(-0.27835083, -36.25)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_50v30")
 debug_color = Color(0.76569086, 0.4474482, 0.0804443, 0.41960785)
