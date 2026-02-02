@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float perspective_strength = 0.1;
+uniform float perspective_strength = 9e-05;
 uniform float center_x = 0.0;  // X center point for perspective (world coords)
 uniform float horizon_y = -300.0;  // Y position of the horizon/vanishing point (top of your tilemap)
 

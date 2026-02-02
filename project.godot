@@ -30,6 +30,7 @@ project/assembly_name="Crimson Year"
 [global_group]
 
 checkpoint="checkpoints for the car to navigate to"
+player=""
 
 [input]
 
