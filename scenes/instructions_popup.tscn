@@ -1,0 +1,316 @@
+[gd_scene format=3 uid="uid://ctrjieuehfaph"]
+
+[ext_resource type="FontFile" uid="uid://cdcg16qh0f6pk" path="res://assets/FingerPaint-Regular.ttf" id="1_5g3gx"]
+[ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/sprites/x.png" id="1_05u3a"]
+[ext_resource type="Script" uid="uid://c1yp1q3872miq" path="res://scripts/instructions_popup.gd" id="1_8s6nl"]
+[ext_resource type="Texture2D" uid="uid://sqdhuk8644l2" path="res://assets/sprites/arrow.png" id="2_8s6nl"]
+[ext_resource type="Texture2D" uid="uid://byqsgap6gbp61" path="res://assets/sprites/Lstick.png" id="3_5g3gx"]
+[ext_resource type="Texture2D" uid="uid://c36j2l1whs5t3" path="res://assets/sprites/mouse.png" id="4_it3xj"]
+[ext_resource type="Texture2D" uid="uid://65k2x02m8jj" path="res://assets/sprites/Rstick.png" id="5_1sh2w"]
+[ext_resource type="Texture2D" uid="uid://bdpxav0lvsy8f" path="res://assets/sprites/mouseclick.png" id="6_vxsf7"]
+[ext_resource type="Texture2D" uid="uid://xkamybja1neq" path="res://assets/sprites/RT.png" id="7_ljw6u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81l6r"]
+content_margin_left = 48.0
+content_margin_top = 25.0
+content_margin_right = 48.0
+content_margin_bottom = 25.0
+bg_color = Color(1, 0.90588236, 0.8392157, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v86rl"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.313726)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.93333334, 0.93333334, 0.93333334, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[node name="InstructionsPopup" type="RichTextLabel" unique_id=2111605867]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 51.0
+offset_right = -76.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_5g3gx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_81l6r")
+script = ExtResource("1_8s6nl")
+
+[node name="XButtonInstructions" type="Button" parent="." unique_id=931273178]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 896.0
+offset_top = 11.0
+offset_right = -25.0
+offset_bottom = -445.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+theme_override_icons/icon = ExtResource("1_05u3a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_v86rl")
+
+[node name="Label" type="Label" parent="." unique_id=2016572226]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 485.0
+offset_top = 144.99998
+offset_right = -454.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+theme_override_fonts/font = ExtResource("1_5g3gx")
+text = "or"
+
+[node name="Label3" type="Label" parent="." unique_id=1708618150]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 299.0
+offset_top = 219.99998
+offset_right = -640.0
+offset_bottom = -265.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+theme_override_fonts/font = ExtResource("1_5g3gx")
+text = "or"
+
+[node name="Label6" type="Label" parent="." unique_id=1368585706]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 303.0
+offset_top = 293.0
+offset_right = -636.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+theme_override_fonts/font = ExtResource("1_5g3gx")
+text = "or"
+
+[node name="Label4" type="Label" parent="." unique_id=1576887842]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 438.0
+offset_top = 216.99998
+offset_right = -473.0
+offset_bottom = -268.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+theme_override_fonts/font = ExtResource("1_5g3gx")
+text = "to aim"
+
+[node name="Label2" type="Label" parent="." unique_id=2081714885]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 635.0
+offset_top = 142.99998
+offset_right = -257.0
+offset_bottom = -342.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+theme_override_fonts/font = ExtResource("1_5g3gx")
+text = "to move"
+
+[node name="Label7" type="Label" parent="." unique_id=668684118]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 235.0
+offset_top = 387.0
+offset_right = -361.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+theme_override_fonts/font = ExtResource("1_5g3gx")
+text = "protect the rides! 
+send those greaseballs packin'!"
+
+[node name="Label5" type="Label" parent="." unique_id=1267823009]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 431.0
+offset_top = 286.0
+offset_right = -457.0
+offset_bottom = -199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+theme_override_fonts/font = ExtResource("1_5g3gx")
+text = "to shoot"
+
+[node name="ArrowUp" type="TextureRect" parent="." unique_id=1479482883]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 208.0
+offset_top = 127.29808
+offset_right = -721.0
+offset_bottom = -330.7019
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8s6nl")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ArrowDown" type="TextureRect" parent="." unique_id=626084669]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 330.0
+offset_top = 190.29808
+offset_right = -599.0
+offset_bottom = -267.7019
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.1611626
+texture = ExtResource("2_8s6nl")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ArrowLeft" type="TextureRect" parent="." unique_id=2082424612]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 331.0
+offset_top = 192.29808
+offset_right = -598.0
+offset_bottom = -265.7019
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 4.701346
+texture = ExtResource("2_8s6nl")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ArrowRight" type="TextureRect" parent="." unique_id=139890614]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 453.0
+offset_top = 125.29808
+offset_right = -476.0
+offset_bottom = -332.7019
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 7.8416624
+texture = ExtResource("2_8s6nl")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="LStick" type="TextureRect" parent="." unique_id=1816467801]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 544.0
+offset_top = 130.0
+offset_right = -385.0
+offset_bottom = -328.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 6.2872133
+texture = ExtResource("3_5g3gx")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Mouse" type="TextureRect" parent="." unique_id=572902514]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 215.0
+offset_top = 202.0
+offset_right = -714.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_it3xj")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="RStick" type="TextureRect" parent="." unique_id=1934706030]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 343.0
+offset_top = 207.0
+offset_right = -586.0
+offset_bottom = -251.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_1sh2w")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="MouseClick" type="TextureRect" parent="." unique_id=814942244]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 216.0
+offset_top = 283.0
+offset_right = -713.0
+offset_bottom = -175.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_vxsf7")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="RTrigger" type="TextureRect" parent="." unique_id=1311795594]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 342.0
+offset_top = 280.0
+offset_right = -587.0
+offset_bottom = -178.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ljw6u")
+expand_mode = 1
+stretch_mode = 3
+
+[connection signal="pressed" from="XButtonInstructions" to="." method="_on_x_button_instructions_pressed"]

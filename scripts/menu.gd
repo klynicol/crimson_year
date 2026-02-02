@@ -1,0 +1,33 @@
+extends Control
+@onready var play_btn: Button = %PlayBtn
+@onready var instructions_btn: Button = %InstructionsBtn
+@onready var options_btn: Button = %OptionsBtn
+const INSTRUCTIONS_POPUP = preload("uid://ctrjieuehfaph")
+
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	instructions_btn.button_up.connect(show_instructions)
+	play_btn.button_up.connect(start_game)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func show_instructions() -> void:
+	var tween := create_tween()
+	var instructions_popup: PackedScene = INSTRUCTIONS_POPUP
+	var instructions_instance:= instructions_popup.instantiate()
+	add_child(instructions_instance)
+	instructions_instance.z_index = 1
+	tween.tween_property(instructions_instance, "modulate", Color.hex(0xffffffff), 0.5)
+	get_node("InstructionsPopup/XButtonInstructions").pressed.connect(func() -> void:
+		get_node("InstructionsPopup").queue_free()
+	)
+	
+func start_game() -> void:
+	pass
+	
