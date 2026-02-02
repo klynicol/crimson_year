@@ -34,16 +34,16 @@ const WAVES_CONFIG = {
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
 		"boss": null,
 		"enemy_max_qty" : 120,
-		"enemy_spawn_cooldown" : 1.5,
-		"boss_spawn_cooldown" : 1.5,
+		"enemy_spawn_cooldown" : 0.5,
+		"boss_spawn_cooldown" : 0.5,
 	},
 	3: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
 		"boss": null,
 		"enemy_max_qty" : 180,
-		"enemy_spawn_cooldown" : 2,
-		"boss_spawn_cooldown" : 2,
+		"enemy_spawn_cooldown" : 0.1,
+		"boss_spawn_cooldown" : 0.1,
 	},
 }
 
@@ -76,8 +76,16 @@ func _process_wave(delta: float):
 	_spawn_cars(delta)
 	_spawn_enemies(delta)
 
+func _check_wave_end():
+	# Don't count cars that are queued for deletion (queue_free runs at end of frame)
+	var cars: Array[Node] = get_tree().get_nodes_in_group("cars")
+	cars = cars.filter(func(c): return not c.is_queued_for_deletion())
+	if cars.size() == 0:
+		_end_current_wave()
+
 func _end_current_wave():
-	pass
+	# Pause wave logic and show "Next Stage" prompt
+	game.show_next_stage_prompt()
 
 func _spawn_enemies(delta: float):
 	_spawn_greasers(delta)
@@ -91,7 +99,10 @@ func _spawn_greasers(delta: float):
 	if gresers.size() >= WAVES_CONFIG[current_wave]["enemy_max_qty"]:
 		return
 	# Spawn a greaser at a random spawn location
-	var random_spawn := _get_random_mob_spawn()
+	var cars: Array[Node] = get_tree().get_nodes_in_group("cars")
+	if cars.size() == 0:
+		return;
+	var random_spawn := _get_random_mob_spawn(cars);
 	var random_enemy_index: int = randi() % WAVES_CONFIG[current_wave]["enemies"].size();
 	var greaser_type: GreaserSpawn.GreaserType = WAVES_CONFIG[current_wave]["enemies"][random_enemy_index];
 	var greaser: Mob = random_spawn.spawn_greaser(greaser_type);
@@ -99,15 +110,15 @@ func _spawn_greasers(delta: float):
 	enemy_spawn_cooldown = WAVES_CONFIG[current_wave]["enemy_spawn_cooldown"];
 
 func _spawn_cars(delta: float):
-	# print("car_spawn_index: ", car_spawn_index)
 	if car_spawn_cooldown > 0.0:
 		car_spawn_cooldown -= delta
 		return
 	if not WAVES_CONFIG[current_wave]["cars"].has(car_spawn_index):
 		# Ran out of cars to spawn
 		return
-	print("spawning car: ", WAVES_CONFIG[current_wave]["cars"][car_spawn_index])
+	# var start_checkpoint := checkpoints[1]
 	var start_checkpoint := checkpoints[START_CHECKPOINT_ID]
+
 	var car_type: Car.CarType = WAVES_CONFIG[current_wave]["cars"][car_spawn_index];
 	var car := start_checkpoint.spawn_car(
 		car_type,
@@ -127,9 +138,14 @@ func _spawn_boss(delta: float):
 	
 # !!! -- SIGNAL LISTENERS -- !!!
 
-func _on_checkpoint_reached(checkpoint_id: int):
-	if checkpoint_id == END_CHECKPOINT_ID:
-		_end_current_wave()
+# If all active cars have reached the end checkpoint, end the wave
+func _on_checkpoint_reached(checkpoint_id: int, body: Node2D):
+	if checkpoint_id != END_CHECKPOINT_ID:
+		return
+	if not (body is Car):
+		return
+	body.queue_free()
+	call_deferred("_check_wave_end")
 
 func _on_mob_died():
 	wave_mob_fragments += 1
@@ -137,12 +153,20 @@ func _on_mob_died():
 func _on_car_died(car: Car):
 	wave_cars_destroyed += 1
 
+# Called when the player clicks "Next Stage" in the GUI
+func start_next_wave() -> void:
+	var next_wave: int = current_wave + 1
+	if not WAVES_CONFIG.has(next_wave):
+		# No more waves (e.g. after wave 3) – could show victory or loop
+		next_wave = 1
+	_init_wave(next_wave)
+
 # !!! -- HELPERS -- !!!
 
-func _get_random_mob_spawn() -> GreaserSpawn:
+func _get_random_mob_spawn(cars: Array[Node]) -> GreaserSpawn:
 	# First we need to find the cars and find the avarage position of the cars
 	# Then make a radius around the average position nd spawn the greasers randomly within that radius
-	var average_car_position: Vector2 = _get_average_car_position();
+	var average_car_position: Vector2 = _get_average_car_position(cars);
 
 	var search_radius: float = 1570.0;
 	var available_greaser_spawns: Array[GreaserSpawn] = [];
@@ -152,8 +176,7 @@ func _get_random_mob_spawn() -> GreaserSpawn:
 	return available_greaser_spawns[randi() % available_greaser_spawns.size()];
 
 # Helper function to get the average position of the cars
-func _get_average_car_position() -> Vector2:
-	var cars: Array[Node] = get_tree().get_nodes_in_group("cars")
+func _get_average_car_position(cars: Array[Node]) -> Vector2:
 	var average_position = Vector2.ZERO
 	for car in cars:
 		average_position += car.global_position

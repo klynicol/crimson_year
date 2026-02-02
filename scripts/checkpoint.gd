@@ -13,8 +13,7 @@ func _ready() -> void:
 	sprite.visible = false
 
 func _on_body_entered(body: Node2D) -> void:
-	body.set_new_target_position(global_position)
-	checkpoint_reached.emit(id)
+	checkpoint_reached.emit(id, body)
 
 func spawn_car(car_type: Car.CarType, target_position: Vector2) -> Car:
 	var car = Car.PACKED_SCENE.instantiate()

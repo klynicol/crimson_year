@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dp84ymycgbg8t"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efmwq"]
-bg_color = Color(0.033853274, 0.03385329, 0.033853233, 1)
+[ext_resource type="Texture2D" uid="uid://bi0bkuveffdha" path="res://assets/menu_gui/Next Stage.png" id="1_efmwq"]
 
 [node name="Gui" type="CanvasLayer" unique_id=350781755]
 
@@ -13,9 +12,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control" unique_id=352682209]
-layout_mode = 1
-offset_right = 123.0
-offset_bottom = 23.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_efmwq")
-text = "Something here"
+[node name="TextureButton" type="TextureButton" parent="Control" unique_id=2028832143]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 238.0
+offset_right = 835.0
+offset_bottom = 338.0
+texture_normal = ExtResource("1_efmwq")
