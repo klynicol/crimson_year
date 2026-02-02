@@ -11,6 +11,9 @@ static var player_instance: CharacterBody2D
 static var ground: TileMapLayer
 static var walls: TileMapLayer
 
+# this is probably jank and bad, but this conditional stops the game from running until the menu node toggles it
+var playing: bool = false
+
 func _ready():
 	ground = get_node("Ground")
 	walls = get_node("Walls")
@@ -27,12 +30,13 @@ var cooldown: float = 1.0
 var time_since_last_spawn: float = 0.0
 
 func _process(delta: float):
-	print_debug_info()
-	var greasers := get_tree().get_nodes_in_group("greaser")
-	if greasers.size() < max_greasers and time_since_last_spawn > cooldown:
-		_spawn_greaser()
-		time_since_last_spawn = 0.0
-	time_since_last_spawn += delta
+	if playing == true:
+		print_debug_info()
+		var greasers := get_tree().get_nodes_in_group("greaser")
+		if greasers.size() < max_greasers and time_since_last_spawn > cooldown:
+			_spawn_greaser()
+			time_since_last_spawn = 0.0
+		time_since_last_spawn += delta
 	
 # Spawn a greaser at a random greaser spawn
 func _spawn_greaser():
@@ -43,3 +47,10 @@ func print_debug_info():
 	var greasers := get_tree().get_nodes_in_group("greaser")
 	debug_label.text = "Current Greasers: " + str(greasers.size()) + \
 		"\nFrags: 0"
+
+func unleash_player() ->void:
+	get_node("Character").max_speed = 400.0
+	
+func _on_play_btn_button_up() -> void:
+	unleash_player()
+	playing = true
