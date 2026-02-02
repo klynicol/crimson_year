@@ -20,6 +20,8 @@ var enemy_spawn_cooldown: float = 0.0;
 var boss_spawn_cooldown: float = 0.0;
 var car_spawn_cooldown: float = 0.0;
 
+@onready var label = get_tree().current_scene.get_node("Gui/Control/Label")
+
 const WAVES_CONFIG = {
 	1: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
@@ -53,6 +55,7 @@ func _ready() -> void:
 
 func _process(delta: float):
 	_process_wave(delta)
+	label.text = "wave: " + str(current_wave)
 
 func _set_instances():
 	for checkpoint in get_tree().get_nodes_in_group("checkpoint"):

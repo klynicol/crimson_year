@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bi0bkuveffdha" path="res://assets/menu_gui/Next Stage.png" id="1_efmwq"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efmwq"]
+bg_color = Color(0, 0, 0, 0.80784315)
+
 [node name="Gui" type="CanvasLayer" unique_id=350781755]
 
 [node name="Control" type="Control" parent="." unique_id=350781756]
@@ -19,3 +22,11 @@ offset_top = 238.0
 offset_right = 835.0
 offset_bottom = 338.0
 texture_normal = ExtResource("1_efmwq")
+
+[node name="Label" type="Label" parent="Control" unique_id=1911110524]
+layout_mode = 0
+offset_right = 67.0
+offset_bottom = 30.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_efmwq")
+text = "wave 1"
+horizontal_alignment = 1
