@@ -3,6 +3,7 @@ extends Control
 @onready var instructions_btn: Button = %InstructionsBtn
 @onready var options_btn: Button = %OptionsBtn
 const INSTRUCTIONS_POPUP = preload("uid://ctrjieuehfaph")
+const GAME = preload("uid://ck8mrr1ruc1kc")
 
 
 
@@ -14,7 +15,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func show_instructions() -> void:
@@ -29,5 +30,10 @@ func show_instructions() -> void:
 	)
 	
 func start_game() -> void:
+	var tween := create_tween()
+	var game_instance:= GAME.instantiate()
+	add_child(game_instance)
+	tween.tween_property(self, "position:x", 3000.0, 1.5)
+
 	pass
 	
