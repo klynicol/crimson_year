@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_8ln1w"]
 script = ExtResource("2_v7ow2")
-max_health = 100
+max_health = 50
 speed = 200.0
 damage = 20
 attack_range = 50.0

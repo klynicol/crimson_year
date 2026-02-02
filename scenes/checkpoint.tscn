@@ -1,12 +1,23 @@
 [gd_scene format=3 uid="uid://disbfj0oegbi2"]
 
+[ext_resource type="Script" uid="uid://nhsyx68usvgg" path="res://scripts/checkpoint.gd" id="1_ywqth"]
+[ext_resource type="Texture2D" uid="uid://5avq7er73j6w" path="res://assets/sprites/car_2_temp.png" id="1_yyywg"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_njsvn"]
-radius = 5.0
+radius = 8.4
 
 [node name="Checkpoint" type="Area2D" unique_id=460613549 groups=["checkpoint"]]
 collision_layer = 2
 collision_mask = 4
+script = ExtResource("1_ywqth")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=743276663]
+position = Vector2(-7.6293945e-06, 3)
+scale = Vector2(0.15262803, 0.15262805)
+texture = ExtResource("1_yyywg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=61969051]
+light_mask = 2
+visibility_layer = 2
 shape = SubResource("CircleShape2D_njsvn")
 debug_color = Color(0.9191506, 0.18648043, 0.5388413, 0.41960785)

@@ -10,14 +10,14 @@ var damage: float = 10.0
 const MAX_DAMAGE_REFLECTIONS = 2
 var damage_reflections: int = 0
 
-const MAX_TIME_ALIVE = 0.82
+const MAX_TIME_ALIVE = 0.65
 
 const MAX_SCALE_X = 9.0
 const MAX_SCALE_Y = 18.0
 const SCALE_DECAY_RATE = 22
 const MIST_STRENGTH_DECAY_RATE = 1.8
 const DAMAGE_DECAY_RATE = 9.0
-const COLLISION_BOX_SIZE_DECAY_RATE = 20.0
+const COLLISION_BOX_SIZE_DECAY_RATE = 15.0
 
 @onready var vfxSprite = $VFX
 @onready var pushback_collision_shape = $Pushback
