@@ -954,7 +954,6 @@ animations = [{
 radius = 12.0
 
 [node name="Character" type="CharacterBody2D" unique_id=2051868365]
-z_index = 1
 motion_mode = 1
 script = ExtResource("1_rkhd4")
 

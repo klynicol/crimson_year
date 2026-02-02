@@ -24,7 +24,6 @@ func _init() -> void:
 
 func init_stats() -> void:
 	health = max_health
-	print("health: " + str(health))
 
 func _on_health_set(value: int) -> void:
 	var actual_value: int

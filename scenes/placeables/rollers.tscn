@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://b1jmns3xk5xp2"]
+
+[ext_resource type="Texture2D" uid="uid://bpf3vnyqg4xxw" path="res://assets/tile_sets/tracktilemap.png" id="1_utcq1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0vye"]
+atlas = ExtResource("1_utcq1")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujj4j"]
+atlas = ExtResource("1_utcq1")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr7ja"]
+atlas = ExtResource("1_utcq1")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c71j4"]
+atlas = ExtResource("1_utcq1")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y8767"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0vye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujj4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr7ja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c71j4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_utcq1"]
+radius = 41.04875
+
+[node name="Rollers" type="StaticBody2D" unique_id=1245075287]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=701142428]
+position = Vector2(-0.99999905, -87)
+scale = Vector2(1.359375, 1.359375)
+sprite_frames = SubResource("SpriteFrames_y8767")
+autoplay = "default"
+frame_progress = 0.15773802
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1578469144]
+position = Vector2(-1, -52)
+shape = SubResource("CircleShape2D_utcq1")
