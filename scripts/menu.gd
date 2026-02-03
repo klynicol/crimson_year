@@ -31,9 +31,8 @@ func show_instructions() -> void:
 	
 func start_game() -> void:
 	var tween := create_tween()
-	var game_instance:= GAME.instantiate()
-	add_child(game_instance)
 	tween.tween_property(self, "position:x", 3000.0, 1.5)
+	tween.finished.connect(queue_free)
 
 	pass
 	
