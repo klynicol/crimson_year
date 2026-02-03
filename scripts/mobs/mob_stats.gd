@@ -1,5 +1,4 @@
-extends Resource
-class_name MobStats
+class_name MobStats extends Resource
 
 # stats system tutorial
 #https://www.youtube.com/watch?v=vsBb9921GfA
@@ -38,3 +37,6 @@ func _on_health_set(value: int) -> void:
 		actual_value = value
 	_health = actual_value
 	mob_health_changed.emit(actual_value)
+
+func take_water_damage(damage: float) -> void:
+	health -= damage

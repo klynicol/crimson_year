@@ -20,7 +20,11 @@ shader_parameter/scroll_direction = Vector2(0, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_g5njp"]
 radius = 13.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1h3s4"]
+radius = 15.0
+
 [node name="WaterSpray" type="CharacterBody2D" unique_id=1484708051]
+collision_layer = 0
 script = ExtResource("1_1h3s4")
 
 [node name="VFX" type="Sprite2D" parent="." unique_id=1528228043]
@@ -29,5 +33,13 @@ scale = Vector2(1.835, 1.492)
 texture = ExtResource("3_1mon1")
 script = ExtResource("4_asivv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=295339846]
+[node name="Pushback" type="CollisionShape2D" parent="." unique_id=295339846]
 shape = SubResource("CircleShape2D_g5njp")
+
+[node name="WaterDamage" type="Area2D" parent="." unique_id=672065162]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDamage" unique_id=165108941]
+light_mask = 2
+visibility_layer = 2
+scale = Vector2(0.945, 0.945)
+shape = SubResource("CircleShape2D_1h3s4")

@@ -1,8 +1,7 @@
-extends Mob
-class_name GreaserLizard
+class_name GreaserLizard extends Mob
 
 func _ready():
-	mob_type = World.MobType.LIZARD
+	mob_type = Mob.MobType.LIZARD
 	super._ready()
 
 func chase(target_pos: Vector2, delta: float) -> void:

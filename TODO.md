@@ -1,0 +1,8 @@
+ - [x] #bug# Fix player behind floor tiles    
+ - [ ] #bug# Toads flip sprite on every hop
+ - [ ] Protag dash and hop.
+ - [ ] Game condintions (what happens when cars do/don't make it to the end?)
+ - [ ] Enemies attack cars
+ - [ ] Car damage + status with GUI
+ - [x] next waves (how to communicate difficulty?) + Basic metrics
+ - [ ] Camera stop at edges + zoom limiters + keeping player centered with look space.
