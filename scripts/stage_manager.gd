@@ -8,7 +8,7 @@ const END_CHECKPOINT_ID: int = 0;
 var world: World;
 var game: Game;
 
-var current_wave: int = 0;
+var current_wave: int = 1;
 var wave_mob_fragments: int = 0;
 var car_spawn_index: int = 0;
 var cars: Array[Car] = [];
@@ -51,7 +51,7 @@ const WAVES_CONFIG = {
 
 func _ready() -> void:
 	call_deferred("_set_instances")
-	call_deferred("_init_wave", 1) # Will be triggered by the menu
+	#call_deferred("_init_wave", 1) # Will be triggered by the menu
 
 func _process(delta: float):
 	_process_wave(delta)
@@ -66,7 +66,7 @@ func _set_instances():
 	greaser_spawns = get_tree().get_nodes_in_group("greaser_spawn");
 
 # Basically resets the wave variables and prepares the world for the next wave
-func _init_wave(wave_number: int):
+func init_wave(wave_number: int):
 	print("init_wave: ", wave_number)
 	current_wave = wave_number;
 	game.life_time_mob_fragments += wave_mob_fragments;
@@ -162,7 +162,7 @@ func start_next_wave() -> void:
 	if not WAVES_CONFIG.has(next_wave):
 		# No more waves (e.g. after wave 3) – could show victory or loop
 		next_wave = 1
-	_init_wave(next_wave)
+	init_wave(next_wave)
 
 # !!! -- HELPERS -- !!!
 

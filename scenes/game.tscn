@@ -14,6 +14,7 @@ script = ExtResource("1_lnu2h")
 
 [node name="Menu" parent="Gui" unique_id=2024535620 instance=ExtResource("3_lnu2h")]
 
-[connection signal="button_up" from="Gui/Menu/PlayBtn" to="World" method="_on_play_btn_button_up"]
+[connection signal="pressed" from="Gui/Menu/PlayBtn" to="." method="_on_game_start_pressed"]
 
+[editable path="World"]
 [editable path="Gui/Menu"]
