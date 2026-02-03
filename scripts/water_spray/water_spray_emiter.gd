@@ -4,14 +4,14 @@ extends Node2D
 @onready var character: CharacterBody2D = get_parent()
 # @onready var sprayer: Sprite2D = $"../Sprayer"
 @onready var debug_label: Label = get_tree().current_scene.get_node_or_null("Gui/Control/Label")
-@export var projectile_speed = 400
+@export var projectile_speed = 300
 
 const MAX_SCALE_X = 9.0
 const MIN_SCALE_X = 3.5
 const MAX_SCALE_Y = 12.0
 const MIN_SCALE_Y = 2.5
-const MIN_MIST_STRENGTH = 0.9
-const MAX_MIST_STRENGTH = 3.0
+const MIN_MIST_STRENGTH = 1 # higher is more visible
+const MAX_MIST_STRENGTH = 3
 
 # The sprayer will spawn in 4 different spots based on the character's
 # direction and sprite.

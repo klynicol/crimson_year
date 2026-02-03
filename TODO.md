@@ -6,3 +6,6 @@
  - [ ] Car damage + status with GUI
  - [x] next waves (how to communicate difficulty?) + Basic metrics
  - [ ] Camera stop at edges + zoom limiters + keeping player centered with look space.
+ - [ ] backwards protag running sprite
+ - [ ] enemy health status
+ - [ ] 

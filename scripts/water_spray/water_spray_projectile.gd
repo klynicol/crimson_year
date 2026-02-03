@@ -12,14 +12,15 @@ var damage_reflections: int = 0
 
 const MAX_TIME_ALIVE = 0.65
 
-const MAX_SCALE_X = 9.0
-const MAX_SCALE_Y = 18.0
-const SCALE_DECAY_RATE = 22
-const MIST_STRENGTH_DECAY_RATE = 1.8
+const MAX_SCALE_X = 8.0
+const MAX_SCALE_Y = 5.0
+const SCALE_DECAY_RATE = 15
+const MIST_STRENGTH_DECAY_RATE =0.3
 const DAMAGE_DECAY_RATE = 9.0
 const COLLISION_BOX_SIZE_DECAY_RATE = 15.0
 
 @onready var vfxSprite = $VFX
+@onready var vfxSprite2 = $VFX2
 @onready var pushback_collision_shape = $Pushback
 @onready var damage_collision_shape = $WaterDamage/CollisionShape2D
 
@@ -27,6 +28,8 @@ func _ready() -> void:
 	global_position = spawnPosition
 	global_rotation = spawnRotation
 	vfxSprite.material = vfxSprite.material.duplicate()
+	if vfxSprite2:
+		vfxSprite2.material = vfxSprite2.material.duplicate()
 	pushback_collision_shape.shape = pushback_collision_shape.shape.duplicate()
 	damage_collision_shape.shape = damage_collision_shape.shape.duplicate()
 	
@@ -56,14 +59,19 @@ func _despawn(delta: float) -> void:
 		queue_free()
 
 # As the projectiles moves, the scale should increase to simulate the water spreading out
-# Scale the vfxsprite
+# Scale both vfx sprites
 func _decay_scale(delta: float) -> void:
 	vfxSprite.scale.x += delta * SCALE_DECAY_RATE
 	vfxSprite.scale.y += delta * SCALE_DECAY_RATE
+	if vfxSprite2:
+		vfxSprite2.scale.x += delta * SCALE_DECAY_RATE
+		vfxSprite2.scale.y += delta * SCALE_DECAY_RATE
 
 # As the projectiles moves, the mist strength should decrease to simulate the water spreading out
 func _decay_mist_strength(delta: float) -> void:
 	vfxSprite.set_mist_strength(vfxSprite.get_mist_strength() + delta * MIST_STRENGTH_DECAY_RATE)
+	if vfxSprite2:
+		vfxSprite2.set_mist_strength(vfxSprite2.get_mist_strength() + delta * MIST_STRENGTH_DECAY_RATE)
 
 func _decay_damage(delta: float) -> void:
 	damage -= delta * DAMAGE_DECAY_RATE

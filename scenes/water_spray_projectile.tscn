@@ -5,17 +5,39 @@
 [ext_resource type="Texture2D" uid="uid://bqsltsp4116s5" path="res://assets/sprites/PHsprite.png" id="3_1mon1"]
 [ext_resource type="Script" uid="uid://dangf23ma80cj" path="res://scripts/water_spray/water_spray_vfx_controller.gd" id="4_asivv"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfx2"]
+shader = ExtResource("2_w5k3n")
+shader_parameter/use_noise_texture = true
+shader_parameter/cone_softness = 2.255
+shader_parameter/cone_softness_spread = -2.135
+shader_parameter/cone_center = 0.5
+shader_parameter/density = 1.9100000000000001
+shader_parameter/mist_scale = 25.225
+shader_parameter/mist_strength = 1.565
+shader_parameter/falloff = 1.11
+shader_parameter/scroll_speed = 7.19
+shader_parameter/scroll_direction = Vector2(0, 1)
+shader_parameter/color_variance_strength = 0.15
+shader_parameter/base_color_r = 0.85
+shader_parameter/base_color_g = 0.92
+shader_parameter/base_color_b = 1.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bri6m"]
 shader = ExtResource("2_w5k3n")
-shader_parameter/use_noise_texture = false
-shader_parameter/cone_softness = 0.03
+shader_parameter/use_noise_texture = true
+shader_parameter/cone_softness = 0.16
+shader_parameter/cone_softness_spread = 0.61
 shader_parameter/cone_center = 0.5
-shader_parameter/density = 27.35
-shader_parameter/mist_scale = 36.725
-shader_parameter/mist_strength = 0.91
-shader_parameter/falloff = 1.095
-shader_parameter/scroll_speed = 2.655
+shader_parameter/density = 3.115
+shader_parameter/mist_scale = 600.0
+shader_parameter/mist_strength = 0.805
+shader_parameter/falloff = 1.035
+shader_parameter/scroll_speed = 10.295
 shader_parameter/scroll_direction = Vector2(0, 1)
+shader_parameter/color_variance_strength = -2.56
+shader_parameter/base_color_r = 1.5
+shader_parameter/base_color_g = 0.98
+shader_parameter/base_color_b = 0.98
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g5njp"]
 radius = 13.0
@@ -27,19 +49,28 @@ radius = 15.0
 collision_layer = 0
 script = ExtResource("1_1h3s4")
 
+[node name="VFX2" type="Sprite2D" parent="." unique_id=1815467902]
+material = SubResource("ShaderMaterial_vfx2")
+position = Vector2(29, 0)
+scale = Vector2(1.7983074, 1.3564168)
+texture = ExtResource("3_1mon1")
+script = ExtResource("4_asivv")
+
 [node name="VFX" type="Sprite2D" parent="." unique_id=1528228043]
 material = SubResource("ShaderMaterial_bri6m")
-position = Vector2(34.36, -0.12800026)
-scale = Vector2(1.835, 1.492)
+position = Vector2(22, -1.000001)
+scale = Vector2(1.2300001, 1.0000873)
 texture = ExtResource("3_1mon1")
 script = ExtResource("4_asivv")
 
 [node name="Pushback" type="CollisionShape2D" parent="." unique_id=295339846]
-position = Vector2(34.359997, -0.12800026)
+visible = false
+position = Vector2(23, -1)
 shape = SubResource("CircleShape2D_g5njp")
 
 [node name="WaterDamage" type="Area2D" parent="." unique_id=672065162]
-position = Vector2(34.359997, -0.12800026)
+visible = false
+position = Vector2(23, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDamage" unique_id=165108941]
 light_mask = 2

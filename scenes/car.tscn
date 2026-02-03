@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://duee4wsbvb3xl"]
 
 [ext_resource type="Script" uid="uid://wbdsbj8g3rb5" path="res://scripts/car.gd" id="1_c35m8"]
-[ext_resource type="Texture2D" uid="uid://5avq7er73j6w" path="res://assets/sprites/car_2_temp.png" id="2_50v30"]
 [ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="2_jtldb"]
-[ext_resource type="Texture2D" uid="uid://d4lgfofjqusai" path="res://assets/sprites/car_1_temp.png" id="3_jtldb"]
+[ext_resource type="Texture2D" uid="uid://cxsfseqorh1se" path="res://assets/sprites/Car-Sheet.png" id="3_50v30"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3mrxu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_50v30")
+"texture": ExtResource("3_50v30")
 }],
 "loop": true,
 "name": &"0",
@@ -17,7 +16,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_jtldb")
+"texture": ExtResource("3_50v30")
 }],
 "loop": true,
 "name": &"1",
@@ -25,8 +24,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50v30"]
-radius = 71.0
-height = 442.0
+radius = 62.0
+height = 388.0
 
 [node name="Car" type="CharacterBody2D" unique_id=1920515730]
 position = Vector2(2, 0)
@@ -42,15 +41,15 @@ scale = Vector2(12.147552, 2.0027268)
 texture = ExtResource("2_jtldb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1290686419]
-position = Vector2(8.721649, -20.25)
+position = Vector2(6, -55)
 scale = Vector2(0.78032345, 0.78032345)
 sprite_frames = SubResource("SpriteFrames_3mrxu")
 animation = &"0"
-autoplay = "0"
+autoplay = "1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=607718289]
 visibility_layer = 4
-position = Vector2(-0.27835083, -36.25)
+position = Vector2(7, -8)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_50v30")
 debug_color = Color(0.76569086, 0.4474482, 0.0804443, 0.41960785)
