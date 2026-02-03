@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i570t61l1qhb"
-path="res://.godot/imported/Greaser_Toad_lrg.png-e946afb5b3da92a9a58227ce7177463b.ctex"
+uid="uid://baw8b86aouse6"
+path="res://.godot/imported/Protag_dash-Sheet.png-468dda586daec00a8d403ea406473a99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Greaser_Toad_lrg.png"
-dest_files=["res://.godot/imported/Greaser_Toad_lrg.png-e946afb5b3da92a9a58227ce7177463b.ctex"]
+source_file="res://assets/sprites/protag/Protag_dash-Sheet.png"
+dest_files=["res://.godot/imported/Protag_dash-Sheet.png-468dda586daec00a8d403ea406473a99.ctex"]
 
 [params]
 

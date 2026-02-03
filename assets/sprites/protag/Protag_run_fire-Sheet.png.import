@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di16gp3nh15au"
-path="res://.godot/imported/water_sprayer.png-395be960b4a2ed328aba35115662d23d.ctex"
+uid="uid://xabbipj011um"
+path="res://.godot/imported/Protag_run_fire-Sheet.png-d5c813d2ce18f247122d18c9a869fefb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/water_sprayer.png"
-dest_files=["res://.godot/imported/water_sprayer.png-395be960b4a2ed328aba35115662d23d.ctex"]
+source_file="res://assets/sprites/protag/Protag_run_fire-Sheet.png"
+dest_files=["res://.godot/imported/Protag_run_fire-Sheet.png-d5c813d2ce18f247122d18c9a869fefb.ctex"]
 
 [params]
 

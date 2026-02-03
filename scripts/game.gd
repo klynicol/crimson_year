@@ -17,3 +17,7 @@ func _on_next_stage_pressed() -> void:
 	var stage_manager: StageManager = $World/Stage
 	stage_manager.start_next_wave()
 	hide_next_stage_prompt()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("quit"):
+		get_tree().quit()
