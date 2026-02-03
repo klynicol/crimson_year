@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://b71urgpjn1yg6"]
+
+[ext_resource type="FontFile" uid="uid://cdcg16qh0f6pk" path="res://assets/FingerPaint-Regular.ttf" id="1_k5mhc"]
+[ext_resource type="Script" uid="uid://cfq0gnu87cfmd" path="res://scripts/options_popup.gd" id="2_yx4np"]
+[ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/sprites/x.png" id="3_pf2ot"]
+[ext_resource type="Texture2D" uid="uid://b5peejrykbf6r" path="res://assets/sprites/controller.png" id="5_yx4np"]
+[ext_resource type="Texture2D" uid="uid://c36j2l1whs5t3" path="res://assets/sprites/mouse.png" id="6_2byn8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81l6r"]
+content_margin_left = 48.0
+content_margin_top = 25.0
+content_margin_right = 48.0
+content_margin_bottom = 25.0
+bg_color = Color(1, 0.90588236, 0.8392157, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v86rl"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.313726)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.93333334, 0.93333334, 0.93333334, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[node name="OptionsPopup" type="RichTextLabel" unique_id=2111605867]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.50200003
+anchor_bottom = 0.5
+offset_left = -496.0
+offset_top = -273.0
+offset_right = 497.69598
+offset_bottom = 253.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_k5mhc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_81l6r")
+script = ExtResource("2_yx4np")
+
+[node name="XButtonOptions" type="Button" parent="." unique_id=931273178]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.93700004
+anchor_top = 0.087000005
+anchor_right = 0.93700004
+anchor_bottom = 0.087000005
+offset_left = -37.252014
+offset_top = -34.762
+offset_right = 37.747986
+offset_bottom = 35.238
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+theme_override_icons/icon = ExtResource("3_pf2ot")
+theme_override_styles/normal = SubResource("StyleBoxFlat_v86rl")
+
+[node name="Label" type="Label" parent="." unique_id=2016572226]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37600002
+anchor_top = 0.52000004
+anchor_right = 0.37600002
+anchor_bottom = 0.52000004
+offset_left = -87.496
+offset_top = -20.52002
+offset_right = 87.504
+offset_bottom = 20.47998
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5254902, 0.019607844, 0.5254902, 1)
+theme_override_fonts/font = ExtResource("1_k5mhc")
+text = "choose your weapon:"
+
+[node name="OptionButton" type="OptionButton" parent="." unique_id=1932662557]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.586
+anchor_top = 0.5
+anchor_right = 0.586
+anchor_bottom = 0.5
+offset_left = -63.656006
+offset_top = -32.0
+offset_right = 63.270447
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("1_k5mhc")
+selected = 0
+item_count = 2
+popup/item_0/icon = ExtResource("6_2byn8")
+popup/item_0/id = 0
+popup/item_1/icon = ExtResource("5_yx4np")
+popup/item_1/id = 1
+
+[connection signal="pressed" from="XButtonOptions" to="." method="_on_x_button_options_pressed"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
