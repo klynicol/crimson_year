@@ -68,4 +68,3 @@ func prepare_for_wave():
 	# Clear all the cars
 	for car in get_tree().get_nodes_in_group("cars"):
 		car.queue_free()
-
