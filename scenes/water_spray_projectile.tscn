@@ -11,22 +11,22 @@ shader_parameter/use_noise_texture = true
 shader_parameter/cone_softness = 2.255
 shader_parameter/cone_softness_spread = -2.135
 shader_parameter/cone_center = 0.5
-shader_parameter/density = 1.9100000000000001
-shader_parameter/mist_scale = 25.225
-shader_parameter/mist_strength = 1.565
+shader_parameter/density = 1.035
+shader_parameter/mist_scale = 35.92
+shader_parameter/mist_strength = 1.335
 shader_parameter/falloff = 1.11
 shader_parameter/scroll_speed = 7.19
 shader_parameter/scroll_direction = Vector2(0, 1)
-shader_parameter/color_variance_strength = 0.15
-shader_parameter/base_color_r = 0.85
-shader_parameter/base_color_g = 0.92
-shader_parameter/base_color_b = 1.0
+shader_parameter/color_variance_strength = 1.58
+shader_parameter/base_color_r = 0.5
+shader_parameter/base_color_g = 0.6
+shader_parameter/base_color_b = 0.7
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bri6m"]
 shader = ExtResource("2_w5k3n")
 shader_parameter/use_noise_texture = true
-shader_parameter/cone_softness = 0.16
-shader_parameter/cone_softness_spread = 0.61
+shader_parameter/cone_softness = 0.245
+shader_parameter/cone_softness_spread = 0.09
 shader_parameter/cone_center = 0.5
 shader_parameter/density = 3.115
 shader_parameter/mist_scale = 600.0
@@ -34,10 +34,10 @@ shader_parameter/mist_strength = 0.805
 shader_parameter/falloff = 1.035
 shader_parameter/scroll_speed = 10.295
 shader_parameter/scroll_direction = Vector2(0, 1)
-shader_parameter/color_variance_strength = -2.56
-shader_parameter/base_color_r = 1.5
-shader_parameter/base_color_g = 0.98
-shader_parameter/base_color_b = 0.98
+shader_parameter/color_variance_strength = 0.5
+shader_parameter/base_color_r = 0.94
+shader_parameter/base_color_g = 1.0
+shader_parameter/base_color_b = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g5njp"]
 radius = 13.0

@@ -99,24 +99,23 @@ void fragment() {
 	float spray = cone * mist * density;
 	spray = clamp(spray, 0.0, 1.0);
 
-	// Base water color (pastel blue - soft and muted)
+	// Base water color - use uniform values directly for maximum control
 	vec3 base_water_color = vec3(base_color_r, base_color_g, base_color_b);
 	
-	// Add blue color variance using mist pattern for more realistic water appearance
-	// Use a different noise sample for color variation (offset to avoid correlation with mist)
-	// Reduced scroll influence to avoid wispy flame-like patterns
+	// Add subtle color variance using mist pattern
 	vec2 color_noise_uv = uv * mist_scale * 0.7 + scroll_offset * 0.2 + vec2(17.3, 23.7);
 	float color_noise = droplet_noise(color_noise_uv);
 	
-	// Create blue variance: more blue in some areas, less in others
-	// Variance ranges from -color_variance_strength to +color_variance_strength
-	float blue_variance = (color_noise - 0.5) * 2.0 * color_variance_strength;
+	// Create variance: ranges from -color_variance_strength to +color_variance_strength
+	float variance = (color_noise - 0.5) * 2.0 * color_variance_strength;
 	
-	// Apply variance: subtle pastel blue variation
+	// Apply variance with reduced influence so base colors dominate
 	vec3 water_color = base_water_color;
-	water_color.b = clamp(water_color.b + blue_variance * 0.5, 0.9, 1.0);
-	water_color.g = clamp(water_color.g - blue_variance * 0.2, 0.88, 0.95);
-	water_color.r = clamp(water_color.r - blue_variance * 0.15, 0.82, 0.9);
+	water_color.r = base_water_color.r + variance * 0.1;
+	water_color.g = base_water_color.g + variance * 0.1;
+	water_color.b = base_water_color.b + variance * 0.1;
+	// Clamp to reasonable range but allow values above 1.0 for brightness
+	water_color = clamp(water_color, 0.0, 3.0);
 	
 	COLOR = vec4(water_color, spray);
 }
