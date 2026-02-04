@@ -16,10 +16,10 @@ const MAX_MIST_STRENGTH = 3.0
 # The sprayer will spawn in 4 different spots based on the character's
 # direction and sprite.
 const SPRAYER_SPAWN_POSITIONS = [
-	Vector2(54.5, -36.5), # right
-	Vector2(-31, 3), # down
-	Vector2(-55.5, -38.5), # left
-	Vector2(29, -74), # up
+	Vector2(67, -68), # right
+	# Vector2(-31, 3), # down
+	Vector2(-67, -68), # left
+	# Vector2(29, -74), # up
 ]
 
 var cooldown = 0.0
@@ -46,8 +46,11 @@ func shoot() -> void:
 	# var rot := sprayer.global_rotation + PI / 2
 	var instance := projectile.instantiate() as CharacterBody2D
 
-	var rot := match_rot_to_player_control_mode()
-	var spawn_pos := SPRAYER_SPAWN_POSITIONS[Utilities.get_direction_from_rotation(rot)] as Vector2
+	var rot := Utilities.get_rotation_of_aim(character, global_position)
+	var spawn_index := Utilities.get_direction_from_rotation_180(rot)
+
+	var spawn_pos := SPRAYER_SPAWN_POSITIONS[spawn_index] as Vector2
+
 	instance.spawnPosition = global_position + spawn_pos + (character.velocity * 0.02)
 	instance.spawnRotation = rot
 	instance.speed = projectile_speed
@@ -89,12 +92,3 @@ func shoot() -> void:
 	get_tree().current_scene.add_child(instance)
 	
 	last_shot_rotation = rot
-
-func match_rot_to_player_control_mode() -> float:
-	match character.get_control_type():
-		PlayerController.ControlMode.KEYBOARD:
-			return Utilities.get_rotation_to_mouse(global_position)
-		PlayerController.ControlMode.GAMEPAD:
-			return Utilities.get_rotation_to_gamepad(global_position)
-		_:
-			return 0.0
