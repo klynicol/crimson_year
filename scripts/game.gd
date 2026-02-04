@@ -24,7 +24,6 @@ func _on_next_stage_pressed() -> void:
 	stage_manager.start_next_wave()
 	hide_next_stage_prompt()
 
-<<<<<<< HEAD
 func _on_game_start_pressed() -> void:
 	stage.init_wave(1)
 	
@@ -37,8 +36,6 @@ func _on_connect_control_method() -> void:
 # this function receives the signal from the options_popup.gd
 func _on_control_method_changed(control_method) -> void:
 	character.control_type = control_method
-=======
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):
 		get_tree().quit()
->>>>>>> main
