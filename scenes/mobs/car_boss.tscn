@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bxyb5wbfno4kv" path="res://scripts/mobs/car_boss.gd" id="1_dxals"]
 [ext_resource type="Texture2D" uid="uid://cxsfseqorh1se" path="res://assets/sprites/Car-Sheet.png" id="1_vou78"]
+[ext_resource type="Script" uid="uid://csdolyo5rtfno" path="res://scripts/mobs/mob_stats.gd" id="2_72ys1"]
+
+[sub_resource type="Resource" id="Resource_3es33"]
+script = ExtResource("2_72ys1")
+metadata/_custom_type_script = "uid://csdolyo5rtfno"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dxals"]
 atlas = ExtResource("1_vou78")
@@ -22,8 +27,12 @@ animations = [{
 radius = 75.0
 height = 500.0
 
-[node name="CarBoss" type="CharacterBody2D" unique_id=677046546]
+[node name="CarBoss" type="CharacterBody2D" unique_id=677046546 node_paths=PackedStringArray("sprite", "hit_box", "lifebar")]
 script = ExtResource("1_dxals")
+stats = SubResource("Resource_3es33")
+sprite = NodePath("AnimatedSprite2D")
+hit_box = NodePath("HitBox")
+lifebar = NodePath("Lifebar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1921947143]
 position = Vector2(2, -80.5)
@@ -34,3 +43,14 @@ autoplay = "default"
 position = Vector2(1, -31.5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vou78")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1908694370]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=2056003485]
+position = Vector2(1, -31.5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vou78")
+
+[node name="Lifebar" type="ProgressBar" parent="." unique_id=1072250507]
+offset_right = 4.0
+offset_bottom = 27.0
