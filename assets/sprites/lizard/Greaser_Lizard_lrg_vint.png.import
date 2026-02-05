@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djc1xfk35nder"
-path="res://.godot/imported/Greaser_Lizard_lrg_vint.png-4643451578b44bf1046b0296f8b3c508.ctex"
+path="res://.godot/imported/Greaser_Lizard_lrg_vint.png-f75846cafd304f5eaada86233ebaaf08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Greaser_Lizard_lrg_vint.png"
-dest_files=["res://.godot/imported/Greaser_Lizard_lrg_vint.png-4643451578b44bf1046b0296f8b3c508.ctex"]
+source_file="res://assets/sprites/lizard/Greaser_Lizard_lrg_vint.png"
+dest_files=["res://.godot/imported/Greaser_Lizard_lrg_vint.png-f75846cafd304f5eaada86233ebaaf08.ctex"]
 
 [params]
 

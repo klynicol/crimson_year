@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8gbao65cdofd" path="res://scripts/mobs/greaser_gecko.gd" id="1_4hvlq"]
 [ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="3_8wmq1"]
-[ext_resource type="Texture2D" uid="uid://bv3dxl55dv36o" path="res://assets/sprites/Greaser_Lizard-Sheet.png" id="5_jjxcx"]
+[ext_resource type="Texture2D" uid="uid://bv3dxl55dv36o" path="res://assets/sprites/lizard/Greaser_Lizard-Sheet.png" id="5_jjxcx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnwn7"]
 atlas = ExtResource("5_jjxcx")

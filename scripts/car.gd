@@ -4,7 +4,7 @@ const PACKED_SCENE: PackedScene = preload("uid://duee4wsbvb3xl")
 const CAR_SPEED: float = 70.0
 const ACCELERATION: float = 1400.0
 
-const MAX_HEALTH: int = 100
+const MAX_HEALTH: int = 700
 
 signal car_died
 

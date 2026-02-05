@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bvbngguyduhdj" path="res://scripts/mobs/greaser_lizard.gd" id="1_greaser"]
 [ext_resource type="Script" uid="uid://csdolyo5rtfno" path="res://scripts/mobs/mob_stats.gd" id="2_6ws4d"]
-[ext_resource type="Texture2D" uid="uid://bv3dxl55dv36o" path="res://assets/sprites/Greaser_Lizard-Sheet.png" id="3_hmpad"]
+[ext_resource type="Texture2D" uid="uid://bv3dxl55dv36o" path="res://assets/sprites/lizard/Greaser_Lizard-Sheet.png" id="3_hmpad"]
 [ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="3_lnwn7"]
-[ext_resource type="Texture2D" uid="uid://cdbneqnjt1uoj" path="res://assets/sprites/Greaser_Lizard_atk-Sheet.png" id="4_gxe2a"]
+[ext_resource type="Texture2D" uid="uid://cdbneqnjt1uoj" path="res://assets/sprites/lizard/Greaser_Lizard_atk-Sheet.png" id="4_gxe2a"]
+[ext_resource type="Texture2D" uid="uid://cfueoxqq6jwyp" path="res://assets/sprites/protag/Protag_dash_no_arm-Sheet.png" id="5_8n4lr"]
 
 [sub_resource type="Resource" id="Resource_lnwn7"]
 script = ExtResource("2_6ws4d")
-max_health = 50
+max_health = 120
 speed = 200.0
 damage = 20
 accel = 600.0
@@ -31,6 +32,22 @@ region = Rect2(256, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0bn8e"]
 atlas = ExtResource("4_gxe2a")
 region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmrs3"]
+atlas = ExtResource("5_8n4lr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8du6"]
+atlas = ExtResource("5_8n4lr")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3ftw"]
+atlas = ExtResource("5_8n4lr")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voidm"]
+atlas = ExtResource("3_hmpad")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnwn7"]
 atlas = ExtResource("3_hmpad")
@@ -67,9 +84,26 @@ animations = [{
 "name": &"attack",
 "speed": 7.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmrs3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8du6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3ftw")
+}],
 "loop": true,
 "name": &"hurt",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voidm")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -118,10 +152,9 @@ texture = ExtResource("3_lnwn7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206827224]
 position = Vector2(3, -41)
 sprite_frames = SubResource("SpriteFrames_eq5of")
-animation = &"attack"
+animation = &"hurt"
 autoplay = "walk"
-frame = 2
-frame_progress = 0.8936878
+frame_progress = 0.10769033
 
 [node name="AttackBox" type="Area2D" parent="AnimatedSprite2D" unique_id=1615844479]
 

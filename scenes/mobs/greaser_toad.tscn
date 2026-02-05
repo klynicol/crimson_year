@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_8ln1w"]
 script = ExtResource("2_v7ow2")
-max_health = 300
+max_health = 130
 speed = 200.0
 damage = 4
 knockback_speed = 500.0
