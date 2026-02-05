@@ -36,11 +36,11 @@ texture = ExtResource("3_1mon1")
 script = ExtResource("4_asivv")
 
 [node name="Pushback" type="CollisionShape2D" parent="." unique_id=295339846]
-position = Vector2(34.359997, -0.12800026)
+position = Vector2(-3, 0)
 shape = SubResource("CircleShape2D_g5njp")
 
 [node name="WaterDamage" type="Area2D" parent="." unique_id=672065162]
-position = Vector2(34.359997, -0.12800026)
+position = Vector2(-3, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDamage" unique_id=165108941]
 light_mask = 2

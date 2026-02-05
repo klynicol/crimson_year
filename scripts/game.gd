@@ -4,6 +4,8 @@ class_name Game extends Node
 @onready var stage: StageManager = $World/Stage
 @onready var character: PlayerController = $World/YSort/Character
 
+static var paused: bool = false
+
 var life_time_mob_fragments: int = 0
 
 func _ready() -> void:
@@ -38,4 +40,4 @@ func _on_control_method_changed(control_method) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):
-		get_tree().quit()
+		paused = not paused

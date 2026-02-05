@@ -53,6 +53,10 @@ var anim_directions = {
 }
 
 func _physics_process(_delta: float) -> void:
+	if Game.paused:
+		player_sprite.pause()
+		return
+	player_sprite.play()
 	var motion := Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")

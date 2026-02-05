@@ -53,10 +53,13 @@ func _set_player():
 func _physics_process(delta: float) -> void:
 	if not player:
 		return
-	_check_conveyor()
+	if Game.paused:
+		sprite.pause()
+		return
+	sprite.play()
+	_check_on_conveyor()
 	_check_state(delta)
 	_set_sprite_animation()
-	# print("velocity: ", velocity)
 	move_and_slide()
 
 func _set_sprite_animation() -> void:
@@ -80,7 +83,7 @@ func _check_state(delta: float) -> void:
 	if mob_state == MobState.HURT:
 		_handle_mob_hurt(delta)
 		return
-	var bodies_in_range: Array[CharacterBody2D] = _get_bodies_in_range()
+	var bodies_in_range: Array[CharacterBody2D] = _get_bodies_in_attack_range()
 	if bodies_in_range.size() > 0:
 		_handle_attack(bodies_in_range, delta)
 		return
@@ -166,7 +169,7 @@ func _attack_alligns_with_sprite_frame() -> bool:
 		return false
 	return true
 
-func _get_bodies_in_range() -> Array[CharacterBody2D]:
+func _get_bodies_in_attack_range() -> Array[CharacterBody2D]:
 	var bodies: Array[CharacterBody2D] = []
 	for body in attack_box.get_overlapping_bodies():
 		if body is not Car:
@@ -174,7 +177,7 @@ func _get_bodies_in_range() -> Array[CharacterBody2D]:
 		bodies.append(body)
 	return bodies
 
-func _check_conveyor() -> void:
+func _check_on_conveyor() -> void:
 	if global_position.y < World.conveyor_y_max and global_position.y > World.conveyor_y_min:
 		on_conveyor = true
 

@@ -56,6 +56,8 @@ func _ready() -> void:
 	#call_deferred("_init_wave", 1) # Will be triggered by the menu
 
 func _process(delta: float):
+	if Game.paused:
+		return
 	if not should_process_wave:
 		label.text = "....."
 		return
