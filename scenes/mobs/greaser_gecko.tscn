@@ -30,7 +30,17 @@ animations = [{
 }, {
 "frames": [],
 "loop": true,
+"name": &"dying",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
 "name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -72,7 +82,7 @@ texture = ExtResource("3_8wmq1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206827224]
 position = Vector2(3, -41)
 sprite_frames = SubResource("SpriteFrames_eq5of")
-animation = &"attack"
+animation = &"idle"
 autoplay = "walking"
 
 [node name="Knockback" type="CollisionShape2D" parent="." unique_id=1895863027]

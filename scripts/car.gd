@@ -33,6 +33,8 @@ func _ready() -> void:
 	sprite.play(str(car_type))
 
 func _physics_process(delta: float) -> void:
+	if Game.paused:
+		return
 	# When moving the car we just gonna blast through any collisions
 	# Just move the car linearly in the direction of the target position
 	var direction = (target_position - global_position).normalized()

@@ -41,6 +41,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Game.paused:
+		return
 	if Input.is_action_pressed('fire'):
 		sprayer.visible = true
 		if cooldown <= 0.0:

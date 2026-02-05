@@ -8,9 +8,9 @@
  - [x] next waves (how to communicate difficulty?) + Basic metrics
  - [ ] Camera stop at edges + zoom limiters + keeping player centered with look space.
  - [ ] protag knockback on spray
- - [ ] New sprayer sprite
- - [ ] backwards running sprites
- - [ ] enemy health status
+ - [x] New sprayer sprite
+ - [x] backwards running sprites
+ - [x] enemy health status
  - [ ] car health status
  - [ ] Pause camera -> pan to boss
  - [ ] Boss movement and attack
@@ -25,3 +25,10 @@
  - reduced enemy damage
  - reduced enemy speed
  - reduced enemy health
+
+ 2-5-26
+- Move water projectile collision box back (helps with hitting mobs close up)
+- Game pause added (escape to pause/un-pause)
+- Shadows added to rollers
+- Car boss scene created (placeholder)
+- Car boss spawn in -> camera zoom to -> back to player

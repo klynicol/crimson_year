@@ -5,6 +5,41 @@ extends Camera2D
 @export var zoom_step: float = 0.15
 @export var zoom_toward_cursor: bool = true
 
+@onready var stage_manager: StageManager = get_node("/root/Game/World/Stage")
+
+var game_paused_buffer_bool: bool = false
+var camera_pos_before_boss_spawn: Vector2 = Vector2.ZERO
+var zoom_before_boss_spawn: Vector2 = Vector2.ZERO
+
+func _ready():
+	stage_manager.boss_spawned.connect(_on_boss_spawned)
+
+func _on_boss_spawned(boss: Node):
+	camera_pos_before_boss_spawn = global_position
+	zoom_before_boss_spawn = zoom
+	boss.connect("spawn_completed", _on_boss_spawn_completed)
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "global_position", stage_manager.BOSS_SPAWN_LOCATION, 0.7)
+	tween.tween_property(self, "zoom", Vector2(1.0, 1.0), 0.7)
+	tween.tween_callback(func():
+		zoom_toward_cursor = false
+	)
+
+func _on_boss_spawn_completed():
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "global_position", camera_pos_before_boss_spawn, 0.7)
+	tween.tween_property(self, "zoom", zoom_before_boss_spawn, 0.7)
+	tween.tween_callback(func():
+		zoom_toward_cursor = true
+	)
+	# add a callback to unpause the game
+	tween.tween_callback(func():
+		Game.paused = false
+	)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -32,7 +67,6 @@ func _input(event: InputEvent) -> void:
 		if zoom_toward_cursor:
 			var world_after := _screen_to_world(mouse_pos)
 			position += world_before - world_after
-
 
 func _screen_to_world(screen_pos: Vector2) -> Vector2:
 	var view_size := get_viewport().get_visible_rect().size

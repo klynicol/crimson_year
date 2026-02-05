@@ -102,6 +102,11 @@ animations = [{
 "name": &"attack",
 "speed": 7.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"dying",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_chn7g")
@@ -175,7 +180,7 @@ texture = ExtResource("3_wpauc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206827224]
 position = Vector2(3, -50)
 sprite_frames = SubResource("SpriteFrames_eq5of")
-animation = &"idle"
+animation = &"dying"
 autoplay = "attack"
 
 [node name="AttackBox" type="Area2D" parent="AnimatedSprite2D" unique_id=622538586]

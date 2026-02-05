@@ -31,6 +31,8 @@ func _ready() -> void:
 	damage_collision_shape.shape = damage_collision_shape.shape.duplicate()
 	
 func _physics_process(delta: float) -> void:
+	if Game.paused:
+		return
 	_decay(delta)
 	# atan2(y,x) uses "right" as 0°, so rotate from (speed, 0) not (0, speed)
 	velocity = Vector2(speed, 0).rotated(spawnRotation)
