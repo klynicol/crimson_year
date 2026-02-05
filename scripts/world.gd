@@ -60,3 +60,6 @@ func prepare_for_wave():
 	# Clear all the cars
 	for car in get_tree().get_nodes_in_group("cars"):
 		car.queue_free()
+	# Clear any previous boss so the next wave gets a fresh instance
+	for boss in get_tree().get_nodes_in_group("boss"):
+		boss.queue_free()

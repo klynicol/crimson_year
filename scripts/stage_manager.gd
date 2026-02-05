@@ -23,7 +23,7 @@ const CAR_SPAWN_COOLDOWN: float = 11.0;
 var enemy_spawn_cooldown: float = 0.0;
 var car_spawn_cooldown: float = 0.0;
 
-signal boss_spawned
+signal boss_spawned(boss: Node)
 
 @onready var label = get_tree().current_scene.get_node("Gui/Control/Label")
 
@@ -144,12 +144,13 @@ func _spawn_cars(delta: float):
 	car_spawn_cooldown = CAR_SPAWN_COOLDOWN;
 
 func _spawn_boss():
+	wave_boss_spawned = true;
 	var boss : CharacterBody2D = WAVES_CONFIG[current_wave]["boss"].instantiate()
 	boss.add_to_group("boss")
 	World.ySort.add_child(boss)
 	boss.global_position = BOSS_SPAWN_LOCATION
 	Game.paused = true
-	boss_spawned.emit()
+	boss_spawned.emit(boss)
 
 # !!! -- SIGNAL LISTENERS -- !!!
 

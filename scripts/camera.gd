@@ -14,11 +14,10 @@ var zoom_before_boss_spawn: Vector2 = Vector2.ZERO
 func _ready():
 	stage_manager.boss_spawned.connect(_on_boss_spawned)
 
-func _on_boss_spawned():
-	print("boss spawned")
+func _on_boss_spawned(boss: Node):
 	camera_pos_before_boss_spawn = global_position
 	zoom_before_boss_spawn = zoom
-	get_tree().get_first_node_in_group("boss").connect("spawn_completed", _on_boss_spawn_completed)
+	boss.connect("spawn_completed", _on_boss_spawn_completed)
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)
@@ -29,7 +28,6 @@ func _on_boss_spawned():
 	)
 
 func _on_boss_spawn_completed():
-	print("boss spawn completed")
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)
