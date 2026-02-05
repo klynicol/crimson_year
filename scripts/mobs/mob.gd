@@ -20,6 +20,8 @@ enum MobState {
 @export var hit_box: Area2D
 @export var attack_box: Area2D
 @export var attack_frame: int
+# please use the lifebar scene for this one, it includes a script and a timer to fade back out after a couple of seconds.
+@export var lifebar: ProgressBar
 
 var mob_state: MobState = MobState.IDLE
 var last_mob_state: MobState = MobState.IDLE
@@ -40,6 +42,8 @@ func _ready():
 	hit_box.area_shape_entered.connect(_on_hit_box_entered)
 	stats.mob_died.connect(_on_mob_died)
 	print("state: ", mob_state)
+	lifebar.max_value = stats.max_health
+	lifebar.value = stats.health
 
 func _set_player():
 	player = get_tree().get_first_node_in_group("player")
@@ -136,6 +140,7 @@ func _on_hit_box_entered(area_rid: RID, area: Area2D, area_shape_index: int, loc
 	var damage: float = water_spray_projectile.get_damage_and_increment_reflect()
 	if damage > 0:
 		stats.take_water_damage(damage)
+		_flash_lifebar()
 
 ### !!!! Helper Functions !!!! ###
 
@@ -166,3 +171,6 @@ func chase(target_pos: Vector2, delta: float) -> void:
 
 func look_for_player(delta: float) -> void:
 	pass
+	
+func _flash_lifebar() -> void:
+	lifebar.set_health_value(stats.health)
