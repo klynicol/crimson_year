@@ -15,3 +15,13 @@
  - [ ] Pause camera -> pan to boss
  - [ ] Boss movement and attack
  
+2-4-26
+ - refined enemy movement
+ - added movement so enemy "stays on conveyor"
+ - added enemy attack cooldown
+ - sprayer sprite and rotations added
+ - health bars
+ - increased car health
+ - reduced enemy damage
+ - reduced enemy speed
+ - reduced enemy health

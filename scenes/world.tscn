@@ -165,6 +165,12 @@ position = Vector2(-4663, 298)
 [node name="Checkpoint5" parent="." unique_id=2088446494 instance=ExtResource("11_e3hyu")]
 position = Vector2(-6401, 285)
 
+[node name="ConveyorYMax" type="Marker2D" parent="." unique_id=1070047807]
+position = Vector2(21, 420)
+
+[node name="ConveyorYMin" type="Marker2D" parent="." unique_id=1365524351]
+position = Vector2(-1, 174)
+
 [node name="YSort" type="Node2D" parent="." unique_id=1651747104]
 z_index = 1
 y_sort_enabled = true

@@ -15,10 +15,17 @@ var time_since_last_spawn: float = 0.0
 
 var mob_fragments: int = 0
 
+@onready var conveyor_y_max_marker: Node2D = $ConveyorYMax
+@onready var conveyor_y_min_marker: Node2D = $ConveyorYMin
+static var conveyor_y_max: float = 0.0
+static var conveyor_y_min: float = 0.0
+
 func _ready():
 	ground = get_node("Ground")
 	walls = get_node("Walls")
 	_set_instances()  # Run immediately so player_instance is ready before StageManager._init_wave
+	conveyor_y_max = conveyor_y_max_marker.global_position.y
+	conveyor_y_min = conveyor_y_min_marker.global_position.y
 
 func _set_instances():
 	greaser_spawns = get_tree().get_nodes_in_group("greaser_spawn")

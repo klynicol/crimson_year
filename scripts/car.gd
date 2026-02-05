@@ -44,7 +44,6 @@ func set_new_target_position(new_target_position: Vector2) -> void:
 
 func take_damage(damage: float) -> void:
 	health -= damage
-	print("taking damage: ", damage, " health: ", health)
 	if health <= 0:
 		car_died.emit()
 		spawn_car_fragments()

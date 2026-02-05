@@ -16,6 +16,7 @@ var dash_reset_cooldown := 0.0
 var input_released_by_code := false
 
 @onready var sprayer_sprite: Sprite2D = $Sprayer
+@onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # this will determine whether the Utilities file uses the get_rotation_to_mouse()
 # or the get_rotation_to_stick() functions
@@ -110,21 +111,30 @@ func update_animation(anim_direction: String):
 
 	var anim_action: int = 1 if Input.is_action_pressed("fire") else 0
 
-	$AnimatedSprite2D.play(anim_directions[anim_direction][slice_dir][anim_action])
+	var anim_name : String= anim_directions[anim_direction][slice_dir][anim_action]
+	player_sprite.play(anim_name)
+	if rot_angle > PI / 2 or rot_angle < -PI / 2:
+		player_sprite.flip_h = false
+	else:
+		player_sprite.flip_h = true
+
+	if player_sprite.animation == "left_walking":
+		if velocity.x < 0 and player_sprite.flip_h:
+			player_sprite.play_backwards(anim_name)
+		elif velocity.x > 0 and not player_sprite.flip_h:
+			player_sprite.play_backwards(anim_name)
 
 	if anim_direction == previous_anim_direction and anim_action != previous_anim_action:
 		# Restore both the frame and frame progress to continue smoothly
-		$AnimatedSprite2D.set_frame_and_progress(previous_anim_frame, previous_anim_frame_progress)
+		player_sprite.set_frame_and_progress(previous_anim_frame, previous_anim_frame_progress)
 	# Handle fllip horizontal for the sprite based on the aim direction
-	if rot_angle > PI / 2 or rot_angle < -PI / 2:
-		$AnimatedSprite2D.flip_h = false
-	else:
-		$AnimatedSprite2D.flip_h = true
+	
+
 
 	previous_anim_direction = anim_direction
 	previous_anim_action = anim_action
-	previous_anim_frame = $AnimatedSprite2D.frame
-	previous_anim_frame_progress = $AnimatedSprite2D.frame_progress
+	previous_anim_frame = player_sprite.frame
+	previous_anim_frame_progress = player_sprite.frame_progress
 
 func get_control_type() -> ControlMode:
 	return control_type

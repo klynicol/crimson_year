@@ -10,9 +10,10 @@
 
 [sub_resource type="Resource" id="Resource_8ln1w"]
 script = ExtResource("2_v7ow2")
-max_health = 130
-speed = 200.0
-damage = 4
+max_health = 90
+speed = 100.0
+damage = 10
+decel = 500.0
 knockback_speed = 500.0
 metadata/_custom_type_script = "uid://csdolyo5rtfno"
 
@@ -145,7 +146,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chn7g"]
-size = Vector2(54, 130)
+size = Vector2(132, 117)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mxe0"]
 radius = 27.0
@@ -167,16 +168,15 @@ lifebar = NodePath("Lifebar")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=428859329]
 modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
-position = Vector2(-1.0000005, 7)
+position = Vector2(2.9999995, -6)
 scale = Vector2(1.234375, 0.6328125)
 texture = ExtResource("3_wpauc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206827224]
 position = Vector2(3, -50)
 sprite_frames = SubResource("SpriteFrames_eq5of")
-animation = &"hurt"
+animation = &"idle"
 autoplay = "attack"
-frame_progress = 0.8133838
 
 [node name="AttackBox" type="Area2D" parent="AnimatedSprite2D" unique_id=622538586]
 position = Vector2(-3, 41)
@@ -184,7 +184,7 @@ collision_layer = 0
 collision_mask = 5
 
 [node name="AttackBoxShape" type="CollisionShape2D" parent="AnimatedSprite2D/AttackBox" unique_id=114443986]
-position = Vector2(-34, -32)
+position = Vector2(5, -25.5)
 shape = SubResource("RectangleShape2D_chn7g")
 
 [node name="Knockback" type="CollisionShape2D" parent="." unique_id=1895863027]

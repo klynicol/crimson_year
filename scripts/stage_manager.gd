@@ -26,26 +26,27 @@ var car_spawn_cooldown: float = 0.0;
 const WAVES_CONFIG = {
 	1: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
+		# "enemies": [Mob.MobType.LIZARD],
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
 		"boss": null,
-		"enemy_max_qty" : 60,
-		"enemy_spawn_cooldown" : 1.0,
+		"enemy_max_qty" : 40,
+		"enemy_spawn_cooldown" : 1.6,
 		"boss_spawn_cooldown" : 1.0,
 	},
 	2: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
 		"boss": null,
-		"enemy_max_qty" : 120,
-		"enemy_spawn_cooldown" : 0.5,
+		"enemy_max_qty" : 60,
+		"enemy_spawn_cooldown" : 1.2,
 		"boss_spawn_cooldown" : 0.5,
 	},
 	3: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
 		"boss": null,
-		"enemy_max_qty" : 180,
-		"enemy_spawn_cooldown" : 0.1,
+		"enemy_max_qty" : 100,
+		"enemy_spawn_cooldown" : 1,
 		"boss_spawn_cooldown" : 0.1,
 	},
 }
