@@ -2,6 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://bpf3vnyqg4xxw" path="res://assets/tile_sets/tracktilemap.png" id="1_utcq1"]
 
+[sub_resource type="Gradient" id="Gradient_tpysm"]
+offsets = PackedFloat32Array(0, 0.30120483, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.9477612, 0.9440445, 0.9477612, 1, 1, 0.99607843, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_utcq1"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_tpysm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.645, 0)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0vye"]
 atlas = ExtResource("1_utcq1")
 region = Rect2(0, 0, 64, 128)
@@ -42,6 +53,12 @@ animations = [{
 radius = 41.04875
 
 [node name="Rollers" type="StaticBody2D" unique_id=1245075287]
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=348533161]
+modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
+position = Vector2(0, -1)
+scale = Vector2(1.715203, 0.8077812)
+texture = SubResource("GradientTexture2D_utcq1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=701142428]
 position = Vector2(-0.99999905, -87)

@@ -24,10 +24,13 @@ func _on_next_stage_pressed() -> void:
 	var stage_manager: StageManager = $World/Stage
 	stage_manager.start_next_wave()
 	hide_next_stage_prompt()
+	# Wave end had set Game.paused = true; unpause so the next wave can spawn cars/enemies
+	Game.paused = false
 
 func _on_game_start_pressed() -> void:
 	stage.init_wave(1)
-	
+	# Release focus from the Play button so Space (dash) doesn't re-trigger this and call prepare_for_wave again
+	get_viewport().gui_release_focus()
 # this is probably jank and bad, but because the options_popup doesn't always exist, i have to connect its 
 # control_method_changed signal programmatically, and i need this extra signal from menu.gd to tell game.gd
 # when options_popup exists

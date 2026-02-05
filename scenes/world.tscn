@@ -212,9 +212,3 @@ position = Vector2(-1727, 434)
 
 [node name="Rollers6" parent="YSort" unique_id=1152046591 instance=ExtResource("12_q5onr")]
 position = Vector2(-1726, 170)
-
-[node name="Rollers7" parent="YSort" unique_id=605275554 instance=ExtResource("12_q5onr")]
-position = Vector2(-251, 436)
-
-[node name="Rollers8" parent="YSort" unique_id=1015966210 instance=ExtResource("12_q5onr")]
-position = Vector2(-254, 168)

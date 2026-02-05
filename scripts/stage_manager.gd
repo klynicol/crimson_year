@@ -4,6 +4,8 @@ var checkpoints : Dictionary[int, Checkpoint];
 var greaser_spawns: Array[Node];
 const START_CHECKPOINT_ID: int = 5;
 const END_CHECKPOINT_ID: int = 0;
+const BOSS_CHECKPOINT_ID: int = 4;
+const BOSS_SPAWN_LOCATION: Vector2 = Vector2(-255, 303);
 
 var world: World;
 var game: Game;
@@ -14,12 +16,14 @@ var wave_mob_fragments: int = 0;
 var car_spawn_index: int = 0;
 var cars: Array[Car] = [];
 var wave_cars_destroyed: int = 0;
+var wave_boss_spawned: bool = false;
 
 const CAR_SPAWN_COOLDOWN: float = 11.0;
 
 var enemy_spawn_cooldown: float = 0.0;
-var boss_spawn_cooldown: float = 0.0;
 var car_spawn_cooldown: float = 0.0;
+
+signal boss_spawned
 
 @onready var label = get_tree().current_scene.get_node("Gui/Control/Label")
 
@@ -28,10 +32,9 @@ const WAVES_CONFIG = {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
 		# "enemies": [Mob.MobType.LIZARD],
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
-		"boss": null,
+		"boss": preload("uid://bl7oj4s8kldv8"), # CarBoss
 		"enemy_max_qty" : 40,
 		"enemy_spawn_cooldown" : 1.6,
-		"boss_spawn_cooldown" : 1.0,
 	},
 	2: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
@@ -39,7 +42,6 @@ const WAVES_CONFIG = {
 		"boss": null,
 		"enemy_max_qty" : 60,
 		"enemy_spawn_cooldown" : 1.2,
-		"boss_spawn_cooldown" : 0.5,
 	},
 	3: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
@@ -47,7 +49,6 @@ const WAVES_CONFIG = {
 		"boss": null,
 		"enemy_max_qty" : 100,
 		"enemy_spawn_cooldown" : 1,
-		"boss_spawn_cooldown" : 0.1,
 	},
 }
 
@@ -76,6 +77,7 @@ func _set_instances():
 func init_wave(wave_number: int):
 	should_process_wave = true;
 	print("init_wave: ", wave_number)
+	wave_boss_spawned = false;
 	current_wave = wave_number;
 	game.life_time_mob_fragments += wave_mob_fragments;
 	wave_mob_fragments = 0;
@@ -98,10 +100,10 @@ func _end_current_wave():
 	# Pause wave logic and show "Next Stage" prompt
 	game.show_next_stage_prompt()
 	should_process_wave = false;
+	Game.paused = true
 
 func _spawn_enemies(delta: float):
 	_spawn_greasers(delta)
-	_spawn_boss(delta)
 
 func _spawn_greasers(delta: float):
 	if enemy_spawn_cooldown > 0.0:
@@ -125,8 +127,8 @@ func _spawn_cars(delta: float):
 	if car_spawn_cooldown > 0.0:
 		car_spawn_cooldown -= delta
 		return
-	if not WAVES_CONFIG[current_wave]["cars"].has(car_spawn_index):
-		# Ran out of cars to spawn
+	if car_spawn_index >= WAVES_CONFIG[current_wave]["cars"].size():
+		# Ran out of cars to spawn this wave
 		return
 	# var start_checkpoint := checkpoints[1]
 	var start_checkpoint := checkpoints[START_CHECKPOINT_ID]
@@ -141,23 +143,24 @@ func _spawn_cars(delta: float):
 	car.car_died.connect(_on_car_died)
 	car_spawn_cooldown = CAR_SPAWN_COOLDOWN;
 
-func _spawn_boss(delta: float):
-	if boss_spawn_cooldown > 0.0:
-		boss_spawn_cooldown -= delta
-		return
-	if not WAVES_CONFIG[current_wave]["boss"]:
-		return
-	boss_spawn_cooldown = WAVES_CONFIG[current_wave]["boss_spawn_cooldown"];
-	
+func _spawn_boss():
+	var boss : CharacterBody2D = WAVES_CONFIG[current_wave]["boss"].instantiate()
+	boss.add_to_group("boss")
+	World.ySort.add_child(boss)
+	boss.global_position = BOSS_SPAWN_LOCATION
+	Game.paused = true
+	boss_spawned.emit()
+
 # !!! -- SIGNAL LISTENERS -- !!!
 
 # If all active cars have reached the end checkpoint, end the wave
 func _on_checkpoint_reached(checkpoint_id: int, body: Node2D):
-	if checkpoint_id != END_CHECKPOINT_ID:
-		return
 	if not (body is Car):
 		return
-	body.queue_free()
+	if checkpoint_id == BOSS_CHECKPOINT_ID and not wave_boss_spawned:
+		_spawn_boss()
+	if checkpoint_id == END_CHECKPOINT_ID:
+		body.queue_free()
 	call_deferred("_check_wave_end")
 
 func _on_mob_died():
