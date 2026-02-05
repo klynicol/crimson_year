@@ -166,6 +166,7 @@ position = Vector2(-4663, 298)
 position = Vector2(-6401, 285)
 
 [node name="YSort" type="Node2D" parent="." unique_id=1651747104]
+z_index = 1
 y_sort_enabled = true
 
 [node name="Character" parent="YSort" unique_id=2051868365 groups=["player"] instance=ExtResource("1_uwrxv")]

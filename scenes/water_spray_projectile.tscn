@@ -24,6 +24,7 @@ radius = 13.0
 radius = 15.0
 
 [node name="WaterSpray" type="CharacterBody2D" unique_id=1484708051]
+z_index = 1
 collision_layer = 0
 script = ExtResource("1_1h3s4")
 
