@@ -22,13 +22,12 @@ const MAX_MIST_STRENGTH = 3.0
 # 	"left_dash": Vector2(0, -32),
 # }
 
-# value takes frame number as well
+# value takes frame number into account as well
 const ANIM_SPRAYER_ORIGIN = {
 	"left_walking": true,
 	"left_idle_shooting":false,
 	"left_dash": false,
 }
-
 
 var cooldown = 0.0
 var cooldown_time: float

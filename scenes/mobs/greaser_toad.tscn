@@ -9,9 +9,9 @@
 
 [sub_resource type="Resource" id="Resource_8ln1w"]
 script = ExtResource("2_v7ow2")
-max_health = 130
-speed = 200.0
-damage = 4
+max_health = 90
+speed = 100.0
+damage = 10
 decel = 500.0
 knockback_speed = 500.0
 metadata/_custom_type_script = "uid://csdolyo5rtfno"

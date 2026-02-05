@@ -19,3 +19,5 @@
  - refined enemy movement
  - added movement so enemy "stays on conveyor"
  - added enemy attack cooldown
+ - sprayer sprite and rotations added
+ - 

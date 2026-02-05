@@ -111,13 +111,18 @@ func update_animation(anim_direction: String):
 
 	var anim_action: int = 1 if Input.is_action_pressed("fire") else 0
 
-	player_sprite.play(anim_directions[anim_direction][slice_dir][anim_action])
+	var anim_name : String= anim_directions[anim_direction][slice_dir][anim_action]
+	player_sprite.play(anim_name)
 	if rot_angle > PI / 2 or rot_angle < -PI / 2:
 		player_sprite.flip_h = false
 	else:
-		if player_sprite.animation == "left_walking":
-			player_sprite.play_backwards(anim_directions[anim_direction][slice_dir][anim_action])
 		player_sprite.flip_h = true
+
+	if player_sprite.animation == "left_walking":
+		if velocity.x < 0 and player_sprite.flip_h:
+			player_sprite.play_backwards(anim_name)
+		elif velocity.x > 0 and not player_sprite.flip_h:
+			player_sprite.play_backwards(anim_name)
 
 	if anim_direction == previous_anim_direction and anim_action != previous_anim_action:
 		# Restore both the frame and frame progress to continue smoothly
