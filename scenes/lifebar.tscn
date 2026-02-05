@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://djowbeb05s5os"]
+
+[ext_resource type="Theme" uid="uid://bqsb6ctvb748t" path="res://assets/main_theme.tres" id="1_f21p1"]
+[ext_resource type="Script" uid="uid://b2mnu34qrfwrt" path="res://scenes/lifebar.gd" id="2_0jpj3"]
+
+[node name="Lifebar" type="ProgressBar" unique_id=1806635397]
+modulate = Color(1, 1, 1, 0)
+offset_left = -56.0
+offset_top = -135.0
+offset_right = 55.0
+offset_bottom = -108.0
+theme = ExtResource("1_f21p1")
+script = ExtResource("2_0jpj3")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1710279125]
+one_shot = true

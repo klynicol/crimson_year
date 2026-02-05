@@ -57,6 +57,15 @@ corner_radius_bottom_left = 15
 anti_aliasing = false
 anti_aliasing_size = 0.01
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgdp2"]
+bg_color = Color(0.81735766, 0.44492617, 0.75423265, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 2
+border_width_bottom = 3
+border_color = Color(0.48222834, 0.067888066, 0.28524706, 1)
+corner_radius_top_right = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4fo1"]
 content_margin_left = 48.0
 content_margin_top = 25.0
@@ -80,6 +89,8 @@ Button/styles/hover = SubResource("StyleBoxFlat_ulena")
 Button/styles/normal = SubResource("StyleBoxFlat_jktrv")
 Button/styles/pressed = null
 HBoxContainer/constants/separation = 12
+ProgressBar/constants/outline_size = 7
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_xgdp2")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 RichTextLabel/styles/focus = null
 RichTextLabel/styles/normal = SubResource("StyleBoxFlat_a4fo1")
