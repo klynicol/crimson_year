@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bljy863uw8y6y" path="res://assets/sprites/toad/Greaser_Toad-Sheet.png" id="4_8ln1w"]
 [ext_resource type="Texture2D" uid="uid://da7rpnwb2k8l2" path="res://assets/sprites/toad/Greaser_Toad_atk-Sheet.png" id="4_v7ow2"]
 [ext_resource type="Texture2D" uid="uid://bdabhwbfrnk0s" path="res://assets/sprites/toad/Greaser_Toad_hurt-Sheet.png" id="5_wpauc"]
+[ext_resource type="PackedScene" uid="uid://djowbeb05s5os" path="res://scenes/lifebar.tscn" id="7_tp1sg"]
 
 [sub_resource type="Resource" id="Resource_8ln1w"]
 script = ExtResource("2_v7ow2")
@@ -154,7 +155,7 @@ height = 54.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ln1w"]
 radius = 30.0
 
-[node name="GreaserToad" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box", "attack_box")]
+[node name="GreaserToad" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box", "attack_box", "lifebar")]
 safe_margin = 0.1
 script = ExtResource("1_u4mkm")
 stats = SubResource("Resource_8ln1w")
@@ -163,6 +164,7 @@ ray_cast = NodePath("RayCast2D")
 hit_box = NodePath("HitBox")
 attack_box = NodePath("AnimatedSprite2D/AttackBox")
 attack_frame = 3
+lifebar = NodePath("Lifebar")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=428859329]
 modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
@@ -199,3 +201,5 @@ light_mask = 2
 visibility_layer = 2
 position = Vector2(3, -28)
 shape = SubResource("CircleShape2D_8ln1w")
+
+[node name="Lifebar" parent="." unique_id=1806635397 instance=ExtResource("7_tp1sg")]

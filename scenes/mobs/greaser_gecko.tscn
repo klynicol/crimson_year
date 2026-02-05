@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8gbao65cdofd" path="res://scripts/mobs/greaser_gecko.gd" id="1_4hvlq"]
 [ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="3_8wmq1"]
+[ext_resource type="PackedScene" uid="uid://djowbeb05s5os" path="res://scenes/lifebar.tscn" id="4_4hvlq"]
 [ext_resource type="Texture2D" uid="uid://bv3dxl55dv36o" path="res://assets/sprites/lizard/Greaser_Lizard-Sheet.png" id="5_jjxcx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnwn7"]
@@ -58,8 +59,9 @@ height = 76.0
 radius = 20.0
 height = 84.0
 
-[node name="GreaserGecko" type="CharacterBody2D" unique_id=343513114]
+[node name="GreaserGecko" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("lifebar")]
 script = ExtResource("1_4hvlq")
+lifebar = NodePath("Lifebar")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=428859329]
 modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
@@ -87,3 +89,5 @@ light_mask = 2
 visibility_layer = 2
 position = Vector2(-1, -38)
 shape = SubResource("CapsuleShape2D_lnwn7")
+
+[node name="Lifebar" parent="." unique_id=1806635397 instance=ExtResource("4_4hvlq")]
