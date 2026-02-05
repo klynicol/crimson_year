@@ -10,7 +10,6 @@ const HOP_START_FRAME: int = 1
 const HOP_END_FRAME: int = 5
 const HOP_AIR_RATIO: float = 0.5
 const HOP_ARC_HEIGHT: float = 32.0  # pixels of vertical travel for the hop
-const ANIMATION_NAME: String = "default"
 
 func _ready():
 	mob_type = Mob.MobType.TOAD
@@ -30,17 +29,7 @@ Chase is different for the toad: it "hops" toward the target.
 func chase(target_pos: Vector2, delta: float) -> void:
 	var displacement := target_pos - global_position
 	var dist := displacement.length()
-
-	if dist < stats.attack_range:
-		velocity = Vector2.ZERO
-		sprite.set_frame(0)
-		sprite.pause()
-		move_and_slide()
-		super.chase(target_pos, delta)
-		return
-
 	var direction := displacement.normalized() if dist > 0.01 else Vector2.ZERO
-	sprite.play(ANIMATION_NAME)
 
 	var in_hop_frames := sprite.frame >= HOP_START_FRAME and sprite.frame <= HOP_END_FRAME
 	if in_hop_frames:

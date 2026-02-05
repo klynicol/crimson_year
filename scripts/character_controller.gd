@@ -15,6 +15,8 @@ var dash_cooldown := 0.0
 var dash_reset_cooldown := 0.0
 var input_released_by_code := false
 
+@onready var sprayer_sprite: Sprite2D = $Sprayer
+
 # this will determine whether the Utilities file uses the get_rotation_to_mouse()
 # or the get_rotation_to_stick() functions
 @export var control_type = PlayerController.ControlMode.KEYBOARD
@@ -36,10 +38,10 @@ var anim_directions = {
 		["left_idle", "left_idle_shooting"],
 	],
 	"walk": [
-		["left_walking", "left_walking_shooting"],
-		["left_walking", "left_walking_shooting"],
-		["left_walking", "left_walking_shooting"],	
-		["left_walking", "left_walking_shooting"],
+		["left_walking", "left_walking"],
+		["left_walking", "left_walking"],
+		["left_walking", "left_walking"],	
+		["left_walking", "left_walking"],
 	],
 	'dash': [
 		["left_dash", "left_dash"],
@@ -111,7 +113,6 @@ func update_animation(anim_direction: String):
 	$AnimatedSprite2D.play(anim_directions[anim_direction][slice_dir][anim_action])
 
 	if anim_direction == previous_anim_direction and anim_action != previous_anim_action:
-		print("Continuing animation")
 		# Restore both the frame and frame progress to continue smoothly
 		$AnimatedSprite2D.set_frame_and_progress(previous_anim_frame, previous_anim_frame_progress)
 	# Handle fllip horizontal for the sprite based on the aim direction

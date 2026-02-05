@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byqsgap6gbp61"
-path="res://.godot/imported/Lstick.png-a643bfaf547cb612a609564c4563f03f.ctex"
+uid="uid://65k2x02m8jj"
+path="res://.godot/imported/Rstick.png-7f7611126fa287db3badc6d01ea6fc9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Lstick.png"
-dest_files=["res://.godot/imported/Lstick.png-a643bfaf547cb612a609564c4563f03f.ctex"]
+source_file="res://assets/menu_gui/Rstick.png"
+dest_files=["res://.godot/imported/Rstick.png-7f7611126fa287db3badc6d01ea6fc9c.ctex"]
 
 [params]
 

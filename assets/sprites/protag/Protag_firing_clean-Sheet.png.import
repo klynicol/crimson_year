@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqsltsp4116s5"
-path="res://.godot/imported/PHsprite.png-f34bfd267fb6eabeb8eae65403ddf4df.ctex"
+uid="uid://bxx8cbupgp7ys"
+path="res://.godot/imported/Protag_firing_clean-Sheet.png-7fa54dd88949c805af0643fe56ea671c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/PHsprite.png"
-dest_files=["res://.godot/imported/PHsprite.png-f34bfd267fb6eabeb8eae65403ddf4df.ctex"]
+source_file="res://assets/sprites/protag/Protag_firing_clean-Sheet.png"
+dest_files=["res://.godot/imported/Protag_firing_clean-Sheet.png-7fa54dd88949c805af0643fe56ea671c.ctex"]
 
 [params]
 

@@ -2,9 +2,9 @@
 
 [ext_resource type="FontFile" uid="uid://cdcg16qh0f6pk" path="res://assets/FingerPaint-Regular.ttf" id="1_k5mhc"]
 [ext_resource type="Script" uid="uid://cfq0gnu87cfmd" path="res://scripts/options_popup.gd" id="2_yx4np"]
-[ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/sprites/x.png" id="3_pf2ot"]
-[ext_resource type="Texture2D" uid="uid://b5peejrykbf6r" path="res://assets/sprites/controller.png" id="5_yx4np"]
-[ext_resource type="Texture2D" uid="uid://c36j2l1whs5t3" path="res://assets/sprites/mouse.png" id="6_2byn8"]
+[ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/menu_gui/x.png" id="3_pf2ot"]
+[ext_resource type="Texture2D" uid="uid://b5peejrykbf6r" path="res://assets/menu_gui/controller.png" id="5_yx4np"]
+[ext_resource type="Texture2D" uid="uid://c36j2l1whs5t3" path="res://assets/menu_gui/mouse.png" id="6_2byn8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81l6r"]
 content_margin_left = 48.0

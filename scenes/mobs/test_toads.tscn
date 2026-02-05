@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c87xm1xgj8tv" path="res://scenes/character.tscn" id="1_j0lhm"]
 [ext_resource type="Texture2D" uid="uid://bhwmgjbxi0uhh" path="res://assets/tile_sets/tile1.png" id="1_spcry"]
 [ext_resource type="PackedScene" uid="uid://dcqdtdvxviuqr" path="res://scenes/mobs/greaser_toad.tscn" id="2_spcry"]
+[ext_resource type="PackedScene" uid="uid://duee4wsbvb3xl" path="res://scenes/car.tscn" id="4_d24l3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d24l3"]
 texture = ExtResource("1_spcry")
@@ -38,3 +39,5 @@ tile_set = SubResource("TileSet_sh854")
 
 [node name="GreaserToad" parent="." unique_id=343513114 instance=ExtResource("2_spcry")]
 position = Vector2(564, -7)
+
+[node name="Car" parent="." unique_id=1920515730 instance=ExtResource("4_d24l3")]

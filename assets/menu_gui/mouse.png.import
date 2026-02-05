@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4joyijodaqu2"
-path="res://.godot/imported/Protag_firing-Sheet.png-cb48d006ddc343cc1d31c01e6169768f.ctex"
+uid="uid://c36j2l1whs5t3"
+path="res://.godot/imported/mouse.png-9a757e2cc2625fc909d9cb4ed8aad445.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/protag/Protag_firing-Sheet.png"
-dest_files=["res://.godot/imported/Protag_firing-Sheet.png-cb48d006ddc343cc1d31c01e6169768f.ctex"]
+source_file="res://assets/menu_gui/mouse.png"
+dest_files=["res://.godot/imported/mouse.png-9a757e2cc2625fc909d9cb4ed8aad445.ctex"]
 
 [params]
 

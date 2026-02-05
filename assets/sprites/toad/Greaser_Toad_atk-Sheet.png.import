@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c36j2l1whs5t3"
-path="res://.godot/imported/mouse.png-bf4c8fe7907531f90e09a2e10632dcf1.ctex"
+uid="uid://da7rpnwb2k8l2"
+path="res://.godot/imported/Greaser_Toad_atk-Sheet.png-30d2b195589145f3983f56b2dc3e698d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mouse.png"
-dest_files=["res://.godot/imported/mouse.png-bf4c8fe7907531f90e09a2e10632dcf1.ctex"]
+source_file="res://assets/sprites/toad/Greaser_Toad_atk-Sheet.png"
+dest_files=["res://.godot/imported/Greaser_Toad_atk-Sheet.png-30d2b195589145f3983f56b2dc3e698d.ctex"]
 
 [params]
 

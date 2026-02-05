@@ -5,14 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="3_wpauc"]
 [ext_resource type="Texture2D" uid="uid://bljy863uw8y6y" path="res://assets/sprites/toad/Greaser_Toad-Sheet.png" id="4_8ln1w"]
 [ext_resource type="Texture2D" uid="uid://da7rpnwb2k8l2" path="res://assets/sprites/toad/Greaser_Toad_atk-Sheet.png" id="4_v7ow2"]
-[ext_resource type="Texture2D" uid="uid://bdabhwbfrnk0s" path="res://assets/sprites/toad/Greaser_Toad_hurt-Sheet.png" id="5_wpauc"]
 
 [sub_resource type="Resource" id="Resource_8ln1w"]
 script = ExtResource("2_v7ow2")
-max_health = 300
+max_health = 50
 speed = 200.0
 damage = 4
-knockback_speed = 500.0
 metadata/_custom_type_script = "uid://csdolyo5rtfno"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cmofj"]
@@ -38,18 +36,6 @@ region = Rect2(512, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_iwkae"]
 atlas = ExtResource("4_v7ow2")
 region = Rect2(640, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_chn7g"]
-atlas = ExtResource("5_wpauc")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h86fg"]
-atlas = ExtResource("5_wpauc")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vyusc"]
-atlas = ExtResource("4_8ln1w")
-region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7ow2"]
 atlas = ExtResource("4_8ln1w")
@@ -98,25 +84,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 7.0
+"speed": 8.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_chn7g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h86fg")
-}],
+"frames": [],
 "loop": true,
 "name": &"hurt",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vyusc")
-}],
-"loop": true,
-"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -151,10 +123,9 @@ radius = 27.0
 height = 54.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ln1w"]
-radius = 30.0
+radius = 34.0147
 
 [node name="GreaserToad" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box", "attack_box")]
-safe_margin = 0.1
 script = ExtResource("1_u4mkm")
 stats = SubResource("Resource_8ln1w")
 sprite = NodePath("AnimatedSprite2D")
@@ -170,10 +141,11 @@ scale = Vector2(1.234375, 0.6328125)
 texture = ExtResource("3_wpauc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206827224]
-position = Vector2(3, -50)
+position = Vector2(3, -41)
 sprite_frames = SubResource("SpriteFrames_eq5of")
-animation = &"hurt"
+animation = &"attack"
 autoplay = "attack"
+frame_progress = 0.35872912
 
 [node name="AttackBox" type="Area2D" parent="AnimatedSprite2D" unique_id=622538586]
 position = Vector2(-3, 41)
@@ -185,7 +157,7 @@ position = Vector2(-34, -32)
 shape = SubResource("RectangleShape2D_chn7g")
 
 [node name="Knockback" type="CollisionShape2D" parent="." unique_id=1895863027]
-position = Vector2(3, -27.86)
+position = Vector2(3, -27)
 shape = SubResource("CapsuleShape2D_7mxe0")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1249472882]

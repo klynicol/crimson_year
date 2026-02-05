@@ -8,6 +8,7 @@ const END_CHECKPOINT_ID: int = 0;
 var world: World;
 var game: Game;
 
+var should_process_wave: bool = false;
 var current_wave: int = 1;
 var wave_mob_fragments: int = 0;
 var car_spawn_index: int = 0;
@@ -54,6 +55,9 @@ func _ready() -> void:
 	#call_deferred("_init_wave", 1) # Will be triggered by the menu
 
 func _process(delta: float):
+	if not should_process_wave:
+		label.text = "....."
+		return
 	_process_wave(delta)
 	label.text = "wave: " + str(current_wave)
 
@@ -67,6 +71,7 @@ func _set_instances():
 
 # Basically resets the wave variables and prepares the world for the next wave
 func init_wave(wave_number: int):
+	should_process_wave = true;
 	print("init_wave: ", wave_number)
 	current_wave = wave_number;
 	game.life_time_mob_fragments += wave_mob_fragments;
@@ -89,6 +94,7 @@ func _check_wave_end():
 func _end_current_wave():
 	# Pause wave logic and show "Next Stage" prompt
 	game.show_next_stage_prompt()
+	should_process_wave = false;
 
 func _spawn_enemies(delta: float):
 	_spawn_greasers(delta)
@@ -127,6 +133,7 @@ func _spawn_cars(delta: float):
 		car_type,
 		checkpoints[END_CHECKPOINT_ID].global_position
 	)
+	print("spawned car: ", car.car_type)
 	car_spawn_index += 1
 	car.car_died.connect(_on_car_died)
 	car_spawn_cooldown = CAR_SPAWN_COOLDOWN;

@@ -10,7 +10,7 @@ signal car_died
 
 var target_position: Vector2
 var car_type: CarType
-var health: int
+var health: int = MAX_HEALTH
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -26,7 +26,6 @@ func init(p_car_type: CarType, pos: Vector2, p_target_position: Vector2) -> void
 	global_position = pos
 	global_rotation = 0 # for now, we don't need to rotate the car
 	target_position = p_target_position
-	health = MAX_HEALTH
 
 func _ready() -> void:
 	add_to_group("cars")
@@ -45,6 +44,7 @@ func set_new_target_position(new_target_position: Vector2) -> void:
 
 func take_damage(damage: float) -> void:
 	health -= damage
+	print("taking damage: ", damage, " health: ", health)
 	if health <= 0:
 		car_died.emit()
 		spawn_car_fragments()
