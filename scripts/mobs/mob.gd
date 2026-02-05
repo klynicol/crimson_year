@@ -46,7 +46,7 @@ func _ready():
 	attack_cooldown_time = 0
 	print("state: ", mob_state)
 	lifebar.max_value = stats.max_health
-	lifebar.value = stats.health
+	lifebar.value = stats.max_health
 
 func _set_player():
 	player = get_tree().get_first_node_in_group("player")
