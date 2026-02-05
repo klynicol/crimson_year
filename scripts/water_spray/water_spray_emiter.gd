@@ -4,6 +4,7 @@ extends Node2D
 @onready var character: CharacterBody2D = get_parent()
 @onready var sprayer: Sprite2D = $"../Sprayer"
 @onready var emit_point: Marker2D = $"../Sprayer/EmitPoint"
+@onready var emit_point_flipped: Marker2D = $"../Sprayer/EmitPointFlipped"
 @onready var debug_label: Label = get_tree().current_scene.get_node_or_null("Gui/Control/Label")
 @onready var player_sprite: AnimatedSprite2D = $"../AnimatedSprite2D"
 @export var projectile_speed = 400
@@ -15,11 +16,19 @@ const MIN_SCALE_Y = 2.5
 const MIN_MIST_STRENGTH = 0.9
 const MAX_MIST_STRENGTH = 3.0
 
+# const ANIM_SPRAYER_ORIGIN = {
+# 	"left_walking": [Vector2(-30, -40), Vector2(-40, -50)],
+# 	"left_idle_shooting": Vector2(1, -40),
+# 	"left_dash": Vector2(0, -32),
+# }
+
+# value takes frame number as well
 const ANIM_SPRAYER_ORIGIN = {
-	"left_walking": [Vector2(-30, -40), Vector2(-40, -50)],
-	"left_idle_shooting": Vector2(1, -40),
-	"left_dash": Vector2(0, -32),
+	"left_walking": true,
+	"left_idle_shooting":false,
+	"left_dash": false,
 }
+
 
 var cooldown = 0.0
 var cooldown_time: float
@@ -54,41 +63,59 @@ func shoot() -> void:
 	#rotate the sprayer sprite to the direction of the shot
 	sprayer.rotation = rot + PI
 
-	## Get the position of the sprayer based on sprite and frame
-	var origin_definition
 	if player_sprite.animation in ANIM_SPRAYER_ORIGIN:
-		origin_definition = ANIM_SPRAYER_ORIGIN[player_sprite.animation]
+		var point_path = "../sp_" + player_sprite.animation
+		if ANIM_SPRAYER_ORIGIN[player_sprite.animation]:
+			point_path += "_" + str(player_sprite.frame)
+		var pivot_node: Node2D = get_node_or_null(point_path) as Node2D
+		if pivot_node:
+			var pos := pivot_node.position
+			if player_sprite.flip_h:
+				sprayer.flip_v = true
+				pos.x = -pos.x
+				pos.y -= 11.2
+			else:
+				sprayer.flip_v = false
+			sprayer.position = pos
+		else:
+			sprayer.position = Vector2(0, 0)
 	else:
-		origin_definition = Vector2(0, 0)
+		sprayer.position = Vector2(0, 0)
 
-	var y_offset = 11.2 # because of sprayer flip, we need to offset the position
-	if origin_definition is Array:
-		# left_walking: interpolate from index 0 (frame 0) to index 1 (frame 3)
-		var start_vector = origin_definition[0]
-		var end_vector = origin_definition[1]
-		if player_sprite.flip_h:
-			start_vector.x = -start_vector.x
-			end_vector.x = -end_vector.x
-			start_vector.y -= y_offset
-			end_vector.y -= y_offset
-		var frame_count := 3
-		var t := clampf(float(player_sprite.frame) / float(frame_count), 0.0, 1.0)
-		print("t: ", t)
-		sprayer.position = start_vector.lerp(end_vector, t)
-	else:
-		if player_sprite.flip_h:
-			origin_definition.x = -origin_definition.x
-			origin_definition.y -= y_offset
-		sprayer.position = origin_definition
+	## Get the position of the sprayer based on sprite and frame
+	# var origin_definition
+	# if player_sprite.animation in ANIM_SPRAYER_ORIGIN:
+	# 	origin_definition = ANIM_SPRAYER_ORIGIN[player_sprite.animation]
+	# else:
+	# 	origin_definition = Vector2(0, 0)
 
-	# flip the sprite if the player is facing left
-	if player_sprite.flip_h:
-		sprayer.flip_v = true
-	else:
-		sprayer.flip_v = false
+	# var y_offset = 11.2 # because of sprayer flip, we need to offset the position
+	# if origin_definition is Array:
+	# 	# left_walking: interpolate from index 0 (frame 0) to index 1 (frame 3)
+	# 	var start_vector = origin_definition[0]
+	# 	var end_vector = origin_definition[1]
+	# 	if player_sprite.flip_h:
+	# 		start_vector.x = -start_vector.x
+	# 		end_vector.x = -end_vector.x
+	# 		start_vector.y -= y_offset
+	# 		end_vector.y -= y_offset
+	# 	var frame_count := 3
+	# 	var t := clampf(float(player_sprite.frame) / float(frame_count), 0.0, 1.0)
+	# 	sprayer.position = start_vector.lerp(end_vector, t)
+	# else:
+	# 	if player_sprite.flip_h:
+	# 		origin_definition.x = -origin_definition.x
+	# 		origin_definition.y -= y_offset
+	# 	sprayer.position = origin_definition
 
+	# # flip the sprite if the player is facing left
+	# if player_sprite.flip_h:
+	# 	sprayer.flip_v = true
+	# else:
+	# 	sprayer.flip_v = false
 
-	instance.spawnPosition = emit_point.global_position + (character.velocity * 0.02)
+	var spawn_positoin = emit_point_flipped.global_position if player_sprite.flip_h else emit_point.global_position
+	instance.spawnPosition = spawn_positoin + (character.velocity * 0.02)
 	instance.spawnRotation = rot
 	instance.speed = projectile_speed
 	

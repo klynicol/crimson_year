@@ -197,8 +197,7 @@ texture = ExtResource("2_dp8ca")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=410231915]
 position = Vector2(0, -47)
 sprite_frames = SubResource("SpriteFrames_cicko")
-animation = &"left_dash"
-flip_h = true
+animation = &"left_idle_shooting"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=955580141]
 position = Vector2(0, -16)
@@ -212,13 +211,37 @@ script = ExtResource("3_my7n2")
 projectile_speed = 1300
 
 [node name="Sprayer" type="Sprite2D" parent="." unique_id=1463987500]
-position = Vector2(-29.999994, -44.999992)
-rotation = -0.03141593
+position = Vector2(-0.99999666, -48)
+rotation = -1.4643313
 texture = ExtResource("9_0dpix")
 offset = Vector2(-21.87, -5.28)
 
 [node name="EmitPoint" type="Marker2D" parent="Sprayer" unique_id=1909197402]
-position = Vector2(-57, -12)
+position = Vector2(-65.65333, -12.068186)
 
-[node name="Marker2D" type="Marker2D" parent="Sprayer" unique_id=2063639065]
-position = Vector2(-60.00181, -0.8851392)
+[node name="EmitPointFlipped" type="Marker2D" parent="Sprayer" unique_id=2132297276]
+position = Vector2(-65.124985, 2.955826)
+
+[node name="sp_left_walking_0" type="Marker2D" parent="." unique_id=1548545255]
+position = Vector2(-20, -39)
+
+[node name="sp_left_walking_1" type="Marker2D" parent="." unique_id=1158281440]
+position = Vector2(-30, -38)
+
+[node name="sp_left_walking_2" type="Marker2D" parent="." unique_id=141932853]
+position = Vector2(-55, -57)
+
+[node name="sp_left_walking_3" type="Marker2D" parent="." unique_id=2065131798]
+position = Vector2(-55, -57)
+
+[node name="sp_left_walking_4" type="Marker2D" parent="." unique_id=1799447829]
+position = Vector2(-39, -54)
+
+[node name="sp_left_walking_5" type="Marker2D" parent="." unique_id=1944277473]
+position = Vector2(-16, -28)
+
+[node name="sp_left_dash" type="Marker2D" parent="." unique_id=145064759]
+position = Vector2(0, -35)
+
+[node name="sp_left_idle_shooting" type="Marker2D" parent="." unique_id=1759425841]
+position = Vector2(0, -47)
