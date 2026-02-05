@@ -8,9 +8,9 @@
  - [x] next waves (how to communicate difficulty?) + Basic metrics
  - [ ] Camera stop at edges + zoom limiters + keeping player centered with look space.
  - [ ] protag knockback on spray
- - [ ] New sprayer sprite
- - [ ] backwards running sprites
- - [ ] enemy health status
+ - [x] New sprayer sprite
+ - [x] backwards running sprites
+ - [x] enemy health status
  - [ ] car health status
  - [ ] Pause camera -> pan to boss
  - [ ] Boss movement and attack

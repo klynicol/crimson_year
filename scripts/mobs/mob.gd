@@ -44,7 +44,6 @@ func _ready():
 	hit_box.area_shape_entered.connect(_on_hit_box_entered)
 	stats.mob_died.connect(_on_mob_died)
 	attack_cooldown_time = 0
-	print("state: ", mob_state)
 	lifebar.max_value = stats.max_health
 	lifebar.value = stats.health
 
