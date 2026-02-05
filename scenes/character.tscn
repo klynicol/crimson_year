@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://wl5twcmgxfhh" path="res://assets/sprites/protag/Protag_run-Sheet.png" id="4_0lw5n"]
 [ext_resource type="Texture2D" uid="uid://brpv26k2hxy10" path="res://assets/sprites/protag/Protag-Sheet.png" id="5_0dpix"]
 [ext_resource type="Texture2D" uid="uid://bxx8cbupgp7ys" path="res://assets/sprites/protag/Protag_firing_clean-Sheet.png" id="5_a5ia6"]
+[ext_resource type="Texture2D" uid="uid://bfs833e81tll3" path="res://assets/sprites/Sprayer.png" id="9_0dpix"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hyy3"]
 atlas = ExtResource("3_0dpix")
@@ -194,9 +195,10 @@ scale = Vector2(1.7116565, 0.58431244)
 texture = ExtResource("2_dp8ca")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=410231915]
-position = Vector2(-3, -47)
+position = Vector2(0, -47)
 sprite_frames = SubResource("SpriteFrames_cicko")
 animation = &"left_dash"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=955580141]
 position = Vector2(0, -16)
@@ -210,3 +212,13 @@ script = ExtResource("3_my7n2")
 projectile_speed = 1300
 
 [node name="Sprayer" type="Sprite2D" parent="." unique_id=1463987500]
+position = Vector2(-29.999994, -44.999992)
+rotation = -0.03141593
+texture = ExtResource("9_0dpix")
+offset = Vector2(-21.87, -5.28)
+
+[node name="EmitPoint" type="Marker2D" parent="Sprayer" unique_id=1909197402]
+position = Vector2(-57, -12)
+
+[node name="Marker2D" type="Marker2D" parent="Sprayer" unique_id=2063639065]
+position = Vector2(-60.00181, -0.8851392)

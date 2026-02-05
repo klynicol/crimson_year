@@ -50,9 +50,7 @@ func chase(target_pos: Vector2, delta: float) -> void:
 			# From apex to land: decelerate to zero (plus hop arc so we land with velocity = 0)
 			velocity = velocity.move_toward(Vector2(vector_x, vector_y), stats.decel * delta)
 			shadow.position.y = starting_shadow_position.y + HOP_ARC_HEIGHT * sin(hop_phase * PI)
-		print("velocity 2: ", velocity)
 		sprite.flip_h = velocity.x - vector_x >= 0
 	else:
 		# On the ground (frame 0 or outside hop range): velocity is zero; animation will advance to hop
 		velocity = Vector2.ZERO	
-		print("velocity 1: ", velocity)

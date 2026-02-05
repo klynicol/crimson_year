@@ -42,7 +42,6 @@ func _ready():
 	hit_box.area_shape_entered.connect(_on_hit_box_entered)
 	stats.mob_died.connect(_on_mob_died)
 	attack_cooldown_time = 0
-	print("state: ", mob_state)
 
 func _set_player():
 	player = get_tree().get_first_node_in_group("player")
@@ -55,15 +54,6 @@ func _physics_process(delta: float) -> void:
 	_set_sprite_animation()
 	# print("velocity: ", velocity)
 	move_and_slide()
-
-func _check_conveyor() -> void:
-	if global_position.y < World.conveyor_y_max and global_position.y > World.conveyor_y_min:
-		on_conveyor = true
-
-func _apply_standard_conveyor_movement() -> void:
-	if on_conveyor:
-		velocity.x = Car.CAR_SPEED
-		velocity.y = 0
 
 func _set_sprite_animation() -> void:
 	match mob_state:
@@ -178,6 +168,15 @@ func _get_bodies_in_range() -> Array[CharacterBody2D]:
 			continue
 		bodies.append(body)
 	return bodies
+
+func _check_conveyor() -> void:
+	if global_position.y < World.conveyor_y_max and global_position.y > World.conveyor_y_min:
+		on_conveyor = true
+
+func _apply_standard_conveyor_movement() -> void:
+	if on_conveyor:
+		velocity.x = Car.CAR_SPEED
+		velocity.y = 0
 
 func chase(target_pos: Vector2, delta: float) -> void:
 	pass
