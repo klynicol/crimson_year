@@ -12,8 +12,7 @@ script = ExtResource("2_6ws4d")
 max_health = 120
 speed = 200.0
 damage = 20
-accel = 600.0
-decel = 800.0
+decel = 1000.0
 knockback_speed = 500.0
 metadata/_custom_type_script = "uid://csdolyo5rtfno"
 
@@ -122,11 +121,11 @@ size = Vector2(86, 101)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mxe0"]
 radius = 17.0
-height = 76.0
+height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lnwn7"]
 radius = 20.0
-height = 84.0
+height = 60.0
 
 [node name="GreaserLizard" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box", "attack_box")]
 script = ExtResource("1_greaser")
@@ -147,7 +146,6 @@ position = Vector2(3, -41)
 sprite_frames = SubResource("SpriteFrames_eq5of")
 animation = &"hurt"
 autoplay = "walk"
-frame_progress = 0.043682273
 
 [node name="AttackBox" type="Area2D" parent="AnimatedSprite2D" unique_id=1615844479]
 
@@ -156,7 +154,7 @@ position = Vector2(-3, 5.5)
 shape = SubResource("RectangleShape2D_gxe2a")
 
 [node name="Knockback" type="CollisionShape2D" parent="." unique_id=1895863027]
-position = Vector2(-1, -38)
+position = Vector2(-1, -25)
 shape = SubResource("CapsuleShape2D_7mxe0")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1249472882]
@@ -167,5 +165,5 @@ target_position = Vector2(-1000, 0)
 [node name="HitBox" type="CollisionShape2D" parent="HitBoxArea" unique_id=1458069334]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-1, -38)
+position = Vector2(-1, -26)
 shape = SubResource("CapsuleShape2D_lnwn7")

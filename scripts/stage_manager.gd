@@ -26,9 +26,10 @@ var car_spawn_cooldown: float = 0.0;
 const WAVES_CONFIG = {
 	1: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
+		# "enemies": [Mob.MobType.LIZARD],
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
 		"boss": null,
-		"enemy_max_qty" : 60,
+		"enemy_max_qty" :60,
 		"enemy_spawn_cooldown" : 1.0,
 		"boss_spawn_cooldown" : 1.0,
 	},

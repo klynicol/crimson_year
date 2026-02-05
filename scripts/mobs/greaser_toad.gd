@@ -37,21 +37,22 @@ func chase(target_pos: Vector2, delta: float) -> void:
 		var hop_frame_count := HOP_END_FRAME - HOP_START_FRAME + 1
 		var hop_phase := (float(sprite.frame - HOP_START_FRAME) + sprite.frame_progress) / float(hop_frame_count)
 		hop_phase = clampf(hop_phase, 0.0, 1.0)  # guard against animation edge cases
-		var hop_velocity_y := -HOP_ARC_HEIGHT * PI / hop_time * cos(hop_phase * PI)
+		# var hop_velocity_y := -HOP_ARC_HEIGHT * PI / hop_time * cos(hop_phase * PI)
+		var vector_x: float = Car.CAR_SPEED if on_conveyor else 0.0
+		var vector_y: float = 0.0
 		if hop_phase < 0.5:
 			# Ascending to apex: accelerate toward the target
-			var target := direction * stats.speed + Vector2(0.0, hop_velocity_y)
+
+			var target := direction * stats.speed + Vector2(vector_x, vector_y)
 			velocity = velocity.move_toward(target, stats.accel * delta)
 			shadow.position.y = starting_shadow_position.y + HOP_ARC_HEIGHT * sin(hop_phase * PI)
 		else:
 			# From apex to land: decelerate to zero (plus hop arc so we land with velocity = 0)
-			var target := Vector2(0.0, hop_velocity_y)
-			velocity = velocity.move_toward(target, stats.decel * delta)
+			velocity = velocity.move_toward(Vector2(vector_x, vector_y), stats.decel * delta)
 			shadow.position.y = starting_shadow_position.y + HOP_ARC_HEIGHT * sin(hop_phase * PI)
+		print("velocity 2: ", velocity)
+		sprite.flip_h = velocity.x - vector_x >= 0
 	else:
 		# On the ground (frame 0 or outside hop range): velocity is zero; animation will advance to hop
-		velocity = Vector2.ZERO
-
-	move_and_slide()
-	super.chase(target_pos, delta)
-	
+		velocity = Vector2.ZERO	
+		print("velocity 1: ", velocity)

@@ -41,3 +41,4 @@ tile_set = SubResource("TileSet_sh854")
 position = Vector2(564, -7)
 
 [node name="Car" parent="." unique_id=1920515730 instance=ExtResource("4_d24l3")]
+position = Vector2(-354, 640)

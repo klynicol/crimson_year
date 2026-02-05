@@ -32,6 +32,8 @@ var _attack_hit_this_cycle: bool = false
 var damage_knockback_direction: Vector2 = Vector2.ZERO
 var damage_knockback_cooldown: float = 0.0
 var dying_cooldown: float = 0.0
+var attack_cooldown_time: float = 0.0
+var on_conveyor: bool = false
 
 func _ready():
 	# Each mob needs its own stats copy; the scene's SubResource is shared by all instances
@@ -39,6 +41,7 @@ func _ready():
 	call_deferred("_set_player")
 	hit_box.area_shape_entered.connect(_on_hit_box_entered)
 	stats.mob_died.connect(_on_mob_died)
+	attack_cooldown_time = 0
 	print("state: ", mob_state)
 
 func _set_player():
@@ -47,12 +50,20 @@ func _set_player():
 func _physics_process(delta: float) -> void:
 	if not player:
 		return
-	if last_mob_state != mob_state:
-		print("mob_state: ", mob_state)
-		last_mob_state = mob_state
+	_check_conveyor()
 	_check_state(delta)
-	# after state changes, set the sprite animation
 	_set_sprite_animation()
+	# print("velocity: ", velocity)
+	move_and_slide()
+
+func _check_conveyor() -> void:
+	if global_position.y < World.conveyor_y_max and global_position.y > World.conveyor_y_min:
+		on_conveyor = true
+
+func _apply_standard_conveyor_movement() -> void:
+	if on_conveyor:
+		velocity.x = Car.CAR_SPEED
+		velocity.y = 0
 
 func _set_sprite_animation() -> void:
 	match mob_state:
@@ -77,17 +88,9 @@ func _check_state(delta: float) -> void:
 		return
 	var bodies_in_range: Array[CharacterBody2D] = _get_bodies_in_range()
 	if bodies_in_range.size() > 0:
-		_handle_attack(bodies_in_range)
+		_handle_attack(bodies_in_range, delta)
 		return
 	_find_and_chase_target(delta)
-
-func _get_bodies_in_range() -> Array[CharacterBody2D]:
-	var bodies: Array[CharacterBody2D] = []
-	for body in attack_box.get_overlapping_bodies():
-		if body is not Car:
-			continue
-		bodies.append(body)
-	return bodies
 
 func _handle_mob_hurt(delta: float) -> void:
 	damage_knockback_cooldown -= delta
@@ -95,22 +98,30 @@ func _handle_mob_hurt(delta: float) -> void:
 		mob_state = MobState.IDLE
 		return
 	velocity = damage_knockback_direction * stats.knockback_speed
-	move_and_slide()
+	sprite.flip_h = velocity.x > 0
 
 func _handle_mob_dying(delta: float) -> void:
+	_apply_standard_conveyor_movement()
 	if dying_cooldown > 0.0:
 		dying_cooldown -= delta
 		return
 	queue_free()
 
 # Checks if the attack aligns with the sprite frame and if bodies are in range, then performs the attack
-func _handle_attack(bodies_in_range: Array[CharacterBody2D]) -> void:
+func _handle_attack(bodies_in_range: Array[CharacterBody2D], delta: float) -> void:
+	_apply_standard_conveyor_movement()
 	mob_state = MobState.ATTACKING
+	attack_cooldown_time -= delta
+	if attack_cooldown_time > 0.0:
+		mob_state = MobState.IDLE
+		return
 	if not _attack_alligns_with_sprite_frame():
+		attack_cooldown_time = 0
 		return
 	for body in bodies_in_range:
 		body.take_damage(stats.damage)
 		_attack_hit_this_cycle = true
+	attack_cooldown_time = stats.attack_cooldown
 
 func _find_and_chase_target(delta: float) -> void:
 	var closest_car: CharacterBody2D = get_closest_car()
@@ -118,6 +129,7 @@ func _find_and_chase_target(delta: float) -> void:
 		mob_state = MobState.WALKING
 		chase(closest_car.global_position, delta)
 		return
+	_apply_standard_conveyor_movement()
 	mob_state = MobState.IDLE
 
 func _on_mob_died() -> void:
@@ -150,19 +162,22 @@ func get_closest_car() -> CharacterBody2D:
 			closest_car = car
 	return closest_car
 
-	# Helper function to check if the attack aligns with the sprite frame
+# Helper function to check if the attack aligns with the sprite frame
 func _attack_alligns_with_sprite_frame() -> bool:
 	if sprite.frame != attack_frame:
 		_attack_hit_this_cycle = false
 		return false
 	if _attack_hit_this_cycle:
 		return false
-	return true	
+	return true
 
-	# override
+func _get_bodies_in_range() -> Array[CharacterBody2D]:
+	var bodies: Array[CharacterBody2D] = []
+	for body in attack_box.get_overlapping_bodies():
+		if body is not Car:
+			continue
+		bodies.append(body)
+	return bodies
+
 func chase(target_pos: Vector2, delta: float) -> void:
-	if sprite:
-		sprite.flip_h = velocity.x > 0
-
-func look_for_player(delta: float) -> void:
 	pass

@@ -15,3 +15,7 @@
  - [ ] Pause camera -> pan to boss
  - [ ] Boss movement and attack
  
+
+ - refined enemy movement
+ - added movement so enemy "stays on conveyor"
+ - added enemy attack cooldown
