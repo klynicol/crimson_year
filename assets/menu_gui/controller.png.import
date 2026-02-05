@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv3dxl55dv36o"
-path="res://.godot/imported/Greaser_Lizard-Sheet.png-9adf8ef4f6e8c3d58e860b68f260f7b0.ctex"
+uid="uid://b5peejrykbf6r"
+path="res://.godot/imported/controller.png-221d7168c512c584025d173fb982a78d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Greaser_Lizard-Sheet.png"
-dest_files=["res://.godot/imported/Greaser_Lizard-Sheet.png-9adf8ef4f6e8c3d58e860b68f260f7b0.ctex"]
+source_file="res://assets/menu_gui/controller.png"
+dest_files=["res://.godot/imported/controller.png-221d7168c512c584025d173fb982a78d.ctex"]
 
 [params]
 

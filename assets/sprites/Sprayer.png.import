@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bljy863uw8y6y"
-path="res://.godot/imported/Greaser_Toad-Sheet.png-5f0fcd3f25b2d203e5fd29cde5f26c10.ctex"
+uid="uid://bfs833e81tll3"
+path="res://.godot/imported/Sprayer.png-bfca023fdc7cde1b68e41a360ac49e7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Greaser_Toad-Sheet.png"
-dest_files=["res://.godot/imported/Greaser_Toad-Sheet.png-5f0fcd3f25b2d203e5fd29cde5f26c10.ctex"]
+source_file="res://assets/sprites/Sprayer.png"
+dest_files=["res://.godot/imported/Sprayer.png-bfca023fdc7cde1b68e41a360ac49e7c.ctex"]
 
 [params]
 

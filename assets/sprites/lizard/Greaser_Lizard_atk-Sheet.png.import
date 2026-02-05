@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xkamybja1neq"
-path="res://.godot/imported/RT.png-7e5c493726dc21c28c5360486137f010.ctex"
+uid="uid://cdbneqnjt1uoj"
+path="res://.godot/imported/Greaser_Lizard_atk-Sheet.png-d1c6264f9af44436141d391acdd93d8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/RT.png"
-dest_files=["res://.godot/imported/RT.png-7e5c493726dc21c28c5360486137f010.ctex"]
+source_file="res://assets/sprites/lizard/Greaser_Lizard_atk-Sheet.png"
+dest_files=["res://.godot/imported/Greaser_Lizard_atk-Sheet.png-d1c6264f9af44436141d391acdd93d8e.ctex"]
 
 [params]
 

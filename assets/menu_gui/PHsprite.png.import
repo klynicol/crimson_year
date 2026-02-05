@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c36j2l1whs5t3"
-path="res://.godot/imported/mouse.png-bf4c8fe7907531f90e09a2e10632dcf1.ctex"
+uid="uid://bqsltsp4116s5"
+path="res://.godot/imported/PHsprite.png-a796ed673a2ce27a54aa3d236aedc3d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mouse.png"
-dest_files=["res://.godot/imported/mouse.png-bf4c8fe7907531f90e09a2e10632dcf1.ctex"]
+source_file="res://assets/menu_gui/PHsprite.png"
+dest_files=["res://.godot/imported/PHsprite.png-a796ed673a2ce27a54aa3d236aedc3d4.ctex"]
 
 [params]
 

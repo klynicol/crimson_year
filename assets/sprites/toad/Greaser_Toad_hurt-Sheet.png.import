@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c11cx5kkdpwg2"
-path="res://.godot/imported/x.png-3c1dd27abd5a262e8074caf37b8b2c57.ctex"
+uid="uid://bdabhwbfrnk0s"
+path="res://.godot/imported/Greaser_Toad_hurt-Sheet.png-c0ea189d9646ddb93e3d574f2929885e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/x.png"
-dest_files=["res://.godot/imported/x.png-3c1dd27abd5a262e8074caf37b8b2c57.ctex"]
+source_file="res://assets/sprites/toad/Greaser_Toad_hurt-Sheet.png"
+dest_files=["res://.godot/imported/Greaser_Toad_hurt-Sheet.png-c0ea189d9646ddb93e3d574f2929885e.ctex"]
 
 [params]
 

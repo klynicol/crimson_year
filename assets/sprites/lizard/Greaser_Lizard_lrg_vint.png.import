@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byqsgap6gbp61"
-path="res://.godot/imported/Lstick.png-a643bfaf547cb612a609564c4563f03f.ctex"
+uid="uid://djc1xfk35nder"
+path="res://.godot/imported/Greaser_Lizard_lrg_vint.png-f75846cafd304f5eaada86233ebaaf08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Lstick.png"
-dest_files=["res://.godot/imported/Lstick.png-a643bfaf547cb612a609564c4563f03f.ctex"]
+source_file="res://assets/sprites/lizard/Greaser_Lizard_lrg_vint.png"
+dest_files=["res://.godot/imported/Greaser_Lizard_lrg_vint.png-f75846cafd304f5eaada86233ebaaf08.ctex"]
 
 [params]
 

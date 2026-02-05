@@ -2,19 +2,48 @@
 
 [ext_resource type="Script" uid="uid://bvbngguyduhdj" path="res://scripts/mobs/greaser_lizard.gd" id="1_greaser"]
 [ext_resource type="Script" uid="uid://csdolyo5rtfno" path="res://scripts/mobs/mob_stats.gd" id="2_6ws4d"]
-[ext_resource type="Texture2D" uid="uid://bv3dxl55dv36o" path="res://assets/sprites/Greaser_Lizard-Sheet.png" id="3_hmpad"]
+[ext_resource type="Texture2D" uid="uid://bv3dxl55dv36o" path="res://assets/sprites/lizard/Greaser_Lizard-Sheet.png" id="3_hmpad"]
 [ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="3_lnwn7"]
+[ext_resource type="Texture2D" uid="uid://cdbneqnjt1uoj" path="res://assets/sprites/lizard/Greaser_Lizard_atk-Sheet.png" id="4_gxe2a"]
+[ext_resource type="Texture2D" uid="uid://dfbmv5tao5dqw" path="res://assets/sprites/lizard/Greaser_Lizard_hurt-Sheet.png" id="5_8n4lr"]
 
 [sub_resource type="Resource" id="Resource_lnwn7"]
 script = ExtResource("2_6ws4d")
-max_health = 50
+max_health = 120
 speed = 200.0
 damage = 20
-attack_range = 100.0
-attack_cooldown = 2.0
 accel = 600.0
 decel = 800.0
+knockback_speed = 500.0
 metadata/_custom_type_script = "uid://csdolyo5rtfno"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq5of"]
+atlas = ExtResource("4_gxe2a")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mxe0"]
+atlas = ExtResource("4_gxe2a")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m17r0"]
+atlas = ExtResource("4_gxe2a")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bn8e"]
+atlas = ExtResource("4_gxe2a")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmrs3"]
+atlas = ExtResource("5_8n4lr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8du6"]
+atlas = ExtResource("5_8n4lr")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voidm"]
+atlas = ExtResource("3_hmpad")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnwn7"]
 atlas = ExtResource("3_hmpad")
@@ -36,6 +65,42 @@ region = Rect2(384, 0, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_eq5of")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mxe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m17r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bn8e")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmrs3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8du6")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voidm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lnwn7")
 }, {
 "duration": 1.0,
@@ -48,9 +113,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_hbsry")
 }],
 "loop": true,
-"name": &"default",
+"name": &"walk",
 "speed": 6.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxe2a"]
+size = Vector2(86, 101)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mxe0"]
 radius = 17.0
@@ -60,12 +128,13 @@ height = 76.0
 radius = 20.0
 height = 84.0
 
-[node name="GreaserLizard" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box")]
+[node name="GreaserLizard" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box", "attack_box")]
 script = ExtResource("1_greaser")
 stats = SubResource("Resource_lnwn7")
 sprite = NodePath("AnimatedSprite2D")
 ray_cast = NodePath("RayCast2D")
 hit_box = NodePath("HitBoxArea")
+attack_box = NodePath("AnimatedSprite2D/AttackBox")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=428859329]
 modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
@@ -76,8 +145,15 @@ texture = ExtResource("3_lnwn7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206827224]
 position = Vector2(3, -41)
 sprite_frames = SubResource("SpriteFrames_eq5of")
-autoplay = "default"
-frame_progress = 0.5425401
+animation = &"hurt"
+autoplay = "walk"
+frame_progress = 0.043682273
+
+[node name="AttackBox" type="Area2D" parent="AnimatedSprite2D" unique_id=1615844479]
+
+[node name="AttackBoxArea" type="CollisionShape2D" parent="AnimatedSprite2D/AttackBox" unique_id=349667376]
+position = Vector2(-3, 5.5)
+shape = SubResource("RectangleShape2D_gxe2a")
 
 [node name="Knockback" type="CollisionShape2D" parent="." unique_id=1895863027]
 position = Vector2(-1, -38)

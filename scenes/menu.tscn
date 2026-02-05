@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://bqsb6ctvb748t" path="res://assets/main_theme.tres" id="1_con2f"]
 [ext_resource type="Script" uid="uid://bqllq5gpx87yh" path="res://scripts/menu.gd" id="2_4ytvr"]
 [ext_resource type="Shader" uid="uid://d4ahrrh7pekph" path="res://shaders/sliding_background.gdshader" id="2_mhnvy"]
-[ext_resource type="Texture2D" uid="uid://djc1xfk35nder" path="res://assets/sprites/Greaser_Lizard_lrg_vint.png" id="3_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://djc1xfk35nder" path="res://assets/sprites/lizard/Greaser_Lizard_lrg_vint.png" id="3_4ytvr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g3eks"]
 shader = ExtResource("2_mhnvy")

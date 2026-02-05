@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://ctrjieuehfaph"]
 
 [ext_resource type="FontFile" uid="uid://cdcg16qh0f6pk" path="res://assets/FingerPaint-Regular.ttf" id="1_5g3gx"]
-[ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/sprites/x.png" id="1_05u3a"]
+[ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/menu_gui/x.png" id="1_05u3a"]
 [ext_resource type="Script" uid="uid://c1yp1q3872miq" path="res://scripts/instructions_popup.gd" id="1_8s6nl"]
-[ext_resource type="Texture2D" uid="uid://sqdhuk8644l2" path="res://assets/sprites/arrow.png" id="2_8s6nl"]
-[ext_resource type="Texture2D" uid="uid://byqsgap6gbp61" path="res://assets/sprites/Lstick.png" id="3_5g3gx"]
-[ext_resource type="Texture2D" uid="uid://c36j2l1whs5t3" path="res://assets/sprites/mouse.png" id="4_it3xj"]
-[ext_resource type="Texture2D" uid="uid://65k2x02m8jj" path="res://assets/sprites/Rstick.png" id="5_1sh2w"]
-[ext_resource type="Texture2D" uid="uid://bdpxav0lvsy8f" path="res://assets/sprites/mouseclick.png" id="6_vxsf7"]
-[ext_resource type="Texture2D" uid="uid://xkamybja1neq" path="res://assets/sprites/RT.png" id="7_ljw6u"]
+[ext_resource type="Texture2D" uid="uid://sqdhuk8644l2" path="res://assets/menu_gui/arrow.png" id="2_8s6nl"]
+[ext_resource type="Texture2D" uid="uid://byqsgap6gbp61" path="res://assets/menu_gui/Lstick.png" id="3_5g3gx"]
+[ext_resource type="Texture2D" uid="uid://c36j2l1whs5t3" path="res://assets/menu_gui/mouse.png" id="4_it3xj"]
+[ext_resource type="Texture2D" uid="uid://65k2x02m8jj" path="res://assets/menu_gui/Rstick.png" id="5_1sh2w"]
+[ext_resource type="Texture2D" uid="uid://bdpxav0lvsy8f" path="res://assets/menu_gui/mouseclick.png" id="6_vxsf7"]
+[ext_resource type="Texture2D" uid="uid://xkamybja1neq" path="res://assets/menu_gui/RT.png" id="7_ljw6u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81l6r"]
 content_margin_left = 48.0

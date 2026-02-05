@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgmirrhaduw7l" path="res://scripts/water_spray/water_spray_projectile.gd" id="1_1h3s4"]
 [ext_resource type="Shader" uid="uid://dee4j3mo62n6d" path="res://shaders/water_spray.gdshader" id="2_w5k3n"]
-[ext_resource type="Texture2D" uid="uid://bqsltsp4116s5" path="res://assets/sprites/PHsprite.png" id="3_1mon1"]
+[ext_resource type="Texture2D" uid="uid://bqsltsp4116s5" path="res://assets/menu_gui/PHsprite.png" id="3_1mon1"]
 [ext_resource type="Script" uid="uid://dangf23ma80cj" path="res://scripts/water_spray/water_spray_vfx_controller.gd" id="4_asivv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bri6m"]
@@ -24,6 +24,7 @@ radius = 13.0
 radius = 15.0
 
 [node name="WaterSpray" type="CharacterBody2D" unique_id=1484708051]
+z_index = 1
 collision_layer = 0
 script = ExtResource("1_1h3s4")
 

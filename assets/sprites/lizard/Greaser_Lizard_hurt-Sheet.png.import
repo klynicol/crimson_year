@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqsltsp4116s5"
-path="res://.godot/imported/PHsprite.png-f34bfd267fb6eabeb8eae65403ddf4df.ctex"
+uid="uid://dfbmv5tao5dqw"
+path="res://.godot/imported/Greaser_Lizard_hurt-Sheet.png-e523dfcbff15b13d3c22d2b18a29a068.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/PHsprite.png"
-dest_files=["res://.godot/imported/PHsprite.png-f34bfd267fb6eabeb8eae65403ddf4df.ctex"]
+source_file="res://assets/sprites/lizard/Greaser_Lizard_hurt-Sheet.png"
+dest_files=["res://.godot/imported/Greaser_Lizard_hurt-Sheet.png-e523dfcbff15b13d3c22d2b18a29a068.ctex"]
 
 [params]
 
