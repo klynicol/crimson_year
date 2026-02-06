@@ -46,6 +46,7 @@ func _physics_process(delta: float) -> void:
 	var direction = (target_position - global_position).normalized()
 	velocity = direction * CAR_SPEED
 	move_and_slide()
+	_update_car_damage_animation()
 
 func _on_hit_box_entered(area: Area2D) -> void:
 	if area.name != "CarDamageProjectile":
@@ -62,6 +63,16 @@ func take_damage(damage: float) -> void:
 	car_took_damage.emit(damage)
 	if health <= 0:
 		car_died.emit()
+
+# update the car damage animation based on the health of the car
+# The damage will change sprite when we are in the middle or the rounding
+# for exmaple, if we have 3 frames, each frame will be 1/3 of the health
+# so the changes would occur at 
+func _update_car_damage_animation() -> void:
+	var what = round(health / MAX_HEALTH * SPRITE_DAMAGE_FRAMES)
+	print("what: ", what)
+	var damage_animation_index = SPRITE_DAMAGE_FRAMES - what
+	sprite.frame = damage_animation_index
 
 #Returns the distance from the end checkpoint
 # relative to the total distance of the track

@@ -148,7 +148,6 @@ func _spawn_cars(delta: float):
 		return
 
 	if car_spawn_index >= WAVES_CONFIG[current_wave]["cars"]:
-		print("rand out of cars to spawn this wave")
 		#Ran out of cars to spawn this wave
 		return
 	car_spawn_index += 1

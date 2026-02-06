@@ -190,7 +190,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"dying",
-"speed": 5.0
+"speed": 13.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -267,6 +267,7 @@ position = Vector2(3, -50)
 sprite_frames = SubResource("SpriteFrames_eq5of")
 animation = &"dying"
 autoplay = "attack"
+frame_progress = 0.2484155
 
 [node name="AttackBox" type="Area2D" parent="AnimatedSprite2D" unique_id=622538586]
 position = Vector2(-3, 41)

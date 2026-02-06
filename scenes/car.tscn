@@ -98,8 +98,7 @@ texture = ExtResource("2_jtldb")
 position = Vector2(0.86083984, -58.689346)
 scale = Vector2(0.78032345, 0.78032345)
 sprite_frames = SubResource("SpriteFrames_3mrxu")
-animation = &"3"
-autoplay = "0"
+animation = &"0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=607718289]
 visible = false

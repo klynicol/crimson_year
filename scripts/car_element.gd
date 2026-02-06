@@ -4,7 +4,7 @@ extends TextureRect
 var car: Car
 
 const SPRITE_OPTIONS = [
-	preload("uid://cxkj6pgclhfk"), #black
+	preload("uid://cbpembt161ahg"), #black
 	preload("uid://cxkj6pgclhfk"), #pink
 	preload("uid://dpj03pqktmuod"), #green
 	preload("uid://diy6mc76svhwp"), #blue
