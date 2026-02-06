@@ -168,7 +168,7 @@ func _spawn_cars(delta: float):
 	car_spawn_cooldown = CAR_SPAWN_COOLDOWN;
 
 func _spawn_boss():
-	var boss : CharacterBody2D = WAVES_CONFIG[current_wave]["boss"]
+	var boss = WAVES_CONFIG[current_wave]["boss"]
 	if boss == null:
 		return
 	var boss_instance = boss.instantiate()
