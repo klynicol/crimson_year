@@ -39,10 +39,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _decay(delta: float) -> void:
+	_despawn(delta)
 	_decay_scale(delta)
 	_decay_mist_strength(delta)
 	_decay_damage(delta)
-	_despawn(delta)
 	_decay_collision_box_size(delta)
 
 func get_damage_and_increment_reflect() -> float:

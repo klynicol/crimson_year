@@ -3,6 +3,7 @@ class_name Game extends Node
 @onready var next_stage_button: BaseButton = $Gui/Control/TextureButton  # Button (renamed from Label for click)
 @onready var stage: StageManager = $World/Stage
 @onready var character: PlayerController = $World/YSort/Character
+@onready var rockabily: AudioStreamPlayer = $World/Rockabily
 
 static var paused: bool = false
 
@@ -28,6 +29,7 @@ func _on_next_stage_pressed() -> void:
 	Game.paused = false
 
 func _on_game_start_pressed() -> void:
+	rockabily.play()
 	stage.init_wave(1)
 	# Release focus from the Play button so Space (dash) doesn't re-trigger this and call prepare_for_wave again
 	get_viewport().gui_release_focus()

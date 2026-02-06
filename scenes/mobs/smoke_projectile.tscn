@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ddqeip5vg2qsl"]
+
+[ext_resource type="Script" uid="uid://dxu754bj65jb" path="res://scripts/mobs/smoke_projectile.gd" id="1_8xhdw"]
+[ext_resource type="Texture2D" uid="uid://djr7u2tdc7byn" path="res://assets/sprites/Smoke_Projectile-Sheet.png" id="1_ukvcj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xhdw"]
+atlas = ExtResource("1_ukvcj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a72s1"]
+atlas = ExtResource("1_ukvcj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op3xb"]
+atlas = ExtResource("1_ukvcj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fewwa"]
+atlas = ExtResource("1_ukvcj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_31g2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xhdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a72s1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op3xb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fewwa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2nhcg"]
+radius = 13.0
+
+[node name="SmokeProjectile" type="CharacterBody2D" unique_id=932765294]
+script = ExtResource("1_8xhdw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=714622206]
+sprite_frames = SubResource("SpriteFrames_31g2f")
+frame_progress = 0.16517687
+
+[node name="CarDamageProjectile" type="Area2D" parent="." unique_id=687228729]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarDamageProjectile" unique_id=1928574666]
+shape = SubResource("CircleShape2D_2nhcg")

@@ -1,4 +1,4 @@
-class_name Mob extends CharacterBody2D
+class_name Mob extends Enemies
 
 enum MobType {
 	LIZARD,
@@ -6,76 +6,17 @@ enum MobType {
 	GECKO,
 }
 
-enum MobState {
-	WALKING, 
-	ATTACKING,
-	HURT,
-	DYING,
-	IDLE,
+const mob_scense: Dictionary[MobType, PackedScene] = {
+	MobType.LIZARD: preload("uid://xriknrldek0f"),
+	MobType.TOAD: preload("uid://dcqdtdvxviuqr"),
+	MobType.GECKO: preload("uid://ducr0tccltrqt"),
 }
 
-@export var stats: MobStats
-@export var sprite: AnimatedSprite2D
-@export var ray_cast: RayCast2D
-@export var hit_box: Area2D
 @export var attack_box: Area2D
 @export var attack_frame: int
-# please use the lifebar scene for this one, it includes a script and a timer to fade back out after a couple of seconds.
-@export var lifebar: ProgressBar
 
-var mob_state: MobState = MobState.IDLE
-var last_mob_state: MobState = MobState.IDLE
-var mob_type: Mob.MobType
-var player: CharacterBody2D
-# Once hit, the mob will chase the player for a period of time
-var has_been_hit: bool = false
-# One hit per attack animation; cleared when we leave the attack frame
-var _attack_hit_this_cycle: bool = false
-var damage_knockback_direction: Vector2 = Vector2.ZERO
-var damage_knockback_cooldown: float = 0.0
-var dying_cooldown: float = 0.0
-var attack_cooldown_time: float = 0.0
-var on_conveyor: bool = false
+var mob_type: MobType
 
-func _ready():
-	# Each mob needs its own stats copy; the scene's SubResource is shared by all instances
-	stats = stats.duplicate()
-	call_deferred("_set_player")
-	hit_box.area_shape_entered.connect(_on_hit_box_entered)
-	stats.mob_died.connect(_on_mob_died)
-	attack_cooldown_time = 0
-	lifebar.max_value = stats.max_health
-	lifebar.value = stats.health
-
-func _set_player():
-	player = get_tree().get_first_node_in_group("player")
-
-func _physics_process(delta: float) -> void:
-	if not player:
-		return
-	if Game.paused:
-		sprite.pause()
-		return
-	sprite.play()
-	_check_on_conveyor()
-	_check_state(delta)
-	_set_sprite_animation()
-	move_and_slide()
-
-func _set_sprite_animation() -> void:
-	match mob_state:
-		MobState.WALKING:
-			sprite.play("walk")
-		MobState.ATTACKING:
-			sprite.play("attack")
-		MobState.HURT:
-			sprite.play("hurt")
-		MobState.DYING:
-			sprite.play("dying")
-		MobState.IDLE:
-			sprite.play("idle")
-
-# Check things in order of priority
 func _check_state(delta: float) -> void:
 	if mob_state == MobState.DYING:
 		_handle_mob_dying(delta)
@@ -83,111 +24,64 @@ func _check_state(delta: float) -> void:
 	if mob_state == MobState.HURT:
 		_handle_mob_hurt(delta)
 		return
+	# small buffer to prevent jittering between states
+	if last_state != mob_state and action_cooldown > 0.0:
+		action_cooldown -= delta
+		return
+	# Check if we should attack
 	var bodies_in_range: Array[CharacterBody2D] = _get_bodies_in_attack_range()
 	if bodies_in_range.size() > 0:
+		_decelerate_to_zero_velocity(delta)
 		_handle_attack(bodies_in_range, delta)
 		return
-	_find_and_chase_target(delta)
-
-func _handle_mob_hurt(delta: float) -> void:
-	damage_knockback_cooldown -= delta
-	if damage_knockback_cooldown <= 0.0:
-		mob_state = MobState.IDLE
-		return
-	velocity = damage_knockback_direction * stats.knockback_speed
-	sprite.flip_h = velocity.x > 0
-
-func _handle_mob_dying(delta: float) -> void:
-	_apply_standard_conveyor_movement()
-	if dying_cooldown > 0.0:
-		dying_cooldown -= delta
-		return
-	queue_free()
+	# Last resort, just chase the target
+	_handle_walking(delta)
 
 # Checks if the attack aligns with the sprite frame and if bodies are in range, then performs the attack
 func _handle_attack(bodies_in_range: Array[CharacterBody2D], delta: float) -> void:
-	_apply_standard_conveyor_movement()
 	mob_state = MobState.ATTACKING
-	attack_cooldown_time -= delta
+	action_cooldown = ACTION_COOLDOWN
 	if attack_cooldown_time > 0.0:
-		mob_state = MobState.IDLE
+		attack_cooldown_time -= delta
 		return
 	if not _attack_alligns_with_sprite_frame():
+		# Wait for the right frame
 		attack_cooldown_time = 0
 		return
 	for body in bodies_in_range:
-		body.take_damage(stats.damage)
-		_attack_hit_this_cycle = true
+		if stats.attack_range > 0:
+			_shoot_projectile(body.global_position)
+		else:
+			body.take_damage(stats.damage)
 	attack_cooldown_time = stats.attack_cooldown
 
-func _find_and_chase_target(delta: float) -> void:
-	var closest_car: CharacterBody2D = get_closest_car()
-	if closest_car:
-		mob_state = MobState.WALKING
-		chase(closest_car.global_position, delta)
-		return
-	_apply_standard_conveyor_movement()
-	mob_state = MobState.IDLE
 
-func _on_mob_died() -> void:
-	mob_state = MobState.DYING
-
-
-func _on_hit_box_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	if area.name != "WaterDamage":
-		return
-	mob_state = MobState.HURT
-	damage_knockback_direction = (global_position - player.global_position).normalized()
-	damage_knockback_cooldown = 0.5
-	has_been_hit = true
-	# need to get the parent of the area and then get the stats from the parent
-	var water_spray_projectile = area.get_parent()
-	var damage: float = water_spray_projectile.get_damage_and_increment_reflect()
-	if damage > 0:
-		stats.take_water_damage(damage)
-		_flash_lifebar()
-
-### !!!! Helper Functions !!!! ###
-
-# Helper function to get the closest car
-func get_closest_car() -> CharacterBody2D:
-	var cars = get_tree().get_nodes_in_group("cars")
-	if cars.size() == 0:
-		return
-	var closest_car = cars[0]
-	for car in cars:
-		if car.global_position.distance_to(global_position) < closest_car.global_position.distance_to(global_position):
-			closest_car = car
-	return closest_car
+func _shoot_projectile(target_pos: Vector2) -> void:
+	pass
 
 # Helper function to check if the attack aligns with the sprite frame
 func _attack_alligns_with_sprite_frame() -> bool:
 	if sprite.frame != attack_frame:
-		_attack_hit_this_cycle = false
-		return false
-	if _attack_hit_this_cycle:
 		return false
 	return true
 
 func _get_bodies_in_attack_range() -> Array[CharacterBody2D]:
 	var bodies: Array[CharacterBody2D] = []
+	if stats.attack_range > 0: # is ranged attack class
+		var closest_car: CharacterBody2D = get_closest_car()
+		if closest_car and _is_car_in_attack_range(closest_car):
+			return [closest_car]
+		return []
 	for body in attack_box.get_overlapping_bodies():
 		if body is not Car:
 			continue
 		bodies.append(body)
 	return bodies
 
-func _check_on_conveyor() -> void:
-	if global_position.y < World.conveyor_y_max and global_position.y > World.conveyor_y_min:
-		on_conveyor = true
-
-func _apply_standard_conveyor_movement() -> void:
-	if on_conveyor:
-		velocity.x = Car.CAR_SPEED
-		velocity.y = 0
-
-func chase(target_pos: Vector2, delta: float) -> void:
-	pass
-	
-func _flash_lifebar() -> void:
-	lifebar.set_health_value(stats.health)
+func _is_car_in_attack_range(car: CharacterBody2D) -> bool:
+	var distance: float = car.global_position.distance_to(global_position)
+	if mob_state == MobState.WALKING:
+		distance += ATTACK_RANGE_BUFFER
+	if distance < stats.attack_range:
+		return true
+	return false

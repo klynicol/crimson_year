@@ -14,6 +14,7 @@ var car_type: CarType
 var health: int = MAX_HEALTH
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hit_box: Area2D = $HitBox
 
 # the values of these enums will also translate to the name
 # of the animation
@@ -29,6 +30,7 @@ func init(p_car_type: CarType, pos: Vector2, p_target_position: Vector2) -> void
 	target_position = p_target_position
 
 func _ready() -> void:
+	hit_box.area_entered.connect(_on_hit_box_entered)
 	add_to_group("cars")
 	# set the sprite to the car type
 	sprite.play(str(car_type))
@@ -42,6 +44,13 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * CAR_SPEED
 	move_and_slide()
 
+func _on_hit_box_entered(area: Area2D) -> void:
+	if area.name != "CarDamageProjectile":
+		return
+	var projectile = area.get_parent()
+	take_damage(projectile.damage)
+	projectile.queue_free()
+
 func set_new_target_position(new_target_position: Vector2) -> void:
 	target_position = new_target_position
 
@@ -50,9 +59,3 @@ func take_damage(damage: float) -> void:
 	car_took_damage.emit(damage)
 	if health <= 0:
 		car_died.emit()
-		spawn_car_fragments()
-		queue_free()
-	#print(str(health))
-
-func spawn_car_fragments() -> void:
-	pass  # TODO: implement car fragment spawning

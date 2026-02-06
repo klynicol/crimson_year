@@ -2,11 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://bi0bkuveffdha" path="res://assets/menu_gui/Next Stage.png" id="1_efmwq"]
 [ext_resource type="Theme" uid="uid://bqsb6ctvb748t" path="res://assets/main_theme.tres" id="1_ynd5l"]
+[ext_resource type="PackedScene" uid="uid://0h71hybe2xdp" path="res://scenes/enemy_left_elemtn.tscn" id="3_ynd5l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efmwq"]
 bg_color = Color(0, 0, 0, 0.80784315)
 
 [node name="Gui" type="CanvasLayer" unique_id=350781755]
+
+[node name="EnemyLeftElement" parent="." unique_id=1171541582 instance=ExtResource("3_ynd5l")]
+offset_right = 64.0
+offset_bottom = 64.0
 
 [node name="Control" type="Control" parent="." unique_id=350781756]
 layout_mode = 3
@@ -43,6 +48,11 @@ layout_direction = 3
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.09900001
-offset_bottom = -0.15200806
+offset_left = -64.0
+offset_top = 1.0
+offset_right = -64.0
+offset_bottom = 0.84799194
 theme = ExtResource("1_ynd5l")
 alignment = 2
+
+[editable path="EnemyLeftElement"]
