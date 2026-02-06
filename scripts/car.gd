@@ -59,20 +59,22 @@ func set_new_target_position(new_target_position: Vector2) -> void:
 	target_position = new_target_position
 
 func take_damage(damage: float) -> void:
+	if health <= 0:
+		return
 	health -= damage
 	car_took_damage.emit(damage)
 	if health <= 0:
 		car_died.emit()
 
-# update the car damage animation based on the health of the car
-# The damage will change sprite when we are in the middle or the rounding
-# for exmaple, if we have 3 frames, each frame will be 1/3 of the health
-# so the changes would occur at 
 func _update_car_damage_animation() -> void:
-	var what = round(health / MAX_HEALTH * SPRITE_DAMAGE_FRAMES)
-	print("what: ", what)
-	var damage_animation_index = SPRITE_DAMAGE_FRAMES - what
-	sprite.frame = damage_animation_index
+	var health_ratio = float(health) / MAX_HEALTH
+	var index: int
+	if health <= 0:
+		index = SPRITE_DAMAGE_FRAMES
+	else:
+		index = int((1.0 - health_ratio) * SPRITE_DAMAGE_FRAMES)
+		index = clampi(index, 0, SPRITE_DAMAGE_FRAMES - 1)
+	sprite.frame = index
 
 #Returns the distance from the end checkpoint
 # relative to the total distance of the track
