@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bi0bkuveffdha" path="res://assets/menu_gui/Next Stage.png" id="1_efmwq"]
 [ext_resource type="Theme" uid="uid://bqsb6ctvb748t" path="res://assets/main_theme.tres" id="1_ynd5l"]
-[ext_resource type="PackedScene" uid="uid://37hy3p7j2b7y" path="res://scenes/car_element.tscn" id="3_b8iy7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efmwq"]
 bg_color = Color(0, 0, 0, 0.80784315)
@@ -47,6 +46,3 @@ anchor_bottom = 0.09900001
 offset_bottom = -0.15200806
 theme = ExtResource("1_ynd5l")
 alignment = 2
-
-[node name="CarElement" parent="CarTracker" unique_id=1171541582 instance=ExtResource("3_b8iy7")]
-layout_mode = 2

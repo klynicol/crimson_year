@@ -11,7 +11,7 @@ signal car_took_damage(damage_amt)
 
 var target_position: Vector2
 var car_type: CarType
-var health: int = MAX_HEALTH
+var health: int = 700
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -52,6 +52,7 @@ func take_damage(damage: float) -> void:
 		car_died.emit()
 		spawn_car_fragments()
 		queue_free()
+	#print(str(health))
 
 func spawn_car_fragments() -> void:
 	pass  # TODO: implement car fragment spawning

@@ -42,5 +42,5 @@ theme = ExtResource("2_34d7p")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/background = SubResource("StyleBoxFlat_jc2mp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_522k3")
-value = 100.0
-fill_mode = 1
+max_value = 700.0
+value = 700.0
