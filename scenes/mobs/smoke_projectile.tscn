@@ -40,7 +40,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2nhcg"]
-radius = 16.124516
+radius = 13.0
 
 [node name="SmokeProjectile" type="CharacterBody2D" unique_id=932765294]
 script = ExtResource("1_8xhdw")
@@ -49,7 +49,7 @@ script = ExtResource("1_8xhdw")
 sprite_frames = SubResource("SpriteFrames_31g2f")
 frame_progress = 0.16517687
 
-[node name="Area2D" type="Area2D" parent="." unique_id=687228729]
+[node name="CarDamageProjectile" type="Area2D" parent="." unique_id=687228729]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1928574666]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarDamageProjectile" unique_id=1928574666]
 shape = SubResource("CircleShape2D_2nhcg")

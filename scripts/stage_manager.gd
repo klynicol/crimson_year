@@ -35,8 +35,7 @@ const CAR_ELEMENT = preload("uid://37hy3p7j2b7y")
 const WAVES_CONFIG = {
 	1: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
-		# "enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
-		"enemies": [Mob.MobType.GECKO],
+		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
 		"boss": null,
 		"enemy_max_qty" : 50,
 		"enemy_max_alive" : 10,

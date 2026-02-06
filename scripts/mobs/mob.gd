@@ -37,7 +37,6 @@ func _check_state(delta: float) -> void:
 	# Last resort, just chase the target
 	_handle_walking(delta)
 
-
 # Checks if the attack aligns with the sprite frame and if bodies are in range, then performs the attack
 func _handle_attack(bodies_in_range: Array[CharacterBody2D], delta: float) -> void:
 	mob_state = MobState.ATTACKING

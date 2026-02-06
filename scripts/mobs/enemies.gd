@@ -69,8 +69,8 @@ func _physics_process(delta: float) -> void:
 	last_state = mob_state
 	_set_sprite_animation()
 	move_and_slide()
-	_print_animation_change()
-	_print_state_change()
+	# _print_animation_change()
+	# _print_state_change()
 
 
 func _set_sprite_animation() -> void:
