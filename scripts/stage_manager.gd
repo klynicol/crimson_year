@@ -15,7 +15,6 @@ var current_wave: int = 1;
 var wave_mob_fragments: int = 0;
 var car_spawn_index: int = 0;
 var cars: Array[Car] = [];
-var car_status: Array[float] = [];
 var wave_cars_destroyed: int = 0;
 var wave_boss_spawned: bool = false;
 
@@ -88,6 +87,8 @@ func init_wave(wave_number: int):
 	wave_mob_fragments = 0;
 	cars = [];
 	car_spawn_index = 0;
+	for element in car_tracker.get_children():
+		element.queue_free()
 	world.prepare_for_wave();
 
 func _process_wave(delta: float):
@@ -145,14 +146,11 @@ func _spawn_cars(delta: float):
 	)
 	var car_element := CAR_ELEMENT.instantiate()
 	car_tracker.add_child(car_element)
-	car_status.append(car.health)
-	print(str(car_status))
-	#car_element.get_child(0).value 
 	
 	print("spawned car: ", car.car_type)
 	car_spawn_index += 1
 	car.car_died.connect(_on_car_died)
-	car.car_took_damage.connect(_on_car_took_damage)
+	car.car_took_damage.connect(car_element.on_car_took_damage)
 	car_spawn_cooldown = CAR_SPAWN_COOLDOWN;
 
 func _spawn_boss():
@@ -181,15 +179,7 @@ func _on_mob_died():
 
 func _on_car_died(car: Car):
 	wave_cars_destroyed += 1
-	
-func _on_car_took_damage(damage):
-	# this should have probably been a dictionary to begin with, but I'm just trying to get it working right now
-	var car_nodes: Array[Node] = get_tree().get_nodes_in_group("cars")
-	print("CAR TOOK DAMAGE")
-	for car in car_nodes:
-		var car_idx = car_nodes.bsearch(car)
-		car_status.set(car_idx, car.health)
-	print(str(car_status))
+
 	
 
 # Called when the player clicks "Next Stage" in the GUI
