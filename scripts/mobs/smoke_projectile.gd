@@ -4,8 +4,8 @@ var speed: float = 500.0
 var acceleration: float = 1000.0
 var dir: float
 
-const MAX_TIME_ALIVE: float = 3.5
-const SCALE_DECAY_RATE: float = 10.0
+const MAX_TIME_ALIVE: float = 2
+const SCALE_DECAY_RATE: float = 5.0
 var time_alive: float = 0.0
 
 func _ready() -> void:
@@ -20,6 +20,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_area_entered(area: Area2D) -> void:
+	if area is Car:
+		print("smoke projectile hit car")
 	queue_free()
 
 func _decay(delta: float) -> void:

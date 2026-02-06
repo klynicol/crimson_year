@@ -11,10 +11,10 @@
 [sub_resource type="Resource" id="Resource_8ln1w"]
 script = ExtResource("2_v7ow2")
 max_health = 90
-speed = 100.0
+speed = 110.0
 damage = 10
 decel = 500.0
-knockback_speed = 500.0
+knockback_speed = 550.0
 metadata/_custom_type_script = "uid://csdolyo5rtfno"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cmofj"]
@@ -160,15 +160,15 @@ height = 54.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ln1w"]
 radius = 30.0
 
-[node name="GreaserToad" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "ray_cast", "hit_box", "attack_box", "lifebar")]
+[node name="GreaserToad" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("attack_box", "sprite", "hit_box", "lifebar")]
+collision_layer = 0
 safe_margin = 0.1
 script = ExtResource("1_u4mkm")
-stats = SubResource("Resource_8ln1w")
-sprite = NodePath("AnimatedSprite2D")
-ray_cast = NodePath("RayCast2D")
-hit_box = NodePath("HitBox")
 attack_box = NodePath("AnimatedSprite2D/AttackBox")
 attack_frame = 3
+stats = SubResource("Resource_8ln1w")
+sprite = NodePath("AnimatedSprite2D")
+hit_box = NodePath("HitBox")
 lifebar = NodePath("Lifebar")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=428859329]

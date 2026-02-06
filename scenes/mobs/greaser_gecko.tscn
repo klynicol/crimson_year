@@ -18,11 +18,11 @@
 
 [sub_resource type="Resource" id="Resource_jagkf"]
 script = ExtResource("2_ao8bg")
-max_health = 600
+max_health = 90
 speed = 120.0
-damage = 5
+damage = 6
 decel = 700.0
-knockback_speed = 500.0
+knockback_speed = 600.0
 attack_cooldown = 3.0
 attack_range = 450.0
 metadata/_custom_type_script = "uid://csdolyo5rtfno"

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://0h71hybe2xdp"]
+
+[ext_resource type="Texture2D" uid="uid://bd4mafve8wblx" path="res://assets/menu_gui/enemies.png" id="1_4cyo1"]
+[ext_resource type="Script" uid="uid://et4pwp486ak" path="res://scripts/car_element.gd" id="2_nbcc0"]
+[ext_resource type="FontFile" uid="uid://cdcg16qh0f6pk" path="res://assets/FingerPaint-Regular.ttf" id="3_1hjbi"]
+
+[node name="EnemyLeftElement" type="TextureRect" unique_id=1171541582]
+texture_filter = 1
+texture = ExtResource("1_4cyo1")
+stretch_mode = 2
+script = ExtResource("2_nbcc0")
+
+[node name="Label" type="Label" parent="." unique_id=1245253426]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 29.0
+offset_right = 51.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_1hjbi")
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -9,6 +9,7 @@ func _ready():
 
 func _shoot_projectile(target_pos: Vector2) -> void:
 	print("shooting projectile: ", physics_id)
+	target_pos += Vector2(40, 0) #account for car movement
 	var projectile = PROJECTILE_SCENE.instantiate()
 	projectile.global_position = projectile_emitter.global_position
 	projectile.dir = global_position.angle_to_point(target_pos)
