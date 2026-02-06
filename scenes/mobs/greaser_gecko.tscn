@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://fgsmuqilsw40" path="res://assets/sprites/gecko/Greaser_Chameleon_Atk-Sheet.png" id="4_apfrl"]
 [ext_resource type="Texture2D" uid="uid://qnol36d576t8" path="res://assets/sprites/gecko/Greaser_Chameleon_Hurt-Sheet.png" id="4_m8x2q"]
 [ext_resource type="Texture2D" uid="uid://b4pic11xj6fm0" path="res://assets/sprites/gecko/frame0000.png" id="4_t2u43"]
+[ext_resource type="Texture2D" uid="uid://dvx0b12gp20k0" path="res://assets/sprites/gecko/Greaser_Chameleon_death-Sheet.png" id="5_lnwdt"]
 [ext_resource type="Texture2D" uid="uid://21pwxngrmlhe" path="res://assets/sprites/gecko/frame0003.png" id="5_m8x2q"]
 [ext_resource type="Texture2D" uid="uid://duj4vhimubq7u" path="res://assets/sprites/gecko/frame0006.png" id="6_apfrl"]
 [ext_resource type="Texture2D" uid="uid://dnpkofinhu2qx" path="res://assets/sprites/gecko/frame0009.png" id="7_lnwdt"]
@@ -55,6 +56,42 @@ region = Rect2(960, 0, 192, 192)
 atlas = ExtResource("4_apfrl")
 region = Rect2(1152, 0, 192, 192)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kq05"]
+atlas = ExtResource("5_lnwdt")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ihjh"]
+atlas = ExtResource("5_lnwdt")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5py0"]
+atlas = ExtResource("5_lnwdt")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ti8q3"]
+atlas = ExtResource("5_lnwdt")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_logx2"]
+atlas = ExtResource("5_lnwdt")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwmfg"]
+atlas = ExtResource("5_lnwdt")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5obbc"]
+atlas = ExtResource("5_lnwdt")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08ybi"]
+atlas = ExtResource("5_lnwdt")
+region = Rect2(1344, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq7gw"]
+atlas = ExtResource("5_lnwdt")
+region = Rect2(1536, 0, 192, 192)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_apfrl"]
 atlas = ExtResource("4_m8x2q")
 region = Rect2(0, 0, 192, 192)
@@ -91,10 +128,37 @@ animations = [{
 "name": &"attack",
 "speed": 7.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kq05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ihjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5py0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ti8q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_logx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwmfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5obbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08ybi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq7gw")
+}],
 "loop": true,
 "name": &"dying",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -174,9 +238,9 @@ texture = ExtResource("3_8wmq1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206827224]
 position = Vector2(-11, -78)
 sprite_frames = SubResource("SpriteFrames_eq5of")
-animation = &"attack"
+animation = &"dying"
 autoplay = "walk"
-frame = 4
+frame_progress = 0.34389937
 
 [node name="Knockback" type="CollisionShape2D" parent="." unique_id=1895863027]
 position = Vector2(-1, -38)

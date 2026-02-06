@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="3_lnwn7"]
 [ext_resource type="Texture2D" uid="uid://cdbneqnjt1uoj" path="res://assets/sprites/lizard/Greaser_Lizard_atk-Sheet.png" id="4_gxe2a"]
 [ext_resource type="Texture2D" uid="uid://dfbmv5tao5dqw" path="res://assets/sprites/lizard/Greaser_Lizard_hurt-Sheet.png" id="5_8n4lr"]
+[ext_resource type="Texture2D" uid="uid://deqc8akbji8nb" path="res://assets/sprites/lizard/Greaser_Lizard_death-Sheet.png" id="5_eq5of"]
 [ext_resource type="PackedScene" uid="uid://djowbeb05s5os" path="res://scenes/lifebar.tscn" id="7_hbsry"]
 
 [sub_resource type="Resource" id="Resource_lnwn7"]
@@ -32,6 +33,34 @@ region = Rect2(256, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0bn8e"]
 atlas = ExtResource("4_gxe2a")
 region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3ftw"]
+atlas = ExtResource("5_eq5of")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_355gb"]
+atlas = ExtResource("5_eq5of")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj5n0"]
+atlas = ExtResource("5_eq5of")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0314"]
+atlas = ExtResource("5_eq5of")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k3nj"]
+atlas = ExtResource("5_eq5of")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11w3a"]
+atlas = ExtResource("5_eq5of")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo0j6"]
+atlas = ExtResource("5_eq5of")
+region = Rect2(768, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wmrs3"]
 atlas = ExtResource("5_8n4lr")
@@ -80,10 +109,31 @@ animations = [{
 "name": &"attack",
 "speed": 7.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3ftw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_355gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj5n0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0314")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0k3nj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11w3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo0j6")
+}],
 "loop": true,
 "name": &"dying",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -153,6 +203,7 @@ position = Vector2(3, -41)
 sprite_frames = SubResource("SpriteFrames_eq5of")
 animation = &"dying"
 autoplay = "walk"
+frame_progress = 0.931342
 
 [node name="AttackBox" type="Area2D" parent="AnimatedSprite2D" unique_id=1615844479]
 

@@ -190,7 +190,7 @@ script = ExtResource("1_rkhd4")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1248003419]
 modulate = Color(0.12941177, 0.07450981, 0.19215687, 0.64705884)
-position = Vector2(0, -7.0000005)
+position = Vector2(3.61, -7)
 scale = Vector2(1.7116565, 0.58431244)
 texture = ExtResource("2_dp8ca")
 

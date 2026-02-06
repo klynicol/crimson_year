@@ -166,7 +166,7 @@ position = Vector2(-4664, 829)
 [node name="GreaserSpawn9" parent="." unique_id=1142612081 groups=["greaser_spawn"] instance=ExtResource("10_w7kh3")]
 position = Vector2(-5405, -170)
 
-[node name="Checkpoint0" parent="." unique_id=460613549 instance=ExtResource("11_e3hyu")]
+[node name="Checkpoint0" parent="." unique_id=460613549 groups=["end_checkpoint"] instance=ExtResource("11_e3hyu")]
 position = Vector2(993, 296)
 
 [node name="Checkpoint1" parent="." unique_id=2030254003 instance=ExtResource("11_e3hyu")]
@@ -181,7 +181,7 @@ position = Vector2(-3189, 284)
 [node name="Checkpoint4" parent="." unique_id=1059410975 instance=ExtResource("11_e3hyu")]
 position = Vector2(-4663, 298)
 
-[node name="Checkpoint5" parent="." unique_id=2088446494 instance=ExtResource("11_e3hyu")]
+[node name="Checkpoint5" parent="." unique_id=2088446494 groups=["start_checkpoint"] instance=ExtResource("11_e3hyu")]
 position = Vector2(-6401, 285)
 
 [node name="ConveyorYMax" type="Marker2D" parent="." unique_id=1070047807]

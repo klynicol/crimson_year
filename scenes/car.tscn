@@ -2,13 +2,30 @@
 
 [ext_resource type="Script" uid="uid://wbdsbj8g3rb5" path="res://scripts/car.gd" id="1_c35m8"]
 [ext_resource type="Texture2D" uid="uid://bqpul8ajqr2gq" path="res://resources/shadow.tres" id="2_jtldb"]
-[ext_resource type="Texture2D" uid="uid://cxsfseqorh1se" path="res://assets/sprites/Car-Sheet.png" id="3_50v30"]
+[ext_resource type="Texture2D" uid="uid://cm66w77k0ty3t" path="res://assets/sprites/cars/Car_alt_1.png" id="3_a1jdg"]
+[ext_resource type="Texture2D" uid="uid://cdhxvmp1bcqf" path="res://assets/sprites/cars/Car_damaged_alt_1.png" id="4_7vqyg"]
+[ext_resource type="Texture2D" uid="uid://8nkar3fhjvum" path="res://assets/sprites/cars/Car_damaged_2_alt_1.png" id="5_l8qg8"]
+[ext_resource type="Texture2D" uid="uid://ca0acxkarrfgf" path="res://assets/sprites/cars/Car-Sheet.png" id="6_f45sw"]
+[ext_resource type="Texture2D" uid="uid://dj32pv73qwu0m" path="res://assets/sprites/cars/Car_damaged.png" id="7_wqyfr"]
+[ext_resource type="Texture2D" uid="uid://ccq100oolgb2w" path="res://assets/sprites/cars/Car_damaged_2.png" id="8_5alo1"]
+[ext_resource type="Texture2D" uid="uid://b6k5js0tdcgxe" path="res://assets/sprites/cars/Car_alt_4.png" id="9_e2of5"]
+[ext_resource type="Texture2D" uid="uid://d0egry8i6687j" path="res://assets/sprites/cars/Car_damaged_alt_4.png" id="10_01gm8"]
+[ext_resource type="Texture2D" uid="uid://dnf2jtebwucol" path="res://assets/sprites/cars/Car_damaged_2_alt_4.png" id="11_ukyks"]
+[ext_resource type="Texture2D" uid="uid://dtrxpvmmp24l0" path="res://assets/sprites/cars/Car_alt_2.png" id="12_wheit"]
+[ext_resource type="Texture2D" uid="uid://cv7armknmqi26" path="res://assets/sprites/cars/Car_damaged_alt_2.png" id="13_rca20"]
+[ext_resource type="Texture2D" uid="uid://bh0ylfaid8kug" path="res://assets/sprites/cars/Car_damaged_2_alt_2.png" id="14_564x8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3mrxu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_50v30")
+"texture": ExtResource("3_a1jdg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7vqyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l8qg8")
 }],
 "loop": true,
 "name": &"0",
@@ -16,10 +33,44 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_50v30")
+"texture": ExtResource("6_f45sw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wqyfr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5alo1")
 }],
 "loop": true,
 "name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_e2of5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_01gm8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ukyks")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_wheit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_rca20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_564x8")
+}],
+"loop": true,
+"name": &"3",
 "speed": 5.0
 }]
 
@@ -47,10 +98,11 @@ texture = ExtResource("2_jtldb")
 position = Vector2(0.86083984, -58.689346)
 scale = Vector2(0.78032345, 0.78032345)
 sprite_frames = SubResource("SpriteFrames_3mrxu")
-animation = &"0"
+animation = &"3"
 autoplay = "0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=607718289]
+visible = false
 visibility_layer = 4
 position = Vector2(-1.1391602, -14.689346)
 rotation = 1.5707964
@@ -58,6 +110,7 @@ shape = SubResource("CapsuleShape2D_50v30")
 debug_color = Color(0.76569086, 0.4474482, 0.0804443, 0.41960785)
 
 [node name="HitBox" type="Area2D" parent="." unique_id=774805936]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1741332719]
 position = Vector2(3, -32)
