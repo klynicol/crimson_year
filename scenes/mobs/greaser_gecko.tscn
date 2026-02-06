@@ -18,14 +18,13 @@
 
 [sub_resource type="Resource" id="Resource_jagkf"]
 script = ExtResource("2_ao8bg")
-max_health = 90
-speed = 110.0
-damage = 10
-accel = 800.0
-decel = 100.0
-attack_cooldown = 5.0
-attack_range = 300.0
-attack_frame = 4
+max_health = 600
+speed = 120.0
+damage = 5
+decel = 700.0
+knockback_speed = 500.0
+attack_cooldown = 3.0
+attack_range = 450.0
 metadata/_custom_type_script = "uid://csdolyo5rtfno"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4cp4"]
@@ -158,6 +157,7 @@ radius = 20.0
 height = 84.0
 
 [node name="GreaserGecko" type="CharacterBody2D" unique_id=343513114 node_paths=PackedStringArray("sprite", "hit_box", "lifebar")]
+collision_layer = 0
 script = ExtResource("1_4hvlq")
 attack_frame = 4
 stats = SubResource("Resource_jagkf")

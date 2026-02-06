@@ -24,22 +24,28 @@ func _check_state(delta: float) -> void:
 	if mob_state == MobState.HURT:
 		_handle_mob_hurt(delta)
 		return
+	# small buffer to prevent jittering between states
+	if last_state != mob_state and action_cooldown > 0.0:
+		action_cooldown -= delta
+		return
+	# Check if we should attack
 	var bodies_in_range: Array[CharacterBody2D] = _get_bodies_in_attack_range()
 	if bodies_in_range.size() > 0:
+		_decelerate_to_zero_velocity(delta)
 		_handle_attack(bodies_in_range, delta)
 		return
-	_find_and_chase_target(delta)
+	# Last resort, just chase the target
+	_handle_walking(delta)
+
 
 # Checks if the attack aligns with the sprite frame and if bodies are in range, then performs the attack
 func _handle_attack(bodies_in_range: Array[CharacterBody2D], delta: float) -> void:
-	_apply_standard_conveyor_movement()
-	_decelerate_to_zero_velocity(delta)
 	mob_state = MobState.ATTACKING
-	attack_cooldown_time -= delta
+	action_cooldown = ACTION_COOLDOWN
 	if attack_cooldown_time > 0.0:
+		attack_cooldown_time -= delta
 		return
 	if not _attack_alligns_with_sprite_frame():
-		print("not alligns with sprite frame", physics_id)
 		# Wait for the right frame
 		attack_cooldown_time = 0
 		return
@@ -49,6 +55,7 @@ func _handle_attack(bodies_in_range: Array[CharacterBody2D], delta: float) -> vo
 		else:
 			body.take_damage(stats.damage)
 	attack_cooldown_time = stats.attack_cooldown
+
 
 func _shoot_projectile(target_pos: Vector2) -> void:
 	pass
@@ -61,7 +68,7 @@ func _attack_alligns_with_sprite_frame() -> bool:
 
 func _get_bodies_in_attack_range() -> Array[CharacterBody2D]:
 	var bodies: Array[CharacterBody2D] = []
-	if stats.attack_range > 0:
+	if stats.attack_range > 0: # is ranged attack class
 		var closest_car: CharacterBody2D = get_closest_car()
 		if closest_car and _is_car_in_attack_range(closest_car):
 			return [closest_car]
@@ -73,6 +80,9 @@ func _get_bodies_in_attack_range() -> Array[CharacterBody2D]:
 	return bodies
 
 func _is_car_in_attack_range(car: CharacterBody2D) -> bool:
-	if car.global_position.distance_to(global_position) > stats.attack_range:
-		return false
-	return true
+	var distance: float = car.global_position.distance_to(global_position)
+	if mob_state == MobState.WALKING:
+		distance += ATTACK_RANGE_BUFFER
+	if distance < stats.attack_range:
+		return true
+	return false

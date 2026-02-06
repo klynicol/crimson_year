@@ -30,16 +30,16 @@ signal boss_spawned(boss: Node)
 
 const CAR_ELEMENT = preload("uid://37hy3p7j2b7y")
 
-
 const WAVES_CONFIG = {
 	1: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
 		"enemies": [Mob.MobType.GECKO],
 		# "enemies": [Mob.MobType.LIZARD],
+		# "enemies": [Mob.MobType.TOAD],
 
-		# "enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
+		# "enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD, Mob.MobType.GECKO],
 		"boss": preload("uid://bl7oj4s8kldv8"), # CarBoss
-		"enemy_max_qty" : 1,
+		"enemy_max_qty" : 10,
 		"enemy_spawn_cooldown" : 1.6,
 	},
 	2: {

@@ -43,4 +43,4 @@ func _get_bodies_in_attack_range() -> Array[CharacterBody2D]:
 
 #override
 func _find_and_chase_target(delta: float) -> void:
-	super._find_and_chase_target(delta)
+	super._handle_walking(delta)
