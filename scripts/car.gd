@@ -11,7 +11,7 @@ signal car_took_damage(damage_amt)
 
 var target_position: Vector2
 var car_type: CarType
-var health: int = 700
+var health: int = MAX_HEALTH
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
