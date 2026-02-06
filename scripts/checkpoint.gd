@@ -15,8 +15,8 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	checkpoint_reached.emit(id, body)
 
-func spawn_car(car_type: Car.CarType, target_position: Vector2) -> Car:
+func spawn_car(car_sprite_index: int, target_position: Vector2) -> Car:
 	var car = Car.PACKED_SCENE.instantiate()
-	car.init(car_type, global_position, target_position)
+	car.init(car_sprite_index, global_position, target_position)
 	World.ySort.add_child(car)
 	return car

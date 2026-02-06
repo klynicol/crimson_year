@@ -31,6 +31,13 @@ project/assembly_name="Crimson Year"
 
 checkpoint="checkpoints for the car to navigate to"
 player=""
+enemy_count_label=""
+wave_num_label=""
+car_tracker=""
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 

@@ -11,9 +11,12 @@
  - [x] New sprayer sprite
  - [x] backwards running sprites
  - [x] enemy health status
- - [ ] car health status
- - [ ] Pause camera -> pan to boss
+ - [x] car health status
+ - [x] Pause camera -> pan to boss
  - [ ] Boss movement and attack
+ -----
+ - [ ] player can't just hold down dash
+ - [ ] health bars stay when less than 20 %
  
 2-4-26
  - refined enemy movement

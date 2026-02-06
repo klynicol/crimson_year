@@ -1,6 +1,8 @@
 class_name Car extends CharacterBody2D
 
 const PACKED_SCENE: PackedScene = preload("uid://duee4wsbvb3xl")
+const SPRITE_OPTIONS = 4
+const SPRITE_DAMAGE_FRAMES = 3
 const CAR_SPEED: float = 70.0
 const ACCELERATION: float = 1400.0
 
@@ -12,6 +14,7 @@ signal car_took_damage(damage_amt)
 var target_position: Vector2
 var car_type: CarType
 var health: int = MAX_HEALTH
+var car_sprite_index: int
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hit_box: Area2D = $HitBox
@@ -23,8 +26,8 @@ enum CarType {
 	CADILLAC_DEVILLE
 }
 
-func init(p_car_type: CarType, pos: Vector2, p_target_position: Vector2) -> void:
-	car_type = p_car_type
+func init(p_car_sprite_index: int, pos: Vector2, p_target_position: Vector2) -> void:
+	car_sprite_index = p_car_sprite_index
 	global_position = pos
 	global_rotation = 0 # for now, we don't need to rotate the car
 	target_position = p_target_position
@@ -33,7 +36,7 @@ func _ready() -> void:
 	hit_box.area_entered.connect(_on_hit_box_entered)
 	add_to_group("cars")
 	# set the sprite to the car type
-	sprite.play(str(car_type))
+	sprite.play(str(car_sprite_index))
 
 func _physics_process(delta: float) -> void:
 	if Game.paused:
@@ -43,6 +46,7 @@ func _physics_process(delta: float) -> void:
 	var direction = (target_position - global_position).normalized()
 	velocity = direction * CAR_SPEED
 	move_and_slide()
+	_update_car_damage_animation()
 
 func _on_hit_box_entered(area: Area2D) -> void:
 	if area.name != "CarDamageProjectile":
@@ -59,3 +63,23 @@ func take_damage(damage: float) -> void:
 	car_took_damage.emit(damage)
 	if health <= 0:
 		car_died.emit()
+
+# update the car damage animation based on the health of the car
+# The damage will change sprite when we are in the middle or the rounding
+# for exmaple, if we have 3 frames, each frame will be 1/3 of the health
+# so the changes would occur at 
+func _update_car_damage_animation() -> void:
+	var what = round(health / MAX_HEALTH * SPRITE_DAMAGE_FRAMES)
+	print("what: ", what)
+	var damage_animation_index = SPRITE_DAMAGE_FRAMES - what
+	sprite.frame = damage_animation_index
+
+#Returns the distance from the end checkpoint
+# relative to the total distance of the track
+# which is the start checkpoint to the end checkpoint
+func get_progress() -> float:
+	var start_checkpoint = get_tree().get_first_node_in_group("start_checkpoint")
+	var end_checkpoint = get_tree().get_first_node_in_group("end_checkpoint")
+	var total_distance = start_checkpoint.global_position.distance_to(end_checkpoint.global_position)
+	var current_distance = global_position.distance_to(end_checkpoint.global_position)
+	return current_distance / total_distance 

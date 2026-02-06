@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxkj6pgclhfk"
-path="res://.godot/imported/car1.png-b9364d410b9acfda1789559ad87833bf.ctex"
+uid="uid://dvx0b12gp20k0"
+path="res://.godot/imported/Greaser_Chameleon_death-Sheet.png-c162c4ce3e51f18874d7610d0a2da30a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menu_gui/car1.png"
-dest_files=["res://.godot/imported/car1.png-b9364d410b9acfda1789559ad87833bf.ctex"]
+source_file="res://assets/sprites/gecko/Greaser_Chameleon_death-Sheet.png"
+dest_files=["res://.godot/imported/Greaser_Chameleon_death-Sheet.png-c162c4ce3e51f18874d7610d0a2da30a.ctex"]
 
 [params]
 

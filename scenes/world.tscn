@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://mxv5831yxi0l" path="res://scripts/stage_manager.gd" id="11_q5onr"]
 [ext_resource type="PackedScene" uid="uid://b1jmns3xk5xp2" path="res://scenes/placeables/rollers.tscn" id="12_q5onr"]
 [ext_resource type="AudioStream" uid="uid://mkuwbrdhlnsr" path="res://sounds/music/RaB02-2.mp3" id="14_o8fc1"]
+[ext_resource type="AudioStream" uid="uid://dqhpush0weskc" path="res://sounds/music/Funk01_progress2.mp3" id="15_xo05s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_71j4m"]
 
@@ -165,7 +166,7 @@ position = Vector2(-4664, 829)
 [node name="GreaserSpawn9" parent="." unique_id=1142612081 groups=["greaser_spawn"] instance=ExtResource("10_w7kh3")]
 position = Vector2(-5405, -170)
 
-[node name="Checkpoint0" parent="." unique_id=460613549 instance=ExtResource("11_e3hyu")]
+[node name="Checkpoint0" parent="." unique_id=460613549 groups=["end_checkpoint"] instance=ExtResource("11_e3hyu")]
 position = Vector2(993, 296)
 
 [node name="Checkpoint1" parent="." unique_id=2030254003 instance=ExtResource("11_e3hyu")]
@@ -180,7 +181,7 @@ position = Vector2(-3189, 284)
 [node name="Checkpoint4" parent="." unique_id=1059410975 instance=ExtResource("11_e3hyu")]
 position = Vector2(-4663, 298)
 
-[node name="Checkpoint5" parent="." unique_id=2088446494 instance=ExtResource("11_e3hyu")]
+[node name="Checkpoint5" parent="." unique_id=2088446494 groups=["start_checkpoint"] instance=ExtResource("11_e3hyu")]
 position = Vector2(-6401, 285)
 
 [node name="ConveyorYMax" type="Marker2D" parent="." unique_id=1070047807]
@@ -216,4 +217,8 @@ position = Vector2(-1726, 170)
 
 [node name="Rockabily" type="AudioStreamPlayer" parent="." unique_id=361360882]
 stream = ExtResource("14_o8fc1")
+parameters/looping = true
+
+[node name="Funk" type="AudioStreamPlayer" parent="." unique_id=1361179680]
+stream = ExtResource("15_xo05s")
 parameters/looping = true

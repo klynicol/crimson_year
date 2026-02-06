@@ -26,15 +26,15 @@ var car_spawn_cooldown: float = 0.0;
 
 signal boss_spawned(boss: Node)
 
-@onready var label = get_tree().current_scene.get_node("Gui/Control/Label")
-@onready var car_tracker = get_tree().current_scene.get_node("Gui/CarTracker")
-@onready var enemy_count_label = get_tree().current_scene.get_node("Gui/EnemyLeftElement/Label")
+@onready var car_tracker = get_tree().get_first_node_in_group("car_tracker")
+@onready var enemy_count_label = get_tree().get_first_node_in_group("enemy_count_label")
+@onready var wave_num_label = get_tree().get_first_node_in_group("wave_num_label")
 
 const CAR_ELEMENT = preload("uid://37hy3p7j2b7y")
 
 const WAVES_CONFIG = {
 	1: {
-		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
+		"cars": 2,
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
 		"boss": null,
 		"enemy_max_qty" : 50,
@@ -42,7 +42,7 @@ const WAVES_CONFIG = {
 		"enemy_spawn_cooldown" : 1.6,
 	},
 	2: {
-		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
+		"cars": 2,
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD, Mob.MobType.GECKO],
 		"boss": null,
 		"enemy_max_qty" : 100,
@@ -50,7 +50,7 @@ const WAVES_CONFIG = {
 		"enemy_spawn_cooldown" : 1.2,
 	},
 	3: {
-		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
+		"cars": 2,
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD, Mob.MobType.GECKO],
 		"boss": preload("uid://bl7oj4s8kldv8"), # CarBoss
 		"enemy_max_qty" : 120,
@@ -66,11 +66,7 @@ func _ready() -> void:
 func _process(delta: float):
 	if Game.paused:
 		return
-	if not should_process_wave:
-		label.text = "....."
-		return
 	_process_wave(delta)
-	label.text = "wave: " + str(current_wave)
 
 func _set_instances():
 	for checkpoint in get_tree().get_nodes_in_group("checkpoint"):
@@ -84,6 +80,7 @@ func _set_instances():
 func init_wave(wave_number: int):
 	should_process_wave = true;
 	print("init_wave: ", wave_number)
+	wave_num_label.text = str(wave_number)
 	total_spawned_enemies = 0;
 	wave_boss_spawned = false;
 	current_wave = wave_number;
@@ -96,11 +93,13 @@ func init_wave(wave_number: int):
 	world.prepare_for_wave();
 
 func _process_wave(delta: float):
+	if not should_process_wave:
+		return
 	_spawn_cars(delta)
 	_spawn_enemies(delta)
 	_update_enemy_count_label()
 
-func _update_enemy_count_label():
+func _update_enemy_count_label(): 
 	var enemy_count: int = WAVES_CONFIG[current_wave]["enemy_max_qty"] - wave_mob_fragments;
 	enemy_count_label.text = str(enemy_count);
 
@@ -147,24 +146,26 @@ func _spawn_cars(delta: float):
 	if car_spawn_cooldown > 0.0:
 		car_spawn_cooldown -= delta
 		return
-	if car_spawn_index >= WAVES_CONFIG[current_wave]["cars"].size():
-		# Ran out of cars to spawn this wave
-		return
-	# var start_checkpoint := checkpoints[1]
-	var start_checkpoint := checkpoints[START_CHECKPOINT_ID]
 
-	var car_type: Car.CarType = WAVES_CONFIG[current_wave]["cars"][car_spawn_index];
+	if car_spawn_index >= WAVES_CONFIG[current_wave]["cars"]:
+		#Ran out of cars to spawn this wave
+		return
+	car_spawn_index += 1
+
+	var start_checkpoint := checkpoints[START_CHECKPOINT_ID]
+	var car_sprite_index = randi() % Car.SPRITE_OPTIONS - 1
+
 	var car := start_checkpoint.spawn_car(
-		car_type,
+		car_sprite_index,
 		checkpoints[END_CHECKPOINT_ID].global_position
 	)
+
 	var car_element := CAR_ELEMENT.instantiate()
+	car_element.car = car
+	car_element.set_sprite(car_sprite_index)
 	car_tracker.add_child(car_element)
 	
-	print("spawned car: ", car.car_type)
-	car_spawn_index += 1
 	car.car_died.connect(_on_car_died)
-	car.car_took_damage.connect(car_element.on_car_took_damage)
 	car_spawn_cooldown = CAR_SPAWN_COOLDOWN;
 
 func _spawn_boss():
