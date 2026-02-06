@@ -23,9 +23,12 @@ var damage_knockback_direction: Vector2 = Vector2.ZERO
 var damage_knockback_cooldown: float = 0.0
 var dying_cooldown: float = 0.0
 var attack_cooldown_time: float = 0.0
-var on_conveyor: bool = false
 
+var on_conveyor: bool = false
 var enemy_uses_conveyor: bool = true
+var finished_attack_animation: bool = false
+
+var physics_id: String
 
 func _ready():
 	# Each mob needs its own stats copy; the scene's SubResource is shared by all instances
@@ -40,7 +43,12 @@ func _ready():
 func _set_player():
 	player = get_tree().get_first_node_in_group("player")
 
+func _decelerate_to_zero_velocity(delta: float) -> void:
+	if velocity.length() > 0:
+		velocity = velocity.move_toward(Vector2.ZERO, stats.decel * delta)
+
 func _physics_process(delta: float) -> void:
+	physics_id = str(randi() % 10000)
 	if not player:
 		return
 	if Game.paused:
@@ -57,13 +65,30 @@ func _set_sprite_animation() -> void:
 		MobState.WALKING:
 			sprite.play("walk")
 		MobState.ATTACKING:
-			sprite.play("attack")
+			if _should_play_attack_animation():
+				sprite.play("attack")
+			else:
+				sprite.play("idle")
 		MobState.HURT:
 			sprite.play("hurt")
 		MobState.DYING:
 			sprite.play("dying")
 		MobState.IDLE:
 			sprite.play("idle")
+
+# If we're attacking, we should wait for the animation to finish before doing anything else
+func _should_play_attack_animation() -> bool:
+	print("attack_cooldown_time: ", attack_cooldown_time)
+	if attack_cooldown_time <= 0:
+		finished_attack_animation = true
+		return true
+	if not finished_attack_animation:
+		return false
+	var frame_count: int = sprite.sprite_frames.get_frame_count("attack")
+	var last_frame: int = frame_count - 1
+	if sprite.frame == last_frame and sprite.frame_progress > 0.5:
+		finished_attack_animation = false
+	return true
 
 # Check things in order of priority
 func _check_state(delta: float) -> void:
@@ -88,14 +113,19 @@ func _find_and_chase_target(delta: float) -> void:
 	var closest_car: CharacterBody2D = get_closest_car()
 	if closest_car:
 		mob_state = MobState.WALKING
-		chase(closest_car.global_position, delta)
+		# add a slight buffer to the chase target so that we don't 
+		# get stuck chasing the car and jitter around
+		var vector_to_car: Vector2 = closest_car.global_position - global_position
+		var buffer_distance: float = 10.0
+		var buffer_vector: Vector2 = vector_to_car.normalized() * buffer_distance
+		var chase_target: Vector2 = closest_car.global_position + buffer_vector
+		chase(chase_target, delta)
 		return
 	_apply_standard_conveyor_movement()
 	mob_state = MobState.IDLE
 
 func _on_mob_died() -> void:
 	mob_state = MobState.DYING
-
 
 func _on_hit_box_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.name != "WaterDamage":
@@ -133,8 +163,15 @@ func _apply_standard_conveyor_movement() -> void:
 		velocity.x = Car.CAR_SPEED
 		velocity.y = 0
 
+# Standard chase function for all enemies
 func chase(target_pos: Vector2, delta: float) -> void:
-	pass
+	var displacement: Vector2 = target_pos - global_position
+	var move_vector: Vector2 = displacement.normalized() * stats.speed
+	var vector_x: float = Car.CAR_SPEED if on_conveyor else 0.0
+	move_vector.x += vector_x
+	velocity = velocity.move_toward(move_vector, stats.accel * delta)
+	sprite.flip_h = velocity.x - vector_x >= 0
+
 	
 func _flash_lifebar() -> void:
 	lifebar.set_health_value(stats.health)

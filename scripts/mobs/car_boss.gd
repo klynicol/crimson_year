@@ -1,5 +1,7 @@
 class_name CarBoss extends Boss
 
+const PROJECTILE_SCENE: PackedScene = preload("uid://ddqeip5vg2qsl")
+
 const SPAWN_COOLDOWN: float = 2
 var spawn_cooldown: float = 0.0
 var _spawn_completed: bool = false

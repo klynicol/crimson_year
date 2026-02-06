@@ -30,10 +30,12 @@ signal boss_spawned(boss: Node)
 const WAVES_CONFIG = {
 	1: {
 		"cars": [Car.CarType.CHEVY_BEL_AIR, Car.CarType.CADILLAC_DEVILLE],
+		"enemies": [Mob.MobType.GECKO],
 		# "enemies": [Mob.MobType.LIZARD],
-		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
+
+		# "enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
 		"boss": preload("uid://bl7oj4s8kldv8"), # CarBoss
-		"enemy_max_qty" : 40,
+		"enemy_max_qty" : 1,
 		"enemy_spawn_cooldown" : 1.6,
 	},
 	2: {
@@ -118,7 +120,7 @@ func _spawn_greasers(delta: float):
 		return;
 	var random_spawn := _get_random_mob_spawn(cars);
 	var random_enemy_index: int = randi() % WAVES_CONFIG[current_wave]["enemies"].size();
-	var greaser_type: GreaserSpawn.GreaserType = WAVES_CONFIG[current_wave]["enemies"][random_enemy_index];
+	var greaser_type: Mob.MobType = WAVES_CONFIG[current_wave]["enemies"][random_enemy_index];
 	var greaser: Mob = random_spawn.spawn_greaser(greaser_type);
 	greaser.stats.mob_died.connect(_on_mob_died)
 	enemy_spawn_cooldown = WAVES_CONFIG[current_wave]["enemy_spawn_cooldown"];

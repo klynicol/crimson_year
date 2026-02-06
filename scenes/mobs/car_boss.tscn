@@ -1,26 +1,47 @@
 [gd_scene format=3 uid="uid://bl7oj4s8kldv8"]
 
 [ext_resource type="Script" uid="uid://bxyb5wbfno4kv" path="res://scripts/mobs/car_boss.gd" id="1_dxals"]
-[ext_resource type="Texture2D" uid="uid://cxsfseqorh1se" path="res://assets/sprites/Car-Sheet.png" id="1_vou78"]
 [ext_resource type="Script" uid="uid://csdolyo5rtfno" path="res://scripts/mobs/mob_stats.gd" id="2_72ys1"]
+[ext_resource type="Texture2D" uid="uid://c34wruevrnrtc" path="res://assets/sprites/boss/Car_boss_flip-Sheet.png" id="3_72ys1"]
 
 [sub_resource type="Resource" id="Resource_3es33"]
 script = ExtResource("2_72ys1")
 metadata/_custom_type_script = "uid://csdolyo5rtfno"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dxals"]
-atlas = ExtResource("1_vou78")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3es33"]
+atlas = ExtResource("3_72ys1")
 region = Rect2(0, 0, 750, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x82i0"]
+atlas = ExtResource("3_72ys1")
+region = Rect2(750, 0, 750, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6njw6"]
+atlas = ExtResource("3_72ys1")
+region = Rect2(1500, 0, 750, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10vmn"]
+atlas = ExtResource("3_72ys1")
+region = Rect2(2250, 0, 750, 375)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_72ys1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dxals")
+"texture": SubResource("AtlasTexture_3es33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x82i0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6njw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10vmn")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"walk",
+"speed": 6.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vou78"]
@@ -35,9 +56,11 @@ hit_box = NodePath("HitBox")
 lifebar = NodePath("Lifebar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1921947143]
-position = Vector2(2, -80.5)
+position = Vector2(-5, -107)
 sprite_frames = SubResource("SpriteFrames_72ys1")
-autoplay = "default"
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.29279712
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1744847645]
 position = Vector2(1, -31.5)
