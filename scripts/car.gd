@@ -7,6 +7,7 @@ const ACCELERATION: float = 1400.0
 const MAX_HEALTH: int = 700
 
 signal car_died
+signal car_took_damage(damage_amt)
 
 var target_position: Vector2
 var car_type: CarType
@@ -46,6 +47,7 @@ func set_new_target_position(new_target_position: Vector2) -> void:
 
 func take_damage(damage: float) -> void:
 	health -= damage
+	car_took_damage.emit(damage)
 	if health <= 0:
 		car_died.emit()
 		spawn_car_fragments()

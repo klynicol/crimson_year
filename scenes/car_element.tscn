@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://37hy3p7j2b7y"]
 
 [ext_resource type="Texture2D" uid="uid://dj2w66h2qxhwx" path="res://assets/menu_gui/car2.png" id="1_m7alh"]
+[ext_resource type="Theme" uid="uid://bqsb6ctvb748t" path="res://assets/main_theme.tres" id="2_34d7p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc2mp"]
 content_margin_left = 2.0
@@ -23,19 +24,22 @@ border_width_bottom = 2
 border_color = Color(0.48222834, 0.067888066, 0.28524706, 1)
 
 [node name="CarElement" type="TextureRect" unique_id=1171541582]
+texture_filter = 1
+anchors_preset = -1
 texture = ExtResource("1_m7alh")
+stretch_mode = 2
 
 [node name="CarHealthbar" type="ProgressBar" parent="." unique_id=549093907]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
 offset_left = 4.0
-offset_top = 40.0
-offset_right = -5.0
-offset_bottom = -4.0
+offset_top = 29.0
+offset_right = 61.0
+offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_34d7p")
+theme_override_font_sizes/font_size = 14
 theme_override_styles/background = SubResource("StyleBoxFlat_jc2mp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_522k3")
 value = 100.0

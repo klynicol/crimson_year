@@ -15,6 +15,7 @@ var current_wave: int = 1;
 var wave_mob_fragments: int = 0;
 var car_spawn_index: int = 0;
 var cars: Array[Car] = [];
+var car_status: Array[float] = [];
 var wave_cars_destroyed: int = 0;
 var wave_boss_spawned: bool = false;
 
@@ -26,6 +27,10 @@ var car_spawn_cooldown: float = 0.0;
 signal boss_spawned(boss: Node)
 
 @onready var label = get_tree().current_scene.get_node("Gui/Control/Label")
+@onready var car_tracker = get_tree().current_scene.get_node("Gui/CarTracker")
+
+const CAR_ELEMENT = preload("uid://37hy3p7j2b7y")
+
 
 const WAVES_CONFIG = {
 	1: {
@@ -138,9 +143,15 @@ func _spawn_cars(delta: float):
 		car_type,
 		checkpoints[END_CHECKPOINT_ID].global_position
 	)
+	var car_element := CAR_ELEMENT.instantiate()
+	car_tracker.add_child(car_element)
+	car_status.append(car.health)
+	#car_element.get_child(0).value 
+	
 	print("spawned car: ", car.car_type)
 	car_spawn_index += 1
 	car.car_died.connect(_on_car_died)
+	car.car_took_damage.connect(_on_car_took_damage)
 	car_spawn_cooldown = CAR_SPAWN_COOLDOWN;
 
 func _spawn_boss():
@@ -169,6 +180,12 @@ func _on_mob_died():
 
 func _on_car_died(car: Car):
 	wave_cars_destroyed += 1
+	
+func _on_car_took_damage(car: Car, damage):
+	var car_index := cars.find(car)
+	car_status[car_index] -= damage
+	print("car " + str(car_index) + " took" + damage + " damage!")
+	
 
 # Called when the player clicks "Next Stage" in the GUI
 func start_next_wave() -> void:
