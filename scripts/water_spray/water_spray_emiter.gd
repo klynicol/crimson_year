@@ -151,6 +151,8 @@ func shoot() -> void:
 	var mist_angle_effect := 0.9; # Angle at which the mist strength forumula starts to take effect
 	var new_mist_strength: float = clamp(mist_angle_effect + abs(rot_since_last_shot), MIN_MIST_STRENGTH, MAX_MIST_STRENGTH)
 	vfx.set_mist_strength(new_mist_strength)
-	get_tree().current_scene.add_child(instance)
+
+	# Add the projectile instance to the ySort node
+	World.ySort.add_child(instance)
 	
 	last_shot_rotation = rot

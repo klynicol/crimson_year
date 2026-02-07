@@ -2,7 +2,7 @@ class_name World extends Node2D
 
 const MAX_GREASERS: int = 60
 const SPAWN_COOLDOWN: float = 1.0
-const PLAYER_START_POSITION: Vector2 = Vector2(-5797, 593)
+const PLAYER_START_POSITION: Vector2 = Vector2(-4302, 593)
 const CONVEYOR_ANIMATION_SPEED: float = 62.5
 
 static var player_instance: CharacterBody2D
