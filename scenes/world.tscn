@@ -219,13 +219,16 @@ position = Vector2(-1726, 170)
 
 [node name="Rockabily" type="AudioStreamPlayer" parent="." unique_id=361360882]
 stream = ExtResource("14_o8fc1")
+playback_type = 1
 
 [node name="Funk" type="AudioStreamPlayer" parent="." unique_id=1361179680]
 stream = ExtResource("15_xo05s")
+playback_type = 1
 
 [node name="BossFunk" type="AudioStreamPlayer" parent="." unique_id=1704092825]
 stream = ExtResource("16_dss4m")
 volume_db = -12.0
+playback_type = 1
 
 [node name="BossMarkers" type="Node2D" parent="." unique_id=1104776280]
 visible = false
