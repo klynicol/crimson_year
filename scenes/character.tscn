@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://brpv26k2hxy10" path="res://assets/sprites/protag/Protag-Sheet.png" id="5_0dpix"]
 [ext_resource type="Texture2D" uid="uid://bxx8cbupgp7ys" path="res://assets/sprites/protag/Protag_firing_clean-Sheet.png" id="5_a5ia6"]
 [ext_resource type="Texture2D" uid="uid://bfs833e81tll3" path="res://assets/sprites/Sprayer.png" id="9_0dpix"]
-[ext_resource type="AudioStream" uid="uid://brgt8r5yw705t" path="res://audio/sfx/PressureWashLoop-01.wav" id="10_2hyy3"]
+[ext_resource type="AudioStream" uid="uid://bskdi2aptlifd" path="res://audio/sfx/PressureWashLoop-02.wav" id="10_2hyy3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hyy3"]
 atlas = ExtResource("3_0dpix")
@@ -249,6 +249,7 @@ position = Vector2(0, -47)
 
 [node name="spray_sfx" type="AudioStreamPlayer2D" parent="." unique_id=1824142021]
 stream = ExtResource("10_2hyy3")
-volume_db = -25.0
+volume_db = -10.0
 
 [node name="dash_sfx" type="AudioStreamPlayer2D" parent="." unique_id=189387039]
+volume_db = -6.0

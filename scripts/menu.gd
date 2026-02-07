@@ -2,6 +2,7 @@ extends Control
 @onready var play_btn: Button = %PlayBtn
 @onready var instructions_btn: Button = %InstructionsBtn
 @onready var options_btn: Button = %OptionsBtn
+@onready var game: Game = get_node("/root/Game")
 const INSTRUCTIONS_POPUP = preload("uid://ctrjieuehfaph")
 const OPTIONS_POPUP = preload("uid://b71urgpjn1yg6")
 signal connect_control_method
@@ -38,11 +39,20 @@ func show_options() -> void:
 	# signal programmatically 
 	connect_control_method.emit()
 
-	# whoosh, the menu is gone
-func start_game() -> void:
+func tween_in() -> void:
+	var tween := create_tween()
+	tween.tween_property(self, "position:x", 0.0, 1.5)
+	tween.finished.connect(func() -> void:
+		visible = true
+	)
+
+func tween_out() -> void:
 	var tween := create_tween()
 	tween.tween_property(self, "position:x", 3000.0, 1.5)
-	tween.finished.connect(queue_free)
+	tween.finished.connect(func() -> void:
+		visible = false
+	)
 
-	pass
-	
+func start_game() -> void:
+	tween_out()
+	game._on_game_start_pressed()

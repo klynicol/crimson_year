@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dp84ymycgbg8t"]
+[gd_scene format=3 uid="uid://cv8neow4vjp2r"]
 
 [ext_resource type="Theme" uid="uid://bqsb6ctvb748t" path="res://assets/main_theme.tres" id="1_ynd5l"]
 [ext_resource type="Texture2D" uid="uid://dvm84e4wgvehn" path="res://assets/sprites/progressbar.png" id="2_b8iy7"]
@@ -107,7 +107,7 @@ size_flags_horizontal = 4
 script = ExtResource("6_g05bf")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/EndWaveContainer/VBoxContainer/CarScoreContainer" unique_id=224272804]
-volume_db = -10.0
+volume_db = -15.0
 
 [node name="Container2" type="HBoxContainer" parent="Control/EndWaveContainer/VBoxContainer" unique_id=1505950519]
 layout_mode = 2
