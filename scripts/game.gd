@@ -57,6 +57,10 @@ func _on_next_stage_pressed() -> void:
 	get_viewport().gui_release_focus()
 
 func _on_retry_pressed() -> void:
+	if stage.current_wave == 3 and PLAY_MUSIC:
+		boss_funk.stop()
+		rockabily.volume_db = -25.0  # Restore volume (boss spawn fades it to -30)
+		rockabily.play()
 	stage.init_wave(stage.current_wave)
 	hide_next_stage_prompt()
 	# Wave end had set Game.paused = true; unpause so the next wave can spawn cars/enemies
