@@ -12,7 +12,6 @@ const mob_scense: Dictionary[MobType, PackedScene] = {
 	MobType.GECKO: preload("uid://ducr0tccltrqt"),
 }
 
-@export var attack_box: Area2D
 @export var attack_frame: int
 
 var mob_type: MobType
@@ -64,24 +63,3 @@ func _attack_alligns_with_sprite_frame() -> bool:
 	if sprite.frame != attack_frame:
 		return false
 	return true
-
-func _get_bodies_in_attack_range() -> Array[CharacterBody2D]:
-	var bodies: Array[CharacterBody2D] = []
-	if stats.attack_range > 0: # is ranged attack class
-		var closest_car: CharacterBody2D = get_closest_car()
-		if closest_car and _is_car_in_attack_range(closest_car):
-			return [closest_car]
-		return []
-	for body in attack_box.get_overlapping_bodies():
-		if body is not Car:
-			continue
-		bodies.append(body)
-	return bodies
-
-func _is_car_in_attack_range(car: CharacterBody2D) -> bool:
-	var distance: float = car.global_position.distance_to(global_position)
-	if mob_state == MobState.WALKING:
-		distance += ATTACK_RANGE_BUFFER
-	if distance < stats.attack_range:
-		return true
-	return false

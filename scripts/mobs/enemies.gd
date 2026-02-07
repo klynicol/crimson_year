@@ -14,6 +14,7 @@ const ATTACK_RANGE_BUFFER: float = 80
 @export var stats: MobStats
 @export var sprite: AnimatedSprite2D
 @export var hit_box: Area2D
+@export var attack_box: Area2D
 
 # please use the lifebar scene for this one, it includes a script and a timer to fade back out after a couple of seconds.
 @export var lifebar: ProgressBar
@@ -37,6 +38,7 @@ var last_animation: String = ""
 var action_cooldown: float = 0.0
 const ACTION_COOLDOWN: float = 0.7
 var last_state: MobState = MobState.IDLE
+
 var dying_sfx:= [
 	preload("uid://dop2en52w7736"),
 	preload("uid://chor7krw8rqjx"),
@@ -82,8 +84,10 @@ func _physics_process(delta: float) -> void:
 	last_state = mob_state
 	_set_sprite_animation()
 	move_and_slide()
-	# _print_animation_change()
-	# _print_state_change()
+	## !!!! uncomment for debugging !!!!
+	_print_animation_change()	
+	_print_state_change()
+	### !!!! end debugging !!!!
 
 
 func _set_sprite_animation() -> void:
@@ -184,6 +188,28 @@ func _on_hit_box_entered(area_rid: RID, area: Area2D, area_shape_index: int, loc
 		_flash_lifebar()
 
 ### !!!! Helper Functions !!!! ###
+
+func _get_bodies_in_attack_range() -> Array[CharacterBody2D]:
+	var bodies: Array[CharacterBody2D] = []
+	if stats.attack_range > 0: # is ranged attack class
+		var closest_car: CharacterBody2D = get_closest_car()
+		if closest_car and _is_car_in_attack_range(closest_car):
+			return [closest_car]
+		return []
+	for body in attack_box.get_overlapping_bodies():
+		if body is not Car:
+			continue
+		bodies.append(body)
+	return bodies
+
+func _is_car_in_attack_range(car: CharacterBody2D) -> bool:
+	var distance: float = car.global_position.distance_to(global_position)
+	if mob_state == MobState.WALKING:
+		distance += ATTACK_RANGE_BUFFER
+	if distance < stats.attack_range:
+		return true
+	return false
+
 
 # Helper function to get the closest car
 func get_closest_car() -> CharacterBody2D:

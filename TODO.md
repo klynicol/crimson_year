@@ -17,6 +17,7 @@
  -----
  - [ ] player can't just hold down dash
  - [ ] health bars stay when less than 20 %
+ - [ ] dying sound effects
  
 2-4-26
  - refined enemy movement

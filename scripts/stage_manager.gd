@@ -5,7 +5,7 @@ var greaser_spawns: Array[Node];
 const START_CHECKPOINT_ID: int = 5;
 const END_CHECKPOINT_ID: int = 0;
 const BOSS_CHECKPOINT_ID: int = 4;
-# const BOSS_CHECKPOINT_ID: int = 3;
+# const BOSS_CHECKPOINT_ID: int = 3; #TESTING
 const BOSS_SPAWN_LOCATION: Vector2 = Vector2(-255, 303);
 
 var world: World;
@@ -53,7 +53,7 @@ const WAVES_CONFIG = {
 	# 	"enemy_spawn_cooldown" : 1.2,
 	# },
 	3: {
-		"cars": 1,
+		"cars": 5,
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD, Mob.MobType.GECKO],
 		"boss": preload("uid://bl7oj4s8kldv8"), # CarBoss
 		"enemy_max_qty" : 2,
@@ -99,7 +99,7 @@ func _process_wave(delta: float):
 	if not should_process_wave:
 		return
 	_spawn_cars(delta)
-	_spawn_enemies(delta)
+	# _spawn_enemies(delta) #TESTING
 	_update_enemy_count_label()
 	check_wave_end()
 
@@ -162,7 +162,7 @@ func _spawn_cars(delta: float):
 	car_spawn_index += 1
 
 	var start_checkpoint := checkpoints[START_CHECKPOINT_ID]
-	var car_sprite_index = randi() % Car.SPRITE_OPTIONS - 1
+	var car_sprite_index = randi() % Car.SPRITE_OPTIONS
 
 	var car := start_checkpoint.spawn_car(
 		car_sprite_index,

@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://4gm757d3s3v0" path="res://audio/music/Carwash-Rock.wav" id="14_o8fc1"]
 [ext_resource type="AudioStream" uid="uid://cir23plntg0kd" path="res://audio/music/Carwash-Funk.wav" id="15_xo05s"]
 [ext_resource type="AudioStream" uid="uid://d17oyus7bn41a" path="res://audio/music/BossFunk.wav" id="16_dss4m"]
+[ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/menu_gui/x.png" id="17_7t5mc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_71j4m"]
 
@@ -180,7 +181,7 @@ position = Vector2(-1736, 282)
 position = Vector2(-3189, 284)
 
 [node name="Checkpoint4" parent="." unique_id=1059410975 instance=ExtResource("11_e3hyu")]
-position = Vector2(-5943, 292)
+position = Vector2(-6075, 290)
 
 [node name="Checkpoint5" parent="." unique_id=2088446494 groups=["start_checkpoint"] instance=ExtResource("11_e3hyu")]
 position = Vector2(-6401, 285)
@@ -202,7 +203,6 @@ position = Vector2(-5650, 514)
 position = Vector2(-4669, 183)
 
 [node name="Rollers2" parent="YSort" unique_id=397022403 instance=ExtResource("12_q5onr")]
-visible = false
 position = Vector2(-4669, 436)
 
 [node name="Rollers3" parent="YSort" unique_id=1315741297 instance=ExtResource("12_q5onr")]
@@ -226,3 +226,22 @@ stream = ExtResource("15_xo05s")
 [node name="BossFunk" type="AudioStreamPlayer" parent="." unique_id=1704092825]
 stream = ExtResource("16_dss4m")
 volume_db = -12.0
+
+[node name="BossMarkers" type="Node2D" parent="." unique_id=1104776280]
+visible = false
+
+[node name="min_y" type="Sprite2D" parent="BossMarkers" unique_id=1322836425]
+position = Vector2(-465, -77)
+texture = ExtResource("17_7t5mc")
+
+[node name="max_y" type="Sprite2D" parent="BossMarkers" unique_id=124440775]
+position = Vector2(-437, 795)
+texture = ExtResource("17_7t5mc")
+
+[node name="max_x" type="Sprite2D" parent="BossMarkers" unique_id=1110216051]
+position = Vector2(219, 427)
+texture = ExtResource("17_7t5mc")
+
+[node name="min_x" type="Sprite2D" parent="BossMarkers" unique_id=1019162418]
+position = Vector2(-1360, 262)
+texture = ExtResource("17_7t5mc")
