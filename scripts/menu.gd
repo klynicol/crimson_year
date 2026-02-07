@@ -21,7 +21,7 @@ func show_instructions() -> void:
 	var instructions_popup: PackedScene = INSTRUCTIONS_POPUP
 	var instructions_instance:= instructions_popup.instantiate()
 	add_child(instructions_instance)
-	instructions_instance.z_index = 1
+	instructions_instance.z_index = 4
 	tween.tween_property(instructions_instance, "modulate", Color.hex(0xffffffff), 0.5)
 	get_node("InstructionsPopup/XButtonInstructions").pressed.connect(func() -> void:
 		get_node("InstructionsPopup").queue_free()
@@ -32,7 +32,7 @@ func show_options() -> void:
 	var options_popup: PackedScene = OPTIONS_POPUP
 	var options_instance:= options_popup.instantiate()
 	add_child(options_instance)
-	options_instance.z_index = 1
+	options_instance.z_index = 4
 	tween.tween_property(options_instance, "modulate", Color.hex(0xffffffff), 0.5)
 	# this signal tells game.gd when options_popup exists, so it can connect options_popup.gd's control_method_changed
 	# signal programmatically 
