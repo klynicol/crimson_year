@@ -72,7 +72,7 @@ func start_pressed() -> void:
 	funk.stop()
 	if PLAY_MUSIC:
 		rockabily.play()
-	stage.init_wave(3)
+	stage.init_wave(1)
 	# Release focus from the Play button so Space (dash) doesn't re-trigger this and call prepare_for_wave again
 	get_viewport().gui_release_focus()
 

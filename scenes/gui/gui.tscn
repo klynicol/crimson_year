@@ -9,8 +9,7 @@
 
 [node name="Gui" type="CanvasLayer" unique_id=350781755]
 
-[node name="Control" type="Control" parent="." unique_id=350781756]
-layout_mode = 3
+[node name="Control" type="TextureRect" parent="." unique_id=150770024]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

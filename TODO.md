@@ -21,3 +21,4 @@
  - [ ] on boss spawn animation not playing
  - [ ] left in wave is going negative
  - [ ] gamepad not working
+ - [ ] splashing sounds
