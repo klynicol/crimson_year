@@ -42,14 +42,18 @@ func _on_wave_ended() -> void:
 	car_score_container.reset_and_show_scores()
 
 func show_next_stage_prompt() -> void:
-	# next_stage_button.visible = true
 	end_wave_container.visible = true
 
 func hide_next_stage_prompt() -> void:
-	# next_stage_button.visible = false
 	end_wave_container.visible = false
 
+func _restore_music() -> void:
+	if stage.current_wave == 3 and PLAY_MUSIC:
+		boss_funk.stop()
+		rockabily.play()
+
 func _on_next_stage_pressed() -> void:
+	_restore_music()
 	stage.start_next_wave()
 	hide_next_stage_prompt()
 	# Wave end had set Game.paused = true; unpause so the next wave can spawn cars/enemies
@@ -57,10 +61,7 @@ func _on_next_stage_pressed() -> void:
 	get_viewport().gui_release_focus()
 
 func _on_retry_pressed() -> void:
-	if stage.current_wave == 3 and PLAY_MUSIC:
-		boss_funk.stop()
-		rockabily.volume_db = -25.0  # Restore volume (boss spawn fades it to -30)
-		rockabily.play()
+	_restore_music()
 	stage.init_wave(stage.current_wave)
 	hide_next_stage_prompt()
 	# Wave end had set Game.paused = true; unpause so the next wave can spawn cars/enemies
@@ -72,7 +73,7 @@ func start_pressed() -> void:
 	funk.stop()
 	if PLAY_MUSIC:
 		rockabily.play()
-	stage.init_wave(1)
+	stage.init_wave(3)
 	# Release focus from the Play button so Space (dash) doesn't re-trigger this and call prepare_for_wave again
 	get_viewport().gui_release_focus()
 
@@ -98,5 +99,6 @@ func _on_boss_spawned(boss: Node) -> void:
 	tween.tween_property(boss_funk, "volume_db", -16, 0.75)
 	tween.finished.connect(func():
 		rockabily.stop()
+		rockabily.volume_db = 0.0
 	)
 	
