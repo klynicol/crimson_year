@@ -77,7 +77,7 @@ func _set_instances():
 	world = get_tree().current_scene.get_node("/root/Game/World");
 	game = get_tree().current_scene.get_node("/root/Game");
 	greaser_spawns = get_tree().get_nodes_in_group("greaser_spawn");
-
+                  
 # Basically resets the wave variables and prepares the world for the next wave
 func init_wave(wave_number: int):
 	should_process_wave = true;

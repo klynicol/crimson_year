@@ -19,6 +19,6 @@
  - [ ] health bars stay when less than 20 %
  - [ ] dying sound effects
  - [ ] on boss spawn animation not playing
- - [ ] left in wave is going negative
- - [ ] gamepad not working
+ - [x] left in wave is going negative
+ - [x] gamepad not working
  - [ ] splashing sounds
