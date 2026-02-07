@@ -15,9 +15,11 @@ func _ready():
 	stage_manager.boss_spawned.connect(_on_boss_spawned)
 
 func _on_boss_spawned(boss: Node):
+	# remember where the camera was before the boss spawned
 	camera_pos_before_boss_spawn = global_position
 	zoom_before_boss_spawn = zoom
 	boss.connect("spawn_completed", _on_boss_spawn_completed)
+	# tween the camera to the boss spawn location
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)

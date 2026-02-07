@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b1jmns3xk5xp2" path="res://scenes/placeables/rollers.tscn" id="12_q5onr"]
 [ext_resource type="AudioStream" uid="uid://4gm757d3s3v0" path="res://audio/music/Carwash-Rock.wav" id="14_o8fc1"]
 [ext_resource type="AudioStream" uid="uid://cir23plntg0kd" path="res://audio/music/Carwash-Funk.wav" id="15_xo05s"]
+[ext_resource type="AudioStream" uid="uid://d17oyus7bn41a" path="res://audio/music/BossFunk.wav" id="16_dss4m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_71j4m"]
 
@@ -179,7 +180,7 @@ position = Vector2(-1736, 282)
 position = Vector2(-3189, 284)
 
 [node name="Checkpoint4" parent="." unique_id=1059410975 instance=ExtResource("11_e3hyu")]
-position = Vector2(-4663, 298)
+position = Vector2(-6035, 293)
 
 [node name="Checkpoint5" parent="." unique_id=2088446494 groups=["start_checkpoint"] instance=ExtResource("11_e3hyu")]
 position = Vector2(-6401, 285)
@@ -201,6 +202,7 @@ position = Vector2(-5650, 514)
 position = Vector2(-4669, 183)
 
 [node name="Rollers2" parent="YSort" unique_id=397022403 instance=ExtResource("12_q5onr")]
+visible = false
 position = Vector2(-4669, 436)
 
 [node name="Rollers3" parent="YSort" unique_id=1315741297 instance=ExtResource("12_q5onr")]
@@ -217,8 +219,10 @@ position = Vector2(-1726, 170)
 
 [node name="Rockabily" type="AudioStreamPlayer" parent="." unique_id=361360882]
 stream = ExtResource("14_o8fc1")
-parameters/looping = true
 
 [node name="Funk" type="AudioStreamPlayer" parent="." unique_id=1361179680]
 stream = ExtResource("15_xo05s")
-parameters/looping = true
+
+[node name="BossFunk" type="AudioStreamPlayer" parent="." unique_id=1704092825]
+stream = ExtResource("16_dss4m")
+volume_db = -12.0

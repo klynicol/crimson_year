@@ -11,8 +11,9 @@ class_name Game extends Node
 const PLAY_MUSIC: bool = true
 @onready var rockabily: AudioStreamPlayer = $World/Rockabily
 @onready var funk: AudioStreamPlayer = $World/Funk
+@onready var boss_funk: AudioStreamPlayer = $World/BossFunk
 
-static var paused: bool = false
+static var paused: bool = true
 
 var life_time_mob_fragments: int = 0
 
@@ -29,9 +30,8 @@ func _ready() -> void:
 	retry_button.pressed.connect(_on_retry_pressed)
 	next_stage_button.pressed.connect(_on_next_stage_pressed)
 	stage.wave_ended.connect(_on_wave_ended)
+	stage.boss_spawned.connect(_on_boss_spawned)
 	hide_next_stage_prompt()
-	# see below comments for explanation of this dumb thing
-	# get_node("Gui/Menu").connect_control_method.connect(_on_connect_control_method)
 	if PLAY_MUSIC:
 		funk.play()
 
@@ -62,19 +62,14 @@ func _on_retry_pressed() -> void:
 	Game.paused = false
 	get_viewport().gui_release_focus()
 
-func _on_game_start_pressed() -> void:
+func start_pressed() -> void:
+	paused = false
 	funk.stop()
 	if PLAY_MUSIC:
 		rockabily.play()
-	stage.init_wave(1)
+	stage.init_wave(3)
 	# Release focus from the Play button so Space (dash) doesn't re-trigger this and call prepare_for_wave again
 	get_viewport().gui_release_focus()
-
-# this is probably jank and bad, but because the options_popup doesn't always exist, i have to connect its 
-# control_method_changed signal programmatically, and i need this extra signal from menu.gd to tell game.gd
-# when options_popup exists
-# func _on_connect_control_method() -> void:
-	# get_node("Gui/Menu/OptionsPopup").control_method_changed.connect(_on_control_method_changed)
 
 # this function receives the signal from the options_popup.gd
 func _on_control_method_changed(control_method) -> void:
@@ -83,3 +78,15 @@ func _on_control_method_changed(control_method) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):
 		paused = not paused
+
+func _on_boss_spawned(boss: Node) -> void:
+	# We should fade the rockabily music out and fade in the boss funk music
+	boss_funk.volume_db = -30.0
+	boss_funk.play()
+	var tween = create_tween()
+	tween.tween_property(rockabily, "volume_db", -30.0, 1)
+	tween.tween_property(boss_funk, "volume_db", -16, 0.75)
+	tween.finished.connect(func():
+		rockabily.stop()
+	)
+	

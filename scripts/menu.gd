@@ -55,4 +55,4 @@ func tween_out() -> void:
 
 func start_game() -> void:
 	tween_out()
-	game._on_game_start_pressed()
+	game.start_pressed()
