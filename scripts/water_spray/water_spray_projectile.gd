@@ -10,7 +10,7 @@ var damage: float = 10.0
 const MAX_DAMAGE_REFLECTIONS = 2
 var damage_reflections: int = 0
 
-const MAX_TIME_ALIVE = 0.65
+const MAX_TIME_ALIVE = 0.55
 
 const MAX_SCALE_X = 9.0
 const MAX_SCALE_Y = 18.0

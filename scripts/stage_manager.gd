@@ -14,7 +14,6 @@ var should_process_wave: bool = false;
 var current_wave: int = 1;
 var wave_mob_fragments: int = 0;
 var car_spawn_index: int = 0;
-var cars: Array[Car] = [];
 var wave_cars_destroyed: int = 0;
 var wave_boss_spawned: bool = false;
 var total_spawned_enemies: int = 0;
@@ -25,8 +24,11 @@ var enemy_spawn_cooldown: float = 0.0;
 var car_spawn_cooldown: float = 0.0;
 
 signal boss_spawned(boss: Node)
+signal wave_ended
 
+#top bar
 @onready var car_tracker = get_tree().get_first_node_in_group("car_tracker")
+# bottom left
 @onready var enemy_count_label = get_tree().get_first_node_in_group("enemy_count_label")
 @onready var wave_num_label = get_tree().get_first_node_in_group("wave_num_label")
 
@@ -86,7 +88,6 @@ func init_wave(wave_number: int):
 	current_wave = wave_number;
 	game.life_time_mob_fragments += wave_mob_fragments;
 	wave_mob_fragments = 0;
-	cars = [];
 	car_spawn_index = 0;
 	for element in car_tracker.get_children():
 		element.queue_free()
@@ -98,23 +99,29 @@ func _process_wave(delta: float):
 	_spawn_cars(delta)
 	_spawn_enemies(delta)
 	_update_enemy_count_label()
+	check_wave_end()
 
 func _update_enemy_count_label(): 
 	var enemy_count: int = WAVES_CONFIG[current_wave]["enemy_max_qty"] - wave_mob_fragments;
 	enemy_count_label.text = str(enemy_count);
 
-func _check_wave_end():
-	# Don't count cars that are queued for deletion (queue_free runs at end of frame)
-	var cars: Array[Node] = get_tree().get_nodes_in_group("cars")
-	cars = cars.filter(func(c): return not c.is_queued_for_deletion())
-	if cars.size() == 0:
+func check_wave_end():
+	var all_cars: Array[Node] = get_tree().get_nodes_in_group("cars")
+	var alive_cars: Array[Node] = all_cars.filter(func(c):
+		if c.reached_end_checkpoint:
+			return 	false
+		if c.health <= 0:
+			return false
+		return true
+	)
+	if alive_cars.size() == 0:
 		_end_current_wave()
 
 func _end_current_wave():
 	# Pause wave logic and show "Next Stage" prompt
-	game.show_next_stage_prompt()
 	should_process_wave = false;
 	Game.paused = true
+	wave_ended.emit()
 
 func _spawn_enemies(delta: float):
 	_spawn_greasers(delta)
@@ -193,16 +200,13 @@ func _on_checkpoint_reached(checkpoint_id: int, body: Node2D):
 	if checkpoint_id == BOSS_CHECKPOINT_ID and not wave_boss_spawned:
 		_spawn_boss()
 	if checkpoint_id == END_CHECKPOINT_ID:
-		body.queue_free()
-	call_deferred("_check_wave_end")
+		body.on_reached_end_checkpoint()
 
 func _on_mob_died():
 	wave_mob_fragments += 1
 
 func _on_car_died(car: Car):
 	wave_cars_destroyed += 1
-
-	
 
 # Called when the player clicks "Next Stage" in the GUI
 func start_next_wave() -> void:

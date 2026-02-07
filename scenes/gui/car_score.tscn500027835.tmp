@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d47i32v7i084"]
+
+[ext_resource type="Texture2D" uid="uid://cbpembt161ahg" path="res://assets/menu_gui/car_0.png" id="1_021wo"]
+[ext_resource type="Script" uid="uid://cyrucxj442u8q" path="res://scripts/gui/car_score.gd" id="2_mgsi2"]
+
+[node name="CarScore" type="TextureRect" unique_id=1014687034]
+offset_left = 1000.0
+offset_right = 1064.0
+offset_bottom = 64.0
+texture = ExtResource("1_021wo")
+script = ExtResource("2_mgsi2")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1977262581]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

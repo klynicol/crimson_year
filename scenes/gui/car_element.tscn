@@ -2,7 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dj2w66h2qxhwx" path="res://assets/menu_gui/car2.png" id="1_m7alh"]
 [ext_resource type="Theme" uid="uid://bqsb6ctvb748t" path="res://assets/main_theme.tres" id="2_34d7p"]
-[ext_resource type="Script" uid="uid://et4pwp486ak" path="res://scripts/car_element.gd" id="2_c7ct4"]
+[ext_resource type="Script" uid="uid://et4pwp486ak" path="res://scripts/gui/car_element.gd" id="2_c7ct4"]
+[ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/menu_gui/x.png" id="3_1wasx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc2mp"]
 content_margin_left = 2.0
@@ -29,6 +30,15 @@ texture_filter = 1
 texture = ExtResource("1_m7alh")
 stretch_mode = 2
 script = ExtResource("2_c7ct4")
+
+[node name="XTexture" type="TextureRect" parent="." unique_id=1805807585]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 25.999998
+offset_right = 79.0
+offset_bottom = 90.0
+scale = Vector2(0.585, 0.585)
+texture = ExtResource("3_1wasx")
 
 [node name="CarHealthbar" type="ProgressBar" parent="." unique_id=549093907]
 layout_mode = 1
