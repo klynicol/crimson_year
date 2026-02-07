@@ -17,6 +17,13 @@ var input_released_by_code := false
 
 @onready var sprayer_sprite: Sprite2D = $Sprayer
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var dash_sfx: AudioStreamPlayer2D = $dash_sfx
+
+var dash_sounds:= [
+	preload("uid://c3xoycvuuo8x4"),
+	preload("uid://bu3r22mhv4vba"),
+	preload("uid://whojfhsaw0pi"),
+]
 
 # this will determine whether the Utilities file uses the get_rotation_to_mouse()
 # or the get_rotation_to_stick() functions
@@ -66,6 +73,8 @@ func _physics_process(_delta: float) -> void:
 		dash_reset_cooldown = dash_reset_cooldown_time
 		dash_cooldown = dash_cooldown_time
 		input_released_by_code = false
+		dash_sfx.stream = dash_sounds.pick_random()
+		dash_sfx.play()
 
 	var speed = max_speed
 	# Give the character a slight "hop" when walking

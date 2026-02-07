@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://br8uo2envse3u" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://biwlckbvsdmje" path="res://scenes/world.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dp84ymycgbg8t" path="res://scenes/gui.tscn" id="2_yqjtg"]
-[ext_resource type="AudioStream" uid="uid://4gm757d3s3v0" path="res://audio/music/Carwash-Rock.wav" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://bekheq55rmxdh" path="res://scenes/menu.tscn" id="3_lnu2h"]
-[ext_resource type="AudioStream" uid="uid://cir23plntg0kd" path="res://audio/music/Carwash-Funk.wav" id="4_p57ef"]
 
 [node name="Game" type="Node" unique_id=480520635]
 script = ExtResource("1_lnu2h")
@@ -13,11 +11,9 @@ script = ExtResource("1_lnu2h")
 [node name="World" parent="." unique_id=818516590 instance=ExtResource("1_uwrxv")]
 
 [node name="Rockabily" parent="World" index="24" unique_id=361360882]
-stream = ExtResource("3_iywne")
 volume_db = -25.0
 
 [node name="Funk" parent="World" index="25" unique_id=1361179680]
-stream = ExtResource("4_p57ef")
 volume_db = -25.0
 
 [node name="Gui" parent="." unique_id=682647447 instance=ExtResource("2_yqjtg")]
