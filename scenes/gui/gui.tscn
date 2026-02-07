@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://dp84ymycgbg8t"]
 
-[ext_resource type="Texture2D" uid="uid://bi0bkuveffdha" path="res://assets/menu_gui/Next Stage.png" id="1_efmwq"]
 [ext_resource type="Theme" uid="uid://bqsb6ctvb748t" path="res://assets/main_theme.tres" id="1_ynd5l"]
 [ext_resource type="Texture2D" uid="uid://dvm84e4wgvehn" path="res://assets/sprites/progressbar.png" id="2_b8iy7"]
 [ext_resource type="Script" uid="uid://dxs2blyec4poe" path="res://scripts/car_progress_slider.gd" id="3_jqlde"]
@@ -115,10 +114,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="RetryButton" type="TextureButton" parent="Control/EndWaveContainer/VBoxContainer/Container2" unique_id=2028832143 groups=["retry_button"]]
+[node name="Button2" type="Button" parent="Control/EndWaveContainer/VBoxContainer/Container2" unique_id=1016557005 groups=["retry_button"]]
 layout_mode = 2
-texture_normal = ExtResource("1_efmwq")
+text = "Retry Wave"
 
-[node name="NextStage" type="TextureButton" parent="Control/EndWaveContainer/VBoxContainer/Container2" unique_id=1361816104 groups=["next_stage_button"]]
+[node name="Button" type="Button" parent="Control/EndWaveContainer/VBoxContainer/Container2" unique_id=344766680 groups=["next_stage_button"]]
 layout_mode = 2
-texture_normal = ExtResource("1_efmwq")
+text = "Next Wave"
