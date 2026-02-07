@@ -49,9 +49,6 @@ func hide_next_stage_prompt() -> void:
 	end_wave_container.visible = false
 
 func _on_next_stage_pressed() -> void:
-	car_score_container.reset_and_show_scores()
-	return
-	##
 	stage.start_next_wave()
 	hide_next_stage_prompt()
 	# Wave end had set Game.paused = true; unpause so the next wave can spawn cars/enemies
