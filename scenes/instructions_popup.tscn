@@ -40,6 +40,7 @@ anti_aliasing = false
 anti_aliasing_size = 0.01
 
 [node name="InstructionsPopup" type="RichTextLabel" unique_id=2111605867]
+modulate = Color(1, 1, 1, 0)
 z_index = -1
 anchors_preset = 8
 anchor_left = 0.5
