@@ -23,7 +23,9 @@ func _on_boss_spawned(boss: Node):
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "global_position", stage_manager.BOSS_SPAWN_LOCATION, 0.7)
+	var loc = stage_manager.BOSS_SPAWN_LOCATION
+	loc.y -= 150 # pad a bit to get a better view of the boss
+	tween.tween_property(self, "global_position", loc, 0.7)
 	tween.tween_property(self, "zoom", Vector2(1.0, 1.0), 0.7)
 	tween.tween_callback(func():
 		zoom_toward_cursor = false

@@ -57,6 +57,7 @@ func _ready():
 # Dying cooldown time is based on the "dying" animation length
 # Let's calculate it based on the animation length and add a slight buffer
 func _set_dying_cooldown_time() -> void:
+	var frame_count: int = sprite.sprite_frames.get_frame_count("dying")
 	var frame_duration: float = sprite.sprite_frames.get_frame_duration("dying", frame_count - 1)
 	dying_cooldown = frame_duration
 
@@ -139,7 +140,6 @@ func _handle_mob_hurt(delta: float) -> void:
 func _handle_mob_dying(delta: float) -> void:
 	_decelerate_to_zero_velocity(delta)
 	if dying_cooldown > 0.0:
-		print("dying cooldown: ", dying_cooldown)
 		dying_cooldown -= delta
 		return
 	queue_free()
