@@ -3,8 +3,8 @@ class_name MobStats extends Resource
 # stats system tutorial
 #https://www.youtube.com/watch?v=vsBb9921GfA
 
-signal mob_died
 signal mob_health_changed
+signal mob_died
 
 @export var max_health: int
 @export var speed: float

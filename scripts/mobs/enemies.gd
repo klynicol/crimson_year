@@ -40,19 +40,20 @@ var action_cooldown: float = 0.0
 const ACTION_COOLDOWN: float = 0.7
 var last_state: MobState = MobState.IDLE
 
-
 var dying_sfx:= [
 	preload("uid://dop2en52w7736"),
 	preload("uid://chor7krw8rqjx"),
 	preload("uid://c50c5gtqdjfkc"),
 ]
 
+signal mob_died
+
 func _ready():
 	# Each mob needs its own stats copy; the scene's SubResource is shared by all instances
 	stats = stats.duplicate()
 	call_deferred("_set_player")
 	hit_box.area_shape_entered.connect(_on_hit_box_entered)
-	stats.mob_died.connect(_on_mob_died)
+	stats.mob_died.connect(_on_stats_mob_died)
 	attack_cooldown_time = 0
 	lifebar.max_value = stats.max_health
 	lifebar.value = stats.health
@@ -148,6 +149,7 @@ func _handle_mob_dying(delta: float) -> void:
 	if dying_cooldown > 0.0:
 		dying_cooldown -= delta
 		return
+	mob_died.emit()
 	queue_free()
 
 func _handle_walking(delta: float) -> void:
@@ -173,7 +175,7 @@ func _handle_walking(delta: float) -> void:
 	_apply_standard_conveyor_movement()
 	mob_state = MobState.IDLE
 
-func _on_mob_died() -> void:
+func _on_stats_mob_died() -> void:
 	mob_state = MobState.DYING
 
 func _on_hit_box_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:

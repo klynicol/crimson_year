@@ -145,7 +145,7 @@ func _spawn_greasers(delta: float):
 	var random_enemy_index: int = randi() % WAVES_CONFIG[current_wave]["enemies"].size();
 	var greaser_type: Mob.MobType = WAVES_CONFIG[current_wave]["enemies"][random_enemy_index];
 	var greaser: Mob = random_spawn.spawn_greaser(greaser_type);
-	greaser.stats.mob_died.connect(_on_mob_died)
+	greaser.mob_died.connect(_on_mob_died)
 	enemy_spawn_cooldown = WAVES_CONFIG[current_wave]["enemy_spawn_cooldown"];
 	total_spawned_enemies += 1;
 
@@ -206,6 +206,7 @@ func _on_checkpoint_reached(checkpoint_id: int, body: Node2D):
 
 func _on_mob_died():
 	wave_mob_fragments += 1
+	print("wave_mob_fragments: ", wave_mob_fragments)
 
 func _on_car_died(car: Car):
 	wave_cars_destroyed += 1
