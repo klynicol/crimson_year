@@ -172,6 +172,10 @@ func _spawn_cars(delta: float):
 	car_element.set_sprite(car_sprite_index)
 	car_tracker.add_child(car_element)
 	
+	# cheeky cameo
+	if current_wave == 3 and car_spawn_index == 2:
+		car.get_node("Smalls").visible = true
+	
 	car.car_died.connect(_on_car_died)
 	car_spawn_cooldown = CAR_SPAWN_COOLDOWN;
 

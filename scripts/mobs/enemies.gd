@@ -37,6 +37,11 @@ var last_animation: String = ""
 var action_cooldown: float = 0.0
 const ACTION_COOLDOWN: float = 0.7
 var last_state: MobState = MobState.IDLE
+var dying_sfx:= [
+	preload("uid://dop2en52w7736"),
+	preload("uid://chor7krw8rqjx"),
+	preload("uid://c50c5gtqdjfkc"),
+]
 
 func _ready():
 	# Each mob needs its own stats copy; the scene's SubResource is shared by all instances

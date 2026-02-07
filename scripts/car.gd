@@ -21,6 +21,24 @@ var score_placed: bool = false
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hit_box: Area2D = $HitBox
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+var car_sfx:= [
+	preload("uid://0o7ob0f4773a"),
+	preload("uid://bac6m1er6wv2e"),
+	preload("uid://d12h36wb51c10"),
+	preload("uid://bbhu7ni7wxo8r"),
+	preload("uid://bbpg7qc61lwfy"),
+	preload("uid://jygkhg3smo2e"),
+	preload("uid://o2vw55flfpgg"),
+]
+
+# the values of these enums will also translate to the name
+# of the animation
+enum CarType {
+	CHEVY_BEL_AIR,
+	CADILLAC_DEVILLE
+}
 
 func init(p_car_sprite_index: int, pos: Vector2, p_target_position: Vector2) -> void:
 	car_sprite_index = p_car_sprite_index
@@ -62,6 +80,9 @@ func take_damage(damage: float) -> void:
 	if health <= 0:
 		health = 0
 		car_died.emit()
+		#if !audio_stream_player_2d.playing:
+	audio_stream_player_2d.stream = car_sfx.pick_random()
+	audio_stream_player_2d.play()
 
 func _update_car_damage_animation() -> void:
 	var health_ratio = float(health) / MAX_HEALTH

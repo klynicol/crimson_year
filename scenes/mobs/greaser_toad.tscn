@@ -294,3 +294,5 @@ position = Vector2(3, -28)
 shape = SubResource("CircleShape2D_8ln1w")
 
 [node name="Lifebar" parent="." unique_id=1806635397 instance=ExtResource("7_tp1sg")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=126480715]

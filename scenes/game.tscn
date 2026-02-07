@@ -4,18 +4,39 @@
 [ext_resource type="PackedScene" uid="uid://biwlckbvsdmje" path="res://scenes/world.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dp84ymycgbg8t" path="res://scenes/gui/gui.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bekheq55rmxdh" path="res://scenes/gui/menu.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://dp84ymycgbg8t" path="res://scenes/gui.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bekheq55rmxdh" path="res://scenes/menu.tscn" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://b3r56daoc37r" path="res://assets/sprites/exit.png" id="4_p57ef"]
+[ext_resource type="PackedScene" uid="uid://k5sk4ryuw1kr" path="res://scenes/stoplight.tscn" id="5_iywne"]
 
 [node name="Game" type="Node" unique_id=480520635]
 script = ExtResource("1_lnu2h")
 
 [node name="World" parent="." unique_id=818516590 instance=ExtResource("1_uwrxv")]
 
+[node name="Stoplight" parent="World/YSort" parent_id_path=PackedInt32Array(818516590, 1651747104) index="7" unique_id=120183229 instance=ExtResource("5_iywne")]
+position = Vector2(-6136, 110)
+
+[node name="Stoplight2" parent="World/YSort" parent_id_path=PackedInt32Array(818516590, 1651747104) index="8" unique_id=1205077070 instance=ExtResource("5_iywne")]
+position = Vector2(-6136, 590)
+
+[node name="Exit" type="Sprite2D" parent="World/YSort" parent_id_path=PackedInt32Array(818516590, 1651747104) index="9" unique_id=2778887]
+position = Vector2(433, 589)
+texture = ExtResource("4_p57ef")
+offset = Vector2(56, -94)
+
+[node name="Exit2" type="Sprite2D" parent="World/YSort" parent_id_path=PackedInt32Array(818516590, 1651747104) index="10" unique_id=1646237131]
+position = Vector2(433, 125)
+texture = ExtResource("4_p57ef")
+offset = Vector2(56, -94)
+
+[node name="Rockabily" parent="World" index="24" unique_id=361360882]
+volume_db = -25.0
+
+[node name="Funk" parent="World" index="25" unique_id=1361179680]
+volume_db = -25.0
+
 [node name="Gui" parent="." unique_id=682647447 instance=ExtResource("2_yqjtg")]
-
-[node name="Label2" parent="Gui/Control/MarginContainer/HFlowContainer/EnemyLeftElement" parent_id_path=PackedInt32Array(682647447, 1171541582) index="0" unique_id=299063841]
-layout_mode = 3
-
-[node name="CarTracker" parent="Gui/Control/MarginContainer/HFlowContainer" parent_id_path=PackedInt32Array(682647447, 798093682) index="1" unique_id=1415607422 groups=["car_tracker"]]
 
 [node name="Menu" parent="Gui" unique_id=2024535620 instance=ExtResource("3_lnu2h")]
 
