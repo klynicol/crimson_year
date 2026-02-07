@@ -1,11 +1,23 @@
 class_name GreaserGecko extends Mob
 
 @onready var projectile_emitter: Marker2D = $ProjectileEmitter
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 const PROJECTILE_SCENE: PackedScene = preload("uid://ddqeip5vg2qsl")
+
+
+var spawn_sfx:= [
+	preload("uid://scsiu7fl126"),
+	preload("uid://cjxgxikc0w3ej"),
+	preload("uid://clea0p7johlni"),
+	preload("uid://cflg2ph6g7dw4"),
+]
+var attack_sfx:= preload("uid://c45u8hwdfboor")
 
 func _ready():
 	mob_type = Mob.MobType.GECKO
 	super._ready()
+	audio_stream_player_2d.stream = spawn_sfx.pick_random()
+	audio_stream_player_2d.play()
 
 func _shoot_projectile(target_pos: Vector2) -> void:
 	target_pos += Vector2(150, 0) #account for car movement
@@ -18,6 +30,8 @@ func _shoot_projectile(target_pos: Vector2) -> void:
 	projectile.dir = global_position.angle_to_point(target_pos)
 	projectile.damage = stats.damage
 	World.ySort.add_child(projectile)
+	audio_stream_player_2d.stream = attack_sfx
+	audio_stream_player_2d.play()
 
 func _handle_attack(bodies_in_range: Array[CharacterBody2D], delta: float) -> void:
 	# add on to flip sprite during attack phase

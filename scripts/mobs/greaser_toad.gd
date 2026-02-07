@@ -1,7 +1,13 @@
 class_name GreaserToad extends Mob
 
 @onready var shadow: Sprite2D = $Shadow
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 var starting_shadow_position: Vector2
+var spawn_sfx:= [
+	preload("uid://is3kjlhxvorg"),
+	preload("uid://dl1ub5nea06rv"),
+	preload("uid://s7q26sj8udc5"),
+]
 
 var animation_speed: float
 var hop_time: float
@@ -19,6 +25,8 @@ func _ready():
 	hop_time = float(hop_frame_count) / animation_speed
 	starting_shadow_position = shadow.position
 	super._ready()
+	audio_stream_player_2d.stream = spawn_sfx.pick_random()
+	audio_stream_player_2d.play()
 
 """
 Chase is different for the toad: it "hops" toward the target.
