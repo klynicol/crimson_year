@@ -87,8 +87,8 @@ func _physics_process(delta: float) -> void:
 	_set_sprite_animation()
 	move_and_slide()
 	## !!!! uncomment for debugging !!!!
-	_print_animation_change()	
-	_print_state_change()
+	# _print_animation_change()	
+	# _print_state_change()
 	### !!!! end debugging !!!!
 
 

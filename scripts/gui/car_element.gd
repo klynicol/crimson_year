@@ -17,7 +17,6 @@ func _ready() -> void:
 	x_texture.visible = false
 
 func set_sprite(sprite_index: int) -> void:
-	print("setting sprite: ", sprite_index)
 	texture = SPRITE_OPTIONS[sprite_index]
 
 func on_car_took_damage(damage) -> void:

@@ -38,7 +38,6 @@ func _ready() -> void:
 		funk.play()
 
 func _on_wave_ended() -> void:
-	print("wave ended")
 	show_next_stage_prompt()
 	car_score_container.reset_and_show_scores()
 

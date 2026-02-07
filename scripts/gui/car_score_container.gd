@@ -43,12 +43,10 @@ func _process(delta: float) -> void:
 	if not run_process:
 		return
 	if cooldown > 0:
-		print("cooldown: ", cooldown)
 		cooldown -= delta
 		return
 	var cars_found: bool = false
 	for car in get_tree().get_nodes_in_group("cars"):
-		print("car: ", car.name, " score placed: ", car.score_placed)
 		if car.score_placed:
 			continue
 		car.score_placed = true

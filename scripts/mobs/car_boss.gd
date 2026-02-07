@@ -67,7 +67,6 @@ func _shoot_projectile(target_pos: Vector2) -> void:
 	# audio_stream_player_2d.play()
 
 func _shoot_projectile_smoke(target_pos: Vector2) -> void:
-	print("shooting smoke projectile", target_pos)
 	var emitter_pos: Vector2 = emitters["smoke"].global_position
 	var projectile = projectiles["smoke"].instantiate()
 	projectile.global_position = emitter_pos
@@ -76,7 +75,6 @@ func _shoot_projectile_smoke(target_pos: Vector2) -> void:
 	World.ySort.add_child(projectile)
 
 func _shoot_projectile_gunk(target_pos: Vector2) -> void:
-	print("shooting gunk projectile", target_pos)
 	var emitter_pos: Vector2 = emitters["gunk"].global_position
 	var projectile = projectiles["gunk"].instantiate()
 	projectile.scale_decay_rate = 1.5
@@ -86,7 +84,6 @@ func _shoot_projectile_gunk(target_pos: Vector2) -> void:
 	World.ySort.add_child(projectile)
 
 func _shoot_projectile_comb(target_pos: Vector2) -> void:
-	print("shooting comb projectile", target_pos)
 	var emitter_pos: Vector2 = emitters["comb"].global_position
 	var projectile = projectiles["comb"].instantiate()
 	projectile.scale_decay_rate = 1.5
@@ -159,11 +156,6 @@ func chase(target_pos: Vector2, delta: float) -> void:
 	if velocity.length() > stats.speed:
 		velocity = velocity.normalized() * stats.speed
 
-	# print("velocity: ", velocity)
-
-# func _handle_attack(delta: float) -> void:
-# 	pass
-
 
 func _collect_lane_markers():
 	max_positions.clear()
@@ -178,6 +170,5 @@ func trigger_sound() -> void:
 	if sound[1]:
 		return
 	sound[1] = true
-	print("triggering sound: ", sound[0])
 	audio_player.stream = sound[0]
 	audio_player.play()
