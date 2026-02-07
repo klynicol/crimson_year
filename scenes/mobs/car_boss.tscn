@@ -14,7 +14,7 @@ max_health = 5000
 speed = 220.0
 damage = 10
 knockback_speed = 120.0
-attack_cooldown = 1.5
+attack_cooldown = 1.1
 attack_range = 600.0
 metadata/_custom_type_script = "uid://csdolyo5rtfno"
 

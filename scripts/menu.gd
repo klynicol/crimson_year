@@ -5,7 +5,7 @@ extends Control
 @onready var game: Game = get_node("/root/Game")
 const INSTRUCTIONS_POPUP = preload("uid://ctrjieuehfaph")
 const OPTIONS_POPUP = preload("uid://b71urgpjn1yg6")
-signal connect_control_method
+signal connect_control_method(options_popup: Node)
 
 # connect all the buttons programmatically in case menu can be called back up mid-game??
 func _ready() -> void:
@@ -37,7 +37,7 @@ func show_options() -> void:
 	tween.tween_property(options_instance, "modulate", Color.hex(0xffffffff), 0.5)
 	# this signal tells game.gd when options_popup exists, so it can connect options_popup.gd's control_method_changed
 	# signal programmatically 
-	connect_control_method.emit()
+	connect_control_method.emit(options_instance)
 
 func tween_in() -> void:
 	var tween := create_tween()

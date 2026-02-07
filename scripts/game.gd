@@ -1,5 +1,6 @@
 class_name Game extends Node
 
+@onready var menu: Control = $Gui/Menu
 @onready var next_stage_button: BaseButton = get_tree().get_first_node_in_group("next_stage_button")
 @onready var retry_button: BaseButton = get_tree().get_first_node_in_group("retry_button")
 @onready var car_score_container: CarScoreContainer = get_tree().get_first_node_in_group("car_score_container")
@@ -27,6 +28,7 @@ const CAR_GRADES = [
 ];
 
 func _ready() -> void:
+	menu.connect_control_method.connect(_on_options_opened)
 	retry_button.pressed.connect(_on_retry_pressed)
 	next_stage_button.pressed.connect(_on_next_stage_pressed)
 	stage.wave_ended.connect(_on_wave_ended)
@@ -71,7 +73,10 @@ func start_pressed() -> void:
 	# Release focus from the Play button so Space (dash) doesn't re-trigger this and call prepare_for_wave again
 	get_viewport().gui_release_focus()
 
-# this function receives the signal from the options_popup.gd
+func _on_options_opened(options_popup: Node) -> void:
+	if options_popup.has_signal("control_method_changed"):
+		options_popup.control_method_changed.connect(_on_control_method_changed)
+
 func _on_control_method_changed(control_method) -> void:
 	character.control_type = control_method
 

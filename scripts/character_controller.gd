@@ -33,6 +33,9 @@ enum ControlMode{
 	GAMEPAD
 }
 
+# When true, control mode auto-switches based on last input device used
+@export var auto_detect_control: bool = true
+
 signal player_died
 signal player_respawned
 
@@ -58,6 +61,14 @@ var anim_directions = {
 		["left_dash", "left_dash"],
 	],
 }
+
+func _input(event: InputEvent) -> void:
+	if not auto_detect_control:
+		return
+	if event is InputEventJoypadMotion or event is InputEventJoypadButton:
+		control_type = ControlMode.GAMEPAD
+	elif event is InputEventMouse or event is InputEventMouseButton or event is InputEventKey:
+		control_type = ControlMode.KEYBOARD
 
 func _physics_process(_delta: float) -> void:
 	if Game.paused:
