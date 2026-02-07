@@ -5,7 +5,7 @@ class_name Game extends Node
 @onready var character: PlayerController = $World/YSort/Character
 
 #music
-const PLAY_MUSIC: bool = false
+const PLAY_MUSIC: bool = true
 @onready var rockabily: AudioStreamPlayer = $World/Rockabily
 @onready var funk: AudioStreamPlayer = $World/Funk
 

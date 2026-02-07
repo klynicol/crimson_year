@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://disbfj0oegbi2" path="res://scenes/checkpoint.tscn" id="11_e3hyu"]
 [ext_resource type="Script" uid="uid://mxv5831yxi0l" path="res://scripts/stage_manager.gd" id="11_q5onr"]
 [ext_resource type="PackedScene" uid="uid://b1jmns3xk5xp2" path="res://scenes/placeables/rollers.tscn" id="12_q5onr"]
-[ext_resource type="AudioStream" uid="uid://mkuwbrdhlnsr" path="res://sounds/music/RaB02-2.mp3" id="14_o8fc1"]
-[ext_resource type="AudioStream" uid="uid://dqhpush0weskc" path="res://sounds/music/Funk01_progress2.mp3" id="15_xo05s"]
+[ext_resource type="AudioStream" uid="uid://4gm757d3s3v0" path="res://audio/music/Carwash-Rock.wav" id="14_o8fc1"]
+[ext_resource type="AudioStream" uid="uid://cir23plntg0kd" path="res://audio/music/Carwash-Funk.wav" id="15_xo05s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_71j4m"]
 

@@ -28,8 +28,13 @@ position = Vector2(433, 125)
 texture = ExtResource("4_p57ef")
 offset = Vector2(56, -94)
 
+[node name="Rockabily" parent="World" index="24" unique_id=361360882]
+volume_db = -25.0
+
+[node name="Funk" parent="World" index="25" unique_id=1361179680]
+volume_db = -25.0
+
 [node name="Gui" parent="." unique_id=682647447 instance=ExtResource("2_yqjtg")]
-visible = false
 
 [node name="Menu" parent="Gui" unique_id=2024535620 instance=ExtResource("3_lnu2h")]
 

@@ -4,12 +4,13 @@
 [ext_resource type="Script" uid="uid://bqllq5gpx87yh" path="res://scripts/menu.gd" id="2_4ytvr"]
 [ext_resource type="Shader" uid="uid://d4ahrrh7pekph" path="res://shaders/sliding_background.gdshader" id="2_mhnvy"]
 [ext_resource type="Texture2D" uid="uid://djc1xfk35nder" path="res://assets/sprites/lizard/Greaser_Lizard_lrg_vint.png" id="3_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://d0xwgasy0deb2" path="res://assets/menu_gui/poster.png" id="5_4ytvr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g3eks"]
 shader = ExtResource("2_mhnvy")
 shader_parameter/pattern_sampler = ExtResource("3_4ytvr")
 shader_parameter/bg_color = Color(0.78039217, 0.5529412, 1, 1)
-shader_parameter/pattern_color = Color(0, 0.32249647, 0, 1)
+shader_parameter/pattern_color = Color(0.2589684, 0.2170777, 0.44431737, 1)
 shader_parameter/pattern_size = 150.0
 
 [node name="Menu" type="Control" unique_id=2024535620]
@@ -34,6 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleCard" type="RichTextLabel" parent="." unique_id=1329092805]
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -50,55 +52,70 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 100
 text = "PLACEHOLDER"
 
-[node name="PlayBtn" type="Button" parent="." unique_id=614155195]
-unique_name_in_owner = true
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1139981814]
 z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -316.0
+offset_top = -325.0
+offset_right = 333.0
+offset_bottom = 324.0
+texture = ExtResource("5_4ytvr")
+expand_mode = 1
+
+[node name="PlayBtn" type="Button" parent="TextureRect" unique_id=614155195]
+unique_name_in_owner = true
+z_index = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -114.99997
-offset_top = -73.0
-offset_right = 40.0
-offset_bottom = -24.0
+offset_left = -123.5
+offset_top = -72.5
+offset_right = 31.5
+offset_bottom = -23.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.3278985, 1.3278985)
 text = "PLAY GAEM"
 
-[node name="InstructionsBtn" type="Button" parent="." unique_id=1703166879]
+[node name="InstructionsBtn" type="Button" parent="TextureRect" unique_id=1703166879]
 unique_name_in_owner = true
-z_index = 1
+z_index = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -79.99997
-offset_top = 9.0
-offset_right = 22.0
-offset_bottom = 58.0
+offset_left = -88.5
+offset_top = 9.5
+offset_right = 13.5
+offset_bottom = 58.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.3278985, 1.3278985)
 text = "HOW???"
 
-[node name="OptionsBtn" type="Button" parent="." unique_id=1452557018]
+[node name="OptionsBtn" type="Button" parent="TextureRect" unique_id=1452557018]
 unique_name_in_owner = true
-z_index = 1
+z_index = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -153.0
-offset_top = 94.00003
-offset_right = 78.0
-offset_bottom = 143.00003
+offset_left = -161.5
+offset_top = 94.50003
+offset_right = 69.5
+offset_bottom = 143.50003
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.3278985, 1.3278985)
