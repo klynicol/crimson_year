@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c50c5gtqdjfkc"
+path="res://.godot/imported/lowlelo.wav-ccc464e4341c2e5c5f7d841245f26da8.sample"
+
+[deps]
+
+source_file="res://audio/sfx/actual effect/lelolelo/lowlelo.wav"
+dest_files=["res://.godot/imported/lowlelo.wav-ccc464e4341c2e5c5f7d841245f26da8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
