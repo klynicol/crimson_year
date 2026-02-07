@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dkstf1ntwso8s"
+path="res://.godot/imported/nice ride.wav-1cfe30e230b761a12d213e1040e5abb3.sample"
+
+[deps]
+
+source_file="res://assets/menu_gui/grade_sounds/nice ride.wav"
+dest_files=["res://.godot/imported/nice ride.wav-1cfe30e230b761a12d213e1040e5abb3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

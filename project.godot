@@ -34,6 +34,9 @@ player=""
 enemy_count_label=""
 wave_num_label=""
 car_tracker=""
+car_score_container=""
+retry_button=""
+next_stage_button=""
 
 [gui]
 

@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://0h71hybe2xdp"]
+[gd_scene format=3 uid="uid://bipyyy7jksdn6"]
 
 [ext_resource type="Texture2D" uid="uid://bd4mafve8wblx" path="res://assets/menu_gui/enemies.png" id="1_4cyo1"]
-[ext_resource type="Script" uid="uid://et4pwp486ak" path="res://scripts/car_element.gd" id="2_nbcc0"]
+[ext_resource type="Script" uid="uid://et4pwp486ak" path="res://scripts/gui/car_element.gd" id="2_ifs0x"]
 [ext_resource type="FontFile" uid="uid://cdcg16qh0f6pk" path="res://assets/FingerPaint-Regular.ttf" id="3_1hjbi"]
 
 [node name="EnemyLeftElement" type="TextureRect" unique_id=1171541582]
 texture_filter = 1
 texture = ExtResource("1_4cyo1")
 stretch_mode = 2
-script = ExtResource("2_nbcc0")
+script = ExtResource("2_ifs0x")
 
 [node name="Label" type="Label" parent="." unique_id=1245253426 groups=["enemy_count_label"]]
 layout_mode = 0

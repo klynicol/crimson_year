@@ -1,6 +1,7 @@
-extends TextureRect
+class_name CarElement extends TextureRect
 
 @onready var car_healthbar: ProgressBar = $CarHealthbar
+@onready var x_texture: TextureRect = $XTexture
 var car: Car
 
 const SPRITE_OPTIONS = [
@@ -13,16 +14,23 @@ const SPRITE_OPTIONS = [
 func _ready() -> void:
 	call_deferred("_set_sprite")
 	car.car_took_damage.connect(on_car_took_damage)
+	car.reached_end_checkpoint_signal.connect(_on_reached_end_checkpoint)
+	x_texture.visible = false
 
 func set_sprite(sprite_index: int) -> void:
+	print("setting sprite: ", sprite_index)
 	texture = SPRITE_OPTIONS[sprite_index]
 
 func on_car_took_damage(damage) -> void:
 	car_healthbar.value -= damage
 	if car_healthbar.value <= 0:
-		queue_free()
+		car_healthbar.visible = false
+		x_texture.visible = true
 
 func get_car_progress() -> float:
 	if car == null:
 		return 0.0
 	return car.get_progress()
+
+func _on_reached_end_checkpoint() -> void:
+	queue_free()
