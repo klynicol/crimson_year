@@ -26,6 +26,26 @@ region = Rect2(2250, 0, 750, 375)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_72ys1"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"dying",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3es33")
@@ -58,9 +78,8 @@ lifebar = NodePath("Lifebar")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1921947143]
 position = Vector2(-5, -107)
 sprite_frames = SubResource("SpriteFrames_72ys1")
-animation = &"walk"
+animation = &"dying"
 autoplay = "walk"
-frame_progress = 0.29279712
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1744847645]
 position = Vector2(1, -31.5)

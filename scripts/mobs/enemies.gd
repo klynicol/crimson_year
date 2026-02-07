@@ -52,6 +52,13 @@ func _ready():
 	attack_cooldown_time = 0
 	lifebar.max_value = stats.max_health
 	lifebar.value = stats.health
+	_set_dying_cooldown_time()
+
+# Dying cooldown time is based on the "dying" animation length
+# Let's calculate it based on the animation length and add a slight buffer
+func _set_dying_cooldown_time() -> void:
+	var frame_duration: float = sprite.sprite_frames.get_frame_duration("dying", frame_count - 1)
+	dying_cooldown = frame_duration
 
 func _set_player():
 	player = get_tree().get_first_node_in_group("player")
@@ -130,8 +137,9 @@ func _handle_mob_hurt(delta: float) -> void:
 	sprite.flip_h = velocity.x > 0
 
 func _handle_mob_dying(delta: float) -> void:
-	_apply_standard_conveyor_movement()
+	_decelerate_to_zero_velocity(delta)
 	if dying_cooldown > 0.0:
+		print("dying cooldown: ", dying_cooldown)
 		dying_cooldown -= delta
 		return
 	queue_free()

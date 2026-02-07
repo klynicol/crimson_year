@@ -8,7 +8,7 @@ class_name Game extends Node
 @onready var end_wave_container: Container = $Gui/Control/EndWaveContainer
 
 #music
-const PLAY_MUSIC: bool = true
+const PLAY_MUSIC: bool = false
 @onready var rockabily: AudioStreamPlayer = $World/Rockabily
 @onready var funk: AudioStreamPlayer = $World/Funk
 @onready var boss_funk: AudioStreamPlayer = $World/BossFunk
@@ -80,6 +80,8 @@ func _input(event: InputEvent) -> void:
 		paused = not paused
 
 func _on_boss_spawned(boss: Node) -> void:
+	if not PLAY_MUSIC:
+		return
 	# We should fade the rockabily music out and fade in the boss funk music
 	boss_funk.volume_db = -30.0
 	boss_funk.play()

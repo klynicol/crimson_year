@@ -53,10 +53,10 @@ const WAVES_CONFIG = {
 	# 	"enemy_spawn_cooldown" : 1.2,
 	# },
 	3: {
-		"cars": 2,
+		"cars": 1,
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD, Mob.MobType.GECKO],
 		"boss": preload("uid://bl7oj4s8kldv8"), # CarBoss
-		"enemy_max_qty" : 0,
+		"enemy_max_qty" : 2,
 		# "enemy_max_qty" : 120,
 		"enemy_max_alive" : 20,
 		"enemy_spawn_cooldown" : 1,
