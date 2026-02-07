@@ -67,7 +67,8 @@ func _on_hit_box_entered(area: Area2D) -> void:
 		return
 	var projectile = area.get_parent()
 	take_damage(projectile.damage)
-	projectile.queue_free()
+	# projectile.queue_free()
+	projectile.hit = true
 
 func set_new_target_position(new_target_position: Vector2) -> void:
 	target_position = new_target_position

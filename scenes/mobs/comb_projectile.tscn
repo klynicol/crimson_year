@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bh4i723at2vbs"]
+
+[ext_resource type="Script" uid="uid://dxu754bj65jb" path="res://scripts/mobs/smoke_projectile.gd" id="1_v4uub"]
+[ext_resource type="Texture2D" uid="uid://dubbdrpjap66f" path="res://assets/sprites/boss/Switch-Comb_projectile-Sheet.png" id="2_v4uub"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4p4o"]
+atlas = ExtResource("2_v4uub")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cw2n"]
+atlas = ExtResource("2_v4uub")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pqkx"]
+atlas = ExtResource("2_v4uub")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucvae"]
+atlas = ExtResource("2_v4uub")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_31g2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4p4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cw2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pqkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucvae")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2nhcg"]
+radius = 13.0
+
+[node name="CombProjectile" type="CharacterBody2D" unique_id=932765294]
+script = ExtResource("1_v4uub")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=714622206]
+sprite_frames = SubResource("SpriteFrames_31g2f")
+autoplay = "default"
+frame_progress = 0.4399527
+
+[node name="CarDamageProjectile" type="Area2D" parent="." unique_id=687228729]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarDamageProjectile" unique_id=1928574666]
+shape = SubResource("CircleShape2D_2nhcg")

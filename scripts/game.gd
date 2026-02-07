@@ -8,7 +8,7 @@ class_name Game extends Node
 @onready var end_wave_container: Container = $Gui/Control/EndWaveContainer
 
 #music
-const PLAY_MUSIC: bool = false
+const PLAY_MUSIC: bool = true
 @onready var rockabily: AudioStreamPlayer = $World/Rockabily
 @onready var funk: AudioStreamPlayer = $World/Funk
 @onready var boss_funk: AudioStreamPlayer = $World/BossFunk

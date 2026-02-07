@@ -15,6 +15,7 @@ const ATTACK_RANGE_BUFFER: float = 80
 @export var sprite: AnimatedSprite2D
 @export var hit_box: Area2D
 @export var attack_box: Area2D
+@export var attack_frame: int
 
 # please use the lifebar scene for this one, it includes a script and a timer to fade back out after a couple of seconds.
 @export var lifebar: ProgressBar
@@ -38,6 +39,7 @@ var last_animation: String = ""
 var action_cooldown: float = 0.0
 const ACTION_COOLDOWN: float = 0.7
 var last_state: MobState = MobState.IDLE
+
 
 var dying_sfx:= [
 	preload("uid://dop2en52w7736"),
@@ -186,6 +188,33 @@ func _on_hit_box_entered(area_rid: RID, area: Area2D, area_shape_index: int, loc
 	if damage > 0:
 		stats.take_water_damage(damage)
 		_flash_lifebar()
+
+func _handle_attack(bodies_in_range: Array[CharacterBody2D], delta: float) -> void:
+	mob_state = MobState.ATTACKING
+	action_cooldown = ACTION_COOLDOWN
+	if attack_cooldown_time > 0.0:
+		attack_cooldown_time -= delta
+		return
+	if not _attack_alligns_with_sprite_frame():
+		# Wait for the right frame
+		attack_cooldown_time = 0
+		return
+	for body in bodies_in_range:
+		if stats.attack_range > 0:
+			_shoot_projectile(body.global_position)
+		else:
+			body.take_damage(stats.damage)
+	attack_cooldown_time = stats.attack_cooldown
+
+# must override in child classes
+func _shoot_projectile(target_pos: Vector2) -> void:
+	pass
+
+# Helper function to check if the attack aligns with the sprite frame
+func _attack_alligns_with_sprite_frame() -> bool:
+	if sprite.frame != attack_frame:
+		return false
+	return true
 
 ### !!!! Helper Functions !!!! ###
 

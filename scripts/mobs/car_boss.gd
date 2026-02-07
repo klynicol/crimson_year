@@ -2,8 +2,7 @@ class_name CarBoss extends Boss
 
 const PROJECTILE_SCENE: PackedScene = preload("uid://ddqeip5vg2qsl")
 
-# const SPAWN_COOLDOWN: float = 3
-const SPAWN_COOLDOWN: float = 0.1 #TESTING
+const SPAWN_COOLDOWN: float = 3
 
 const WOBBLE_ANGLE_DEG: float = 10
 const WOBBLE_SPEED: float = 0.4
@@ -14,7 +13,20 @@ var _spawn_completed: bool = false
 var _wobble_time: float = 0.0
 var _direction_change_cooldown: float = 0.0
 
+
+
 @onready var boss_markers: Node2D = $/root/Game/World/BossMarkers
+@onready var emitters := {
+	"smoke": $SmokeEmitter,
+	"gunk": $GunkEmitter,
+	"comb":$CombEmitter,
+}
+
+const projectiles := {
+	"smoke": preload("uid://ddqeip5vg2qsl"),
+	"gunk": preload("uid://55b0h1hqgo2b"),
+	"comb": preload("uid://bh4i723at2vbs"),
+}
 
 # [sound, played]
 var sounds := [
@@ -45,6 +57,43 @@ func _ready() -> void:
 
 func _handle_mob_hurt(delta: float) -> void:
 	pass
+
+func _shoot_projectile(target_pos: Vector2) -> void:
+	# target_pos += Vector2(150, 0) #account for car movement
+	_shoot_projectile_smoke(target_pos)
+	_shoot_projectile_gunk(target_pos)
+	_shoot_projectile_comb(target_pos)
+	# audio_stream_player_2d.stream = attack_sfx
+	# audio_stream_player_2d.play()
+
+func _shoot_projectile_smoke(target_pos: Vector2) -> void:
+	print("shooting smoke projectile", target_pos)
+	var emitter_pos: Vector2 = emitters["smoke"].global_position
+	var projectile = projectiles["smoke"].instantiate()
+	projectile.global_position = emitter_pos
+	projectile.dir = emitter_pos.angle_to_point(target_pos)
+	projectile.damage = stats.damage
+	World.ySort.add_child(projectile)
+
+func _shoot_projectile_gunk(target_pos: Vector2) -> void:
+	print("shooting gunk projectile", target_pos)
+	var emitter_pos: Vector2 = emitters["gunk"].global_position
+	var projectile = projectiles["gunk"].instantiate()
+	projectile.scale_decay_rate = 1.5
+	projectile.global_position = emitter_pos
+	projectile.dir = emitter_pos.angle_to_point(target_pos)
+	projectile.damage = stats.damage
+	World.ySort.add_child(projectile)
+
+func _shoot_projectile_comb(target_pos: Vector2) -> void:
+	print("shooting comb projectile", target_pos)
+	var emitter_pos: Vector2 = emitters["comb"].global_position
+	var projectile = projectiles["comb"].instantiate()
+	projectile.scale_decay_rate = 1.5
+	projectile.global_position = emitter_pos
+	projectile.dir = emitter_pos.angle_to_point(target_pos)
+	projectile.damage = stats.damage
+	World.ySort.add_child(projectile)
 
 func _physics_process(delta: float) -> void:
 	hit_this_cycle = false
@@ -112,6 +161,8 @@ func chase(target_pos: Vector2, delta: float) -> void:
 
 	# print("velocity: ", velocity)
 
+# func _handle_attack(delta: float) -> void:
+# 	pass
 
 
 func _collect_lane_markers():

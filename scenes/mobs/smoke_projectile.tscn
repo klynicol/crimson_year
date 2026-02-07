@@ -47,6 +47,7 @@ script = ExtResource("1_8xhdw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=714622206]
 sprite_frames = SubResource("SpriteFrames_31g2f")
+autoplay = "default"
 frame_progress = 0.16517687
 
 [node name="CarDamageProjectile" type="Area2D" parent="." unique_id=687228729]

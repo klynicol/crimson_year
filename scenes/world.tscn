@@ -178,10 +178,10 @@ position = Vector2(-255, 303)
 position = Vector2(-1736, 282)
 
 [node name="Checkpoint3" parent="." unique_id=957996479 instance=ExtResource("11_e3hyu")]
-position = Vector2(-3189, 284)
+position = Vector2(-2659, 287)
 
 [node name="Checkpoint4" parent="." unique_id=1059410975 instance=ExtResource("11_e3hyu")]
-position = Vector2(-6075, 290)
+position = Vector2(-4674, 271)
 
 [node name="Checkpoint5" parent="." unique_id=2088446494 groups=["start_checkpoint"] instance=ExtResource("11_e3hyu")]
 position = Vector2(-6401, 285)

@@ -12,7 +12,6 @@ const SPRITE_OPTIONS = [
 ]
 
 func _ready() -> void:
-	call_deferred("_set_sprite")
 	car.car_took_damage.connect(on_car_took_damage)
 	car.reached_end_checkpoint_signal.connect(_on_reached_end_checkpoint)
 	x_texture.visible = false

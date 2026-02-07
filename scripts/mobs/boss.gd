@@ -38,21 +38,24 @@ func _check_state(delta: float) -> void:
 	# 	return
 	# # Last resort, just chase the target
 	_handle_walking(delta)
+	var bodies_in_range: Array[CharacterBody2D] = _get_bodies_in_attack_range()
+	if bodies_in_range.size() > 0:
+		_handle_attack(bodies_in_range, delta)
 
 #override
 func _handle_mob_dying(delta: float) -> void:
 	super._handle_mob_dying(delta)
 
 #override
-func _handle_attack(bodies_in_range: Array[CharacterBody2D], delta: float) -> void:
-	pass
-	
-func _get_bodies_in_attack_range() -> Array[CharacterBody2D]:
-	return []
-
-#override
 func _find_and_chase_target(delta: float) -> void:
 	super._handle_walking(delta)
+#override
+func _handle_attack(bodies_in_range: Array[CharacterBody2D], delta: float) -> void:
+	super._handle_attack(bodies_in_range, delta)
+
+#override
+func _get_bodies_in_attack_range() -> Array[CharacterBody2D]:
+	return super._get_bodies_in_attack_range()
 
 func _on_hit_box_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.name != "WaterDamage":

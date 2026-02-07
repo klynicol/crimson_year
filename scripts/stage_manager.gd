@@ -4,8 +4,7 @@ var checkpoints : Dictionary[int, Checkpoint];
 var greaser_spawns: Array[Node];
 const START_CHECKPOINT_ID: int = 5;
 const END_CHECKPOINT_ID: int = 0;
-const BOSS_CHECKPOINT_ID: int = 4;
-# const BOSS_CHECKPOINT_ID: int = 3; #TESTING
+const BOSS_CHECKPOINT_ID: int = 3
 const BOSS_SPAWN_LOCATION: Vector2 = Vector2(-255, 303);
 
 var world: World;
@@ -36,28 +35,27 @@ signal wave_ended
 const CAR_ELEMENT = preload("uid://37hy3p7j2b7y")
 
 const WAVES_CONFIG = {
-	# 1: {
-	# 	"cars": 2,
-	# 	"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
-	# 	"boss": null,
-	# 	"enemy_max_qty" : 50,
-	# 	"enemy_max_alive" : 10,
-	# 	"enemy_spawn_cooldown" : 1.6,
-	# },
-	# 2: {
-	# 	"cars": 2,
-	# 	"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD, Mob.MobType.GECKO],
-	# 	"boss": null,
-	# 	"enemy_max_qty" : 100,
-	# 	"enemy_max_alive" : 15,
-	# 	"enemy_spawn_cooldown" : 1.2,
-	# },
+	1: {
+		"cars": 2,
+		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD],
+		"boss": null,
+		"enemy_max_qty" : 50,
+		"enemy_max_alive" : 10,
+		"enemy_spawn_cooldown" : 1.6,
+	},
+	2: {
+		"cars": 2,
+		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD, Mob.MobType.GECKO],
+		"boss": null,
+		"enemy_max_qty" : 100,
+		"enemy_max_alive" : 15,
+		"enemy_spawn_cooldown" : 1.2,
+	},
 	3: {
-		"cars": 5,
+		"cars": 2,
 		"enemies": [Mob.MobType.LIZARD, Mob.MobType.TOAD, Mob.MobType.GECKO],
 		"boss": preload("uid://bl7oj4s8kldv8"), # CarBoss
-		"enemy_max_qty" : 2,
-		# "enemy_max_qty" : 120,
+		"enemy_max_qty" : 120,
 		"enemy_max_alive" : 20,
 		"enemy_spawn_cooldown" : 1,
 	},
@@ -99,7 +97,7 @@ func _process_wave(delta: float):
 	if not should_process_wave:
 		return
 	_spawn_cars(delta)
-	# _spawn_enemies(delta) #TESTING
+	_spawn_enemies(delta)
 	_update_enemy_count_label()
 	check_wave_end()
 
@@ -129,8 +127,8 @@ func _spawn_enemies(delta: float):
 	_spawn_greasers(delta)
 
 func _spawn_greasers(delta: float):
-	if wave_boss_spawned:
-		return
+	# if wave_boss_spawned:
+	# 	return
 	if total_spawned_enemies >= WAVES_CONFIG[current_wave]["enemy_max_qty"]:
 		return
 	if enemy_spawn_cooldown > 0.0:
@@ -202,7 +200,7 @@ func _on_checkpoint_reached(checkpoint_id: int, body: Node2D):
 	if not (body is Car):
 		return
 	if checkpoint_id == BOSS_CHECKPOINT_ID:
-		_spawn_boss()
+		call_deferred("_spawn_boss")
 	if checkpoint_id == END_CHECKPOINT_ID:
 		body.on_reached_end_checkpoint()
 
