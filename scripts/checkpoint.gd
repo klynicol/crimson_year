@@ -18,5 +18,5 @@ func _on_body_entered(body: Node2D) -> void:
 func spawn_car(car_sprite_index: int, target_position: Vector2) -> Car:
 	var car = Car.PACKED_SCENE.instantiate()
 	car.init(car_sprite_index, global_position, target_position)
-	World.ySort.add_child(car)
+	World.ySort.get_node("HideCarMask").add_child(car)
 	return car
