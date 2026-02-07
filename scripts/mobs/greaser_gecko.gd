@@ -16,8 +16,9 @@ var attack_sfx:= preload("uid://c45u8hwdfboor")
 func _ready():
 	mob_type = Mob.MobType.GECKO
 	super._ready()
-	audio_stream_player_2d.stream = spawn_sfx.pick_random()
-	audio_stream_player_2d.play()
+	if roll_for_oneliner() == true:
+		audio_stream_player_2d.stream = spawn_sfx.pick_random()
+		audio_stream_player_2d.play()
 
 func _shoot_projectile(target_pos: Vector2) -> void:
 	target_pos += Vector2(150, 0) #account for car movement
@@ -38,3 +39,10 @@ func _handle_attack(bodies_in_range: Array[CharacterBody2D], delta: float) -> vo
 	if bodies_in_range.size() > 0 and bodies_in_range[0].global_position.x > global_position.x:
 		sprite.flip_h = true
 	super._handle_attack(bodies_in_range, delta)
+	
+func roll_for_oneliner() -> bool:
+	var roll = [1, 2].pick_random()
+	if roll == 2:
+		return true
+	else:
+		return false
