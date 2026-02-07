@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://q5qoq5jv67nm"
+path="res://.godot/imported/pop.wav-b8cf183bf9248a43cdfddbfdaf1b4057.sample"
+
+[deps]
+
+source_file="res://audio/sfx/actual effect/pop.wav"
+dest_files=["res://.godot/imported/pop.wav-b8cf183bf9248a43cdfddbfdaf1b4057.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

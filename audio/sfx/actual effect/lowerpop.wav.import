@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hobmi1vu5r"
+path="res://.godot/imported/lowerpop.wav-97a92885ae2034e38ef66a086c9c0e72.sample"
+
+[deps]
+
+source_file="res://audio/sfx/actual effect/lowerpop.wav"
+dest_files=["res://.godot/imported/lowerpop.wav-97a92885ae2034e38ef66a086c9c0e72.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

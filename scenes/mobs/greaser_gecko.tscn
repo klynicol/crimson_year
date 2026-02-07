@@ -261,3 +261,5 @@ shape = SubResource("CapsuleShape2D_lnwn7")
 
 [node name="ProjectileEmitter" type="Marker2D" parent="." unique_id=1322531445]
 position = Vector2(-91, -98)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1708660818]

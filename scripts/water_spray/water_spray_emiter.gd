@@ -7,6 +7,8 @@ extends Node2D
 @onready var emit_point_flipped: Marker2D = $"../Sprayer/EmitPointFlipped"
 @onready var debug_label: Label = get_tree().current_scene.get_node_or_null("Gui/Control/Label")
 @onready var player_sprite: AnimatedSprite2D = $"../AnimatedSprite2D"
+@onready var spray_sfx: AudioStreamPlayer2D = $"../spray_sfx"
+
 @export var projectile_speed = 400
 
 const MAX_SCALE_X = 9.0
@@ -49,8 +51,10 @@ func _process(delta: float) -> void:
 			sprayer.visible = true
 			shoot()
 			cooldown = cooldown_time
+			spray_sfx.play()
 	else:
 		sprayer.visible = false
+		spray_sfx.stop()
 	cooldown -= delta
 
 func shoot() -> void:
@@ -82,6 +86,7 @@ func shoot() -> void:
 			sprayer.position = Vector2(0, 0)
 	else:
 		sprayer.position = Vector2(0, 0)
+
 
 	## Get the position of the sprayer based on sprite and frame
 	# var origin_definition
