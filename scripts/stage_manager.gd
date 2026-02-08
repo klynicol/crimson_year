@@ -208,7 +208,7 @@ func _on_mob_died():
 	wave_mob_fragments += 1
 	print("wave_mob_fragments: ", wave_mob_fragments)
 
-func _on_car_died(car: Car):
+func _on_car_died():
 	wave_cars_destroyed += 1
 
 # Called when the player clicks "Next Stage" in the GUI

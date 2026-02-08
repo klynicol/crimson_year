@@ -60,6 +60,7 @@ func _process(delta: float) -> void:
 		break
 	if not cars_found:
 		run_process = false
+		placed_car_score.emit()
 
 #Variant interpolate_value(initial_value: Variant, delta_value: Variant, elapsed_time: float, duration: float, trans_type: TransitionType, ease_type: EaseType) static
 func first_tween_car_score(node: CarScore) -> void:
@@ -81,7 +82,7 @@ func second_tween_car_score(node: CarScore) -> void:
 	audio_player.stream = SMACK_SOUND
 	audio_player.play()
 	node.play_sound()
-	placed_car_score.emit()
+	
 
 func clear_children() -> void:
 	for child in get_children():

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://byqhp4f42ros3" path="res://assets/sprites/boss/Car_boss_flip_atk-Sheet.png" id="3_x82i0"]
 [ext_resource type="PackedScene" uid="uid://djowbeb05s5os" path="res://scenes/lifebar.tscn" id="4_3es33"]
 [ext_resource type="Texture2D" uid="uid://7mluljjat5eu" path="res://assets/sprites/boss/Car_boss_flip_death-Sheet.png" id="4_6njw6"]
+[ext_resource type="AudioStream" uid="uid://up323uc0xsbb" path="res://audio/sfx/boss_engine/Car_engine-loop-01.wav" id="8_v11r1"]
 
 [sub_resource type="Resource" id="Resource_3es33"]
 script = ExtResource("2_72ys1")
@@ -260,8 +261,8 @@ texture = ExtResource("3_10vmn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1921947143]
 position = Vector2(-5, -107)
 sprite_frames = SubResource("SpriteFrames_72ys1")
-animation = &"attack"
-frame = 4
+animation = &"walk"
+autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1744847645]
 position = Vector2(1, -31.5)
@@ -287,3 +288,8 @@ position = Vector2(147, -177)
 
 [node name="CombEmitter" type="Marker2D" parent="." unique_id=545700726]
 position = Vector2(257, -214)
+
+[node name="CarEngineLoop" type="AudioStreamPlayer2D" parent="." unique_id=1425140960]
+stream = ExtResource("8_v11r1")
+volume_db = -10.0
+playback_type = 1

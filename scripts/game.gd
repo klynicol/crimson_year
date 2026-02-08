@@ -13,6 +13,11 @@ const PLAY_MUSIC: bool = true
 @onready var rockabily: AudioStreamPlayer = $World/Rockabily
 @onready var funk: AudioStreamPlayer = $World/Funk
 @onready var boss_funk: AudioStreamPlayer = $World/BossFunk
+@onready var end_screen_music: AudioStreamPlayer = $World/EndScreenMusic
+
+@onready var end_screen: Control = $Gui/EndScreen
+@onready var score_label: Label = get_tree().get_first_node_in_group("your_score")
+@onready var wave_button_container: Container = get_tree().get_first_node_in_group("wave_button_container")
 
 static var paused: bool = true
 
@@ -27,7 +32,16 @@ const CAR_GRADES = [
 	"S",
 ];
 
+var player_score: Dictionary = {
+	1: [],
+	2: [],
+	3: [],
+}
+
 func _ready() -> void:
+	# print(_player_score_to_text())
+	# return
+	end_screen.tween_out()
 	menu.connect_control_method.connect(_on_options_opened)
 	retry_button.pressed.connect(_on_retry_pressed)
 	next_stage_button.pressed.connect(_on_next_stage_pressed)
@@ -37,9 +51,31 @@ func _ready() -> void:
 	if PLAY_MUSIC:
 		funk.play()
 
+func _player_score_to_text() -> String:
+	var all_grades: PackedStringArray = []
+	for grades in player_score.values():
+		for g in grades:
+			all_grades.append(g)
+	return "-".join(all_grades)
+
 func _on_wave_ended() -> void:
+	player_score[stage.current_wave] = [] # Reset score for the next wave
+	for car in get_tree().get_nodes_in_group("cars"):
+		player_score[stage.current_wave].append(car.get_grade())
+	print(_player_score_to_text())
 	show_next_stage_prompt()
 	car_score_container.reset_and_show_scores()
+	if stage.current_wave == 3:
+		Game.paused = true
+		end_screen_music.play()
+		boss_funk.stop()
+		rockabily.stop()
+		wave_button_container.visible = false
+		score_label.text = "Your Score: " + _player_score_to_text()
+		car_score_container.placed_car_score.connect(_on_placed_car_score)
+
+func _on_placed_car_score() -> void:
+	end_screen.tween_in()
 
 func show_next_stage_prompt() -> void:
 	end_wave_container.visible = true
@@ -73,7 +109,7 @@ func start_pressed() -> void:
 	funk.stop()
 	if PLAY_MUSIC:
 		rockabily.play()
-	stage.init_wave(1)
+	stage.init_wave(1) #TESTING
 	# Release focus from the Play button so Space (dash) doesn't re-trigger this and call prepare_for_wave again
 	get_viewport().gui_release_focus()
 

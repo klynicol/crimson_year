@@ -108,7 +108,7 @@ script = ExtResource("6_g05bf")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/EndWaveContainer/VBoxContainer/CarScoreContainer" unique_id=224272804]
 volume_db = -15.0
 
-[node name="Container2" type="HBoxContainer" parent="Control/EndWaveContainer/VBoxContainer" unique_id=1505950519]
+[node name="Container2" type="HBoxContainer" parent="Control/EndWaveContainer/VBoxContainer" unique_id=1505950519 groups=["wave_button_container"]]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

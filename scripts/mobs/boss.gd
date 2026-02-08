@@ -11,7 +11,7 @@ var hit_this_cycle: bool = false
 #override
 func _physics_process(delta: float) -> void:
 	if Game.paused:
-		sprite.pause()
+		# sprite.pause()
 		return
 	sprite.play()
 	_check_state(delta)

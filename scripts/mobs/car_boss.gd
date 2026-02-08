@@ -3,6 +3,9 @@ class_name CarBoss extends Boss
 const PROJECTILE_SCENE: PackedScene = preload("uid://ddqeip5vg2qsl")
 
 const SPAWN_COOLDOWN: float = 3
+const TIME_TRIGGER_SCREECH_SOUND: float = 2.2
+var screech_sound_played: bool = false
+var engine_loop_sound_played: bool = false
 
 const WOBBLE_ANGLE_DEG: float = 10
 const WOBBLE_SPEED: float = 0.4
@@ -12,8 +15,7 @@ var spawn_cooldown: float = 0.0
 var _spawn_completed: bool = false
 var _wobble_time: float = 0.0
 var _direction_change_cooldown: float = 0.0
-
-
+var death_bomb_sound_played: bool = false
 
 @onready var boss_markers: Node2D = $/root/Game/World/BossMarkers
 @onready var emitters := {
@@ -29,13 +31,16 @@ const projectiles := {
 }
 
 # [sound, played]
-var sounds := [
-	[preload("uid://go2ejpgvc17o"), false],
-	# [preload("uid://dr4fluy7y0eic"), false],
-	# [preload("uid://cflg2ph6g7dw4"), false],
+var spawn_sound = preload("res://audio/sfx/boss_engine/Car-screech-02.wav")
+var battle_sounds = [
+	preload("res://audio/sfx/boss_engine/Car_rev-01.wav"),
+	# preload("res://audio/sfx/actual effect/lelolelo/highpitch.wav"),
+	# preload("res://audio/sfx/actual effect/lelolelo/lowlelo.wav"),
 ]
+var death_bomb_sound = preload("uid://vw8kctqbrbi7")
 
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var engine_audio_player: AudioStreamPlayer2D = $CarEngineLoop
 
 ## grab all these boss markers
 # Collect all lane markers and their submarkers from $BossMarkers group for quick access
@@ -46,9 +51,21 @@ var max_positions: Dictionary = {
 	"min_y":0.0,
 }
 
+func _play_death_bomb_sound() -> void:
+	if death_bomb_sound_played:
+		return
+	death_bomb_sound_played = true
+	audio_player.stream = death_bomb_sound
+	audio_player.play()
+
+func _handle_mob_dying(delta: float) -> void:
+	_play_death_bomb_sound()
+	super._handle_mob_dying(delta)
+
 signal spawn_completed
 
 func _ready() -> void:
+	engine_audio_player.stop()
 	_collect_lane_markers()
 	boss_type = BossType.CAR
 	spawn_cooldown = SPAWN_COOLDOWN
@@ -97,18 +114,31 @@ func _physics_process(delta: float) -> void:
 	# We're running a special bootup sequence for the boss.
 	spawn_cooldown -= delta
 
-	if spawn_cooldown <= SPAWN_COOLDOWN / 2:
+	if spawn_cooldown <= TIME_TRIGGER_SCREECH_SOUND:
 		trigger_sound()
 
 	if spawn_cooldown > 0.0:
 		return
 
+	if not engine_loop_sound_played:
+		engine_loop_sound_played = true
+		engine_audio_player.play()
+
 	if not _spawn_completed:
 		_spawn_completed = true
 		spawn_completed.emit()
 
+	_random_play_battle_sound()
+
 	# check_position_in_lanes()
 	super._physics_process(delta)
+
+func _random_play_battle_sound() -> void:
+	if randf() > 0.002:
+		return
+	var random_sound = battle_sounds.pick_random()
+	audio_player.stream = random_sound
+	audio_player.play()
 
 func chase(target_pos: Vector2, delta: float) -> void:
 	_wobble_time += delta
@@ -164,11 +194,8 @@ func _collect_lane_markers():
 		max_positions[sprite.name] = sprite.global_position[x_or_y]
 
 func trigger_sound() -> void:
-	if _spawn_completed:
+	if _spawn_completed or screech_sound_played:
 		return
-	var sound = sounds[randi() % sounds.size()]
-	if sound[1]:
-		return
-	sound[1] = true
-	audio_player.stream = sound[0]
+	audio_player.stream = spawn_sound
 	audio_player.play()
+	screech_sound_played = true
