@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bbh8eakmnon5n"]
+
+[ext_resource type="Texture2D" uid="uid://brgo1rvri1bsb" path="res://assets/tile_sets/outerwall.png" id="1_3lclc"]
+
+[node name="WallCoverScene" type="Node2D" unique_id=1754787052]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=35127382]
+texture = ExtResource("1_3lclc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=530792733]
+position = Vector2(0, 191.76)
+texture = ExtResource("1_3lclc")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=273733382]
+position = Vector2(0, 384)
+texture = ExtResource("1_3lclc")

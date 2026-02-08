@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://cir23plntg0kd" path="res://audio/music/Carwash-Funk.wav" id="15_xo05s"]
 [ext_resource type="AudioStream" uid="uid://d17oyus7bn41a" path="res://audio/music/BossFunk.wav" id="16_dss4m"]
 [ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/menu_gui/x.png" id="17_7t5mc"]
+[ext_resource type="PackedScene" uid="uid://bbh8eakmnon5n" path="res://scenes/wall_cover.tscn" id="22_oo54l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_71j4m"]
 
@@ -161,6 +162,15 @@ sources/2 = SubResource("TileSetAtlasSource_oo54l")
 sources/3 = SubResource("TileSetAtlasSource_kpybi")
 sources/4 = SubResource("TileSetAtlasSource_7iits")
 sources/5 = SubResource("TileSetAtlasSource_ctatt")
+
+[sub_resource type="Gradient" id="Gradient_7iits"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.14901961, 0.21176471, 0.30588236, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oo54l"]
+gradient = SubResource("Gradient_7iits")
+width = 197
+height = 156
 
 [node name="World" type="Node2D" unique_id=818516590]
 script = ExtResource("1_w7kh3")
@@ -311,3 +321,26 @@ texture = ExtResource("17_7t5mc")
 [node name="min_x" type="Sprite2D" parent="BossMarkers" unique_id=1019162418]
 position = Vector2(-1360, 262)
 texture = ExtResource("17_7t5mc")
+
+[node name="CarCoverUps" type="Node2D" parent="." unique_id=391314944]
+
+[node name="Sprite2D" type="Sprite2D" parent="CarCoverUps" unique_id=1747996267]
+z_index = 1
+position = Vector2(-5285, 287)
+scale = Vector2(4.300508, 3.8884618)
+texture = SubResource("GradientTexture2D_oo54l")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CarCoverUps" unique_id=1582965585]
+z_index = 1
+position = Vector2(1127, 275)
+scale = Vector2(4.300508, 3.8884618)
+texture = SubResource("GradientTexture2D_oo54l")
+
+[node name="WallCoverScene" parent="CarCoverUps" unique_id=1754787052 instance=ExtResource("22_oo54l")]
+z_index = 1
+position = Vector2(608, 513)
+rotation = -3.1415925
+
+[node name="WallCoverScene2" parent="CarCoverUps" unique_id=550172752 instance=ExtResource("22_oo54l")]
+z_index = 1
+position = Vector2(-4768, 63)
