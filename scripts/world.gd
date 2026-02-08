@@ -63,3 +63,4 @@ func prepare_for_wave():
 	# Clear any previous boss so the next wave gets a fresh instance
 	for boss in get_tree().get_nodes_in_group("boss"):
 		boss.queue_free()
+ 

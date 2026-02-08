@@ -224,7 +224,7 @@ position = Vector2(-2659, 287)
 position = Vector2(-4043, 281)
 
 [node name="Checkpoint5" parent="." unique_id=2088446494 groups=["start_checkpoint"] instance=ExtResource("11_e3hyu")]
-position = Vector2(-5068, 318)
+position = Vector2(-5042, 291)
 
 [node name="ConveyorYMax" type="Marker2D" parent="." unique_id=1070047807]
 position = Vector2(21, 420)
@@ -281,6 +281,7 @@ position = Vector2(-1726, 170)
 
 [node name="Rockabily" type="AudioStreamPlayer" parent="." unique_id=361360882]
 stream = ExtResource("14_o8fc1")
+volume_db = -12.0
 playback_type = 1
 
 [node name="Funk" type="AudioStreamPlayer" parent="." unique_id=1361179680]

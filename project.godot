@@ -130,4 +130,4 @@ aim_right={
 [rendering]
 
 renderer/rendering_method="mobile"
-environment/defaults/default_clear_color=Color(0.14729369, 0.21132198, 0.30609733, 1)
+environment/defaults/default_clear_color=Color(0.14901961, 0.21176471, 0.30588236, 1)

@@ -99,6 +99,6 @@ func _on_boss_spawned(boss: Node) -> void:
 	tween.tween_property(boss_funk, "volume_db", -16, 0.75)
 	tween.finished.connect(func():
 		rockabily.stop()
-		rockabily.volume_db = 0.0
+		rockabily.volume_db = -12.0
 	)
 	

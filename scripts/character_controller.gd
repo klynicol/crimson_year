@@ -20,9 +20,11 @@ var input_released_by_code := false
 @onready var dash_sfx: AudioStreamPlayer2D = $dash_sfx
 
 var dash_sounds:= [
-	preload("uid://c3xoycvuuo8x4"),
-	preload("uid://bu3r22mhv4vba"),
-	preload("uid://whojfhsaw0pi"),
+	# preload("uid://c3xoycvuuo8x4"),
+	# preload("uid://bu3r22mhv4vba"),
+	# preload("uid://whojfhsaw0pi"),
+	preload("uid://cpmua82k61glb"),
+	preload("uid://dxy4ts6lnci6j"),
 ]
 
 # this will determine whether the Utilities file uses the get_rotation_to_mouse()

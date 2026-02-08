@@ -35,6 +35,7 @@ var cooldown = 0.0
 var cooldown_time: float
 
 var last_shot_rotation: float = 0.0
+var is_playing_sfx := false
 
 func _ready() -> void:
 	# Each projectile is 20pixels wide
@@ -51,11 +52,23 @@ func _process(delta: float) -> void:
 			sprayer.visible = true
 			shoot()
 			cooldown = cooldown_time
-			spray_sfx.play()
+			_play_spray_sfx()
 	else:
 		sprayer.visible = false
-		spray_sfx.stop()
+		_stop_spray_sfx()
 	cooldown -= delta
+
+func _play_spray_sfx() -> void:
+	if is_playing_sfx:
+		return
+	spray_sfx.play()
+	is_playing_sfx = true
+
+func _stop_spray_sfx() -> void:
+	if not is_playing_sfx:
+		return
+	spray_sfx.stop()
+	is_playing_sfx = false
 
 func shoot() -> void:
 	# Spawn at the tip of the sprayer sprite (end of barrel)

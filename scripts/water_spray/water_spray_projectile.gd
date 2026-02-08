@@ -19,9 +19,16 @@ const MIST_STRENGTH_DECAY_RATE = 1.8
 const DAMAGE_DECAY_RATE = 9.0
 const COLLISION_BOX_SIZE_DECAY_RATE = 15.0
 
+const splash_sfx = [
+	preload("uid://dxy4ts6lnci6j"),
+	preload("uid://cpmua82k61glb"),
+	preload("uid://dxy4ts6lnci6j"),
+]
+
 @onready var vfxSprite = $VFX
 @onready var pushback_collision_shape = $Pushback
 @onready var damage_collision_shape = $WaterDamage/CollisionShape2D
+@onready var stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
 	global_position = spawnPosition
@@ -29,7 +36,8 @@ func _ready() -> void:
 	vfxSprite.material = vfxSprite.material.duplicate()
 	pushback_collision_shape.shape = pushback_collision_shape.shape.duplicate()
 	damage_collision_shape.shape = damage_collision_shape.shape.duplicate()
-	
+	# _play_splash_sfx()
+
 func _physics_process(delta: float) -> void:
 	if Game.paused:
 		return
@@ -48,6 +56,7 @@ func _decay(delta: float) -> void:
 func get_damage_and_increment_reflect() -> float:
 	damage_reflections += 1
 	if damage_reflections > MAX_DAMAGE_REFLECTIONS:
+		_play_splash_sfx()
 		queue_free()
 		return 0.0
 	return damage
@@ -56,6 +65,14 @@ func _despawn(delta: float) -> void:
 	time_alive += delta
 	if time_alive > MAX_TIME_ALIVE:
 		queue_free()
+
+func _play_splash_sfx() -> void:
+	#only do this 1 percent of the time
+	if randf() > 0.08:
+		return
+	stream_player.stream = splash_sfx.pick_random()
+	stream_player.volume_db = -12
+	stream_player.play()
 
 # As the projectiles moves, the scale should increase to simulate the water spreading out
 # Scale the vfxsprite

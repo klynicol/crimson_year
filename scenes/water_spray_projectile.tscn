@@ -47,3 +47,5 @@ light_mask = 2
 visibility_layer = 2
 scale = Vector2(0.945, 0.945)
 shape = SubResource("CircleShape2D_1h3s4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1558772027]
