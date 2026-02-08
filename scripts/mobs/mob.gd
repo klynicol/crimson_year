@@ -12,7 +12,16 @@ const mob_scense: Dictionary[MobType, PackedScene] = {
 	MobType.GECKO: preload("uid://ducr0tccltrqt"),
 }
 
+var dying_sfx:= [
+	preload("uid://dop2en52w7736"),
+	preload("uid://chor7krw8rqjx"),
+	preload("uid://c50c5gtqdjfkc"),
+]
+var dying_sfx_played: bool = false
+
 var mob_type: MobType
+
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _check_state(delta: float) -> void:
 	if mob_state == MobState.DYING:
@@ -34,7 +43,23 @@ func _check_state(delta: float) -> void:
 	# Last resort, just chase the target
 	_handle_walking(delta)
 
+func _handle_mob_dying(delta: float) -> void:
+	_decelerate_to_zero_velocity(delta)
+	_play_dying_sfx()
+	if dying_cooldown > 0.0:
+		dying_cooldown -= delta
+		return
+	queue_free()
+
+func _play_dying_sfx() -> void:
+	if dying_sfx_played:
+		return
+	dying_sfx_played = true
+	var random_sound = dying_sfx.pick_random()
+	audio_player.volume_db = 4
+	audio_player.stream = random_sound
+	audio_player.play()
+
 #override
 func _shoot_projectile(target_pos: Vector2) -> void:
 	pass
-
