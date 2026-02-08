@@ -26,6 +26,7 @@ const splash_sfx = [
 ]
 
 @onready var vfxSprite = $VFX
+@onready var vfxSprite2 = $VFX2
 @onready var pushback_collision_shape = $Pushback
 @onready var damage_collision_shape = $WaterDamage/CollisionShape2D
 @onready var stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D

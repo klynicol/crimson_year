@@ -7,15 +7,20 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bri6m"]
 shader = ExtResource("2_w5k3n")
-shader_parameter/use_noise_texture = false
-shader_parameter/cone_softness = 0.03
+shader_parameter/use_noise_texture = true
+shader_parameter/cone_softness = 0.06
+shader_parameter/cone_softness_spread = 0.02
 shader_parameter/cone_center = 0.5
-shader_parameter/density = 27.35
-shader_parameter/mist_scale = 36.725
-shader_parameter/mist_strength = 0.91
-shader_parameter/falloff = 1.095
-shader_parameter/scroll_speed = 2.655
+shader_parameter/density = 11.0
+shader_parameter/mist_scale = 120.0
+shader_parameter/mist_strength = 1.125
+shader_parameter/falloff = 0.915
+shader_parameter/scroll_speed = 2.565
 shader_parameter/scroll_direction = Vector2(0, 1)
+shader_parameter/color_variance_strength = 0.2
+shader_parameter/base_color_r = 0.85
+shader_parameter/base_color_g = 0.92
+shader_parameter/base_color_b = 0.98
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g5njp"]
 radius = 13.0
@@ -29,6 +34,13 @@ collision_layer = 0
 script = ExtResource("1_1h3s4")
 
 [node name="VFX" type="Sprite2D" parent="." unique_id=1528228043]
+material = SubResource("ShaderMaterial_bri6m")
+position = Vector2(34.36, -0.12800026)
+scale = Vector2(1.835, 1.492)
+texture = ExtResource("3_1mon1")
+script = ExtResource("4_asivv")
+
+[node name="VFX2" type="Sprite2D" parent="." unique_id=1909979615]
 material = SubResource("ShaderMaterial_bri6m")
 position = Vector2(34.36, -0.12800026)
 scale = Vector2(1.835, 1.492)
