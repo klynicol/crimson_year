@@ -8,7 +8,7 @@ const CONVEYOR_ANIMATION_SPEED: float = 62.5
 static var player_instance: CharacterBody2D
 static var ground: TileMapLayer
 static var conveyor: TileMapLayer
-static var walls: TileMapLayer
+# static var walls: TileMapLayer
 static var ySort: Node2D
 
 # Find all the "GreaserSpawn" nodes and get their global position
@@ -25,7 +25,7 @@ static var conveyor_y_min: float = 0.0
 
 func _ready():
 	ground = get_node("Ground")
-	walls = get_node("Walls")
+	# walls = get_node("Walls")
 	_set_instances()  # Run immediately so player_instance is ready before StageManager._init_wave
 	conveyor_y_max = conveyor_y_max_marker.global_position.y
 	conveyor_y_min = conveyor_y_min_marker.global_position.y

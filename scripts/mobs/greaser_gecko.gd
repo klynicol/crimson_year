@@ -21,14 +21,14 @@ func _ready():
 		audio_stream_player_2d.play()
 
 func _shoot_projectile(target_pos: Vector2) -> void:
-	target_pos += Vector2(150, 0) #account for car movement
+	# target_pos += Vector2(150, 0) #account for car movement
 	var projectile = PROJECTILE_SCENE.instantiate()
 	var pos_y = projectile_emitter.global_position.y
 	var pos_x = projectile_emitter.global_position.x
 	if sprite.flip_h:
 		pos_x += projectile_emitter.position.x * -2
 	projectile.global_position = Vector2(pos_x, pos_y)
-	projectile.dir = global_position.angle_to_point(target_pos)
+	projectile.dir = projectile_emitter.global_position.angle_to_point(target_pos)
 	projectile.damage = stats.damage
 	World.ySort.add_child(projectile)
 	audio_stream_player_2d.stream = attack_sfx
