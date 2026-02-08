@@ -49,6 +49,7 @@ func _handle_mob_dying(delta: float) -> void:
 	if dying_cooldown > 0.0:
 		dying_cooldown -= delta
 		return
+	mob_died.emit()
 	queue_free()
 
 func _play_dying_sfx() -> void:
@@ -56,7 +57,6 @@ func _play_dying_sfx() -> void:
 		return
 	dying_sfx_played = true
 	var random_sound = dying_sfx.pick_random()
-	audio_player.volume_db = 4
 	audio_player.stream = random_sound
 	audio_player.play()
 

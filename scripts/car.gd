@@ -17,6 +17,7 @@ var health: int = MAX_HEALTH
 var car_sprite_index: int
 var reached_end_checkpoint: bool = false
 var score_placed: bool = false
+var grade: String = ""
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hit_box: Area2D = $HitBox
@@ -107,10 +108,13 @@ func get_progress() -> float:
 
 # Get grade based on remaining health of the car
 func get_grade() -> String:
+	if grade != "":
+		return grade
 	var health_ratio = float(health) / MAX_HEALTH
 	var index = ceil(health_ratio * float(Game.CAR_GRADES.size())) - 1
 	index = clampi(index, 0, Game.CAR_GRADES.size() - 1)
-	return Game.CAR_GRADES[index]
+	grade = Game.CAR_GRADES[index]
+	return grade
 
 func on_reached_end_checkpoint() -> void:
 	reached_end_checkpoint_signal.emit()

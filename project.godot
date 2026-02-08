@@ -37,6 +37,8 @@ car_tracker=""
 car_score_container=""
 retry_button=""
 next_stage_button=""
+your_score=""
+wave_button_container=""
 
 [gui]
 

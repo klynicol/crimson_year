@@ -3,7 +3,7 @@ class_name CarBoss extends Boss
 const PROJECTILE_SCENE: PackedScene = preload("uid://ddqeip5vg2qsl")
 
 const SPAWN_COOLDOWN: float = 3
-const TIME_TRIGGER_SCREECH_SOUND: float = 1.0
+const TIME_TRIGGER_SCREECH_SOUND: float = 2.2
 var screech_sound_played: bool = false
 var engine_loop_sound_played: bool = false
 
@@ -15,8 +15,7 @@ var spawn_cooldown: float = 0.0
 var _spawn_completed: bool = false
 var _wobble_time: float = 0.0
 var _direction_change_cooldown: float = 0.0
-
-
+var death_bomb_sound_played: bool = false
 
 @onready var boss_markers: Node2D = $/root/Game/World/BossMarkers
 @onready var emitters := {
@@ -38,6 +37,7 @@ var battle_sounds = [
 	# preload("res://audio/sfx/actual effect/lelolelo/highpitch.wav"),
 	# preload("res://audio/sfx/actual effect/lelolelo/lowlelo.wav"),
 ]
+var death_bomb_sound = preload("uid://vw8kctqbrbi7")
 
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var engine_audio_player: AudioStreamPlayer2D = $CarEngineLoop
@@ -50,6 +50,17 @@ var max_positions: Dictionary = {
 	"min_x":0.0,
 	"min_y":0.0,
 }
+
+func _play_death_bomb_sound() -> void:
+	if death_bomb_sound_played:
+		return
+	death_bomb_sound_played = true
+	audio_player.stream = death_bomb_sound
+	audio_player.play()
+
+func _handle_mob_dying(delta: float) -> void:
+	_play_death_bomb_sound()
+	super._handle_mob_dying(delta)
 
 signal spawn_completed
 
@@ -123,7 +134,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 func _random_play_battle_sound() -> void:
-	if randf() > 0.007:
+	if randf() > 0.002:
 		return
 	var random_sound = battle_sounds.pick_random()
 	audio_player.stream = random_sound

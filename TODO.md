@@ -22,3 +22,9 @@
  - [x] left in wave is going negative
  - [x] gamepad not working
  - [ ] splashing sounds
+
+ - boss screen trigger sooner
+ - lower volume on mob death
+ - debug volume on rockabily
+ - double check start next wave conditions
+ 

@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dhxinkqq74s06"]
+
+[ext_resource type="Texture2D" uid="uid://b0i28q4r5jite" path="res://assets/menu_gui/creditspage.png" id="1_6e1uj"]
+[ext_resource type="Script" uid="uid://c8nyid27u7wma" path="res://scripts/end_screen.gd" id="1_jc7ji"]
+[ext_resource type="FontFile" uid="uid://cdcg16qh0f6pk" path="res://assets/FingerPaint-Regular.ttf" id="2_jc7ji"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_87vmq"]
+font = ExtResource("2_jc7ji")
+font_size = 107
+
+[sub_resource type="LabelSettings" id="LabelSettings_g44xs"]
+font = ExtResource("2_jc7ji")
+font_size = 60
+
+[node name="EndScreen" type="Control" unique_id=32564262]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jc7ji")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1661898601]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6e1uj")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=1174914668]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer" unique_id=282678907]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=1790523663]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_87vmq")
+horizontal_alignment = 1
+
+[node name="YourScore" type="Label" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=72018380 groups=["your_score"]]
+layout_mode = 2
+text = "Your Score: S-A-F-F-F-F"
+label_settings = SubResource("LabelSettings_g44xs")
+horizontal_alignment = 1

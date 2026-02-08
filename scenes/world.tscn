@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://cir23plntg0kd" path="res://audio/music/Carwash-Funk.wav" id="15_xo05s"]
 [ext_resource type="AudioStream" uid="uid://d17oyus7bn41a" path="res://audio/music/BossFunk.wav" id="16_dss4m"]
 [ext_resource type="Texture2D" uid="uid://c11cx5kkdpwg2" path="res://assets/menu_gui/x.png" id="17_7t5mc"]
+[ext_resource type="AudioStream" uid="uid://yx1fwndqdyo3" path="res://audio/music/GameOver.wav" id="21_kpybi"]
 [ext_resource type="PackedScene" uid="uid://bbh8eakmnon5n" path="res://scenes/wall_cover.tscn" id="22_oo54l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_71j4m"]
@@ -228,7 +229,7 @@ position = Vector2(-255, 303)
 position = Vector2(-1736, 282)
 
 [node name="Checkpoint3" parent="." unique_id=957996479 instance=ExtResource("11_e3hyu")]
-position = Vector2(-2659, 287)
+position = Vector2(-2362, 288)
 
 [node name="Checkpoint4" parent="." unique_id=1059410975 instance=ExtResource("11_e3hyu")]
 position = Vector2(-4043, 281)
@@ -257,11 +258,6 @@ tile_set = SubResource("TileSet_i7141")
 z_index = 1
 position = Vector2(-5000, 256)
 texture = ExtResource("8_q5onr")
-
-[node name="HideCarMask" type="Polygon2D" parent="YSort" unique_id=1091698579]
-clip_children = 1
-position = Vector2(-455, -9)
-polygon = PackedVector2Array(952, -72, 951.54486, 203.79886, 967, 181, 967, 357, 948, 393, 951, 534, -4421, 643, -4450, 389, -4471, 355, -4474, 168, -4452, 201, -4444, -156)
 
 [node name="RightGarageDoor" type="Sprite2D" parent="YSort" unique_id=1700146032]
 z_index = 1
@@ -302,6 +298,10 @@ playback_type = 1
 stream = ExtResource("16_dss4m")
 volume_db = -12.0
 playback_type = 1
+
+[node name="EndScreenMusic" type="AudioStreamPlayer" parent="." unique_id=516005854]
+stream = ExtResource("21_kpybi")
+volume_db = -12.0
 
 [node name="BossMarkers" type="Node2D" parent="." unique_id=1104776280]
 visible = false
